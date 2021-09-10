@@ -1,0 +1,28 @@
+<DOCTYPE html>
+    <html>
+        <head>
+            <title>CS124 Lab1</title>
+            <link rel="stylesheet" href="lab1.css">
+        </head>
+    
+        <body>
+            <h1>CS124 Lab1</h1>
+            <form action="">
+                <input type="checkbox" name="item1">
+                <label for="item1">Text John</label><br>
+                <input type="checkbox" name="item2">
+                <label for="item1">Call Mom</label><br>
+                <input type="checkbox" name="item3">
+                <label for="item1">Item 3</label><br><br>
+                <input type="text" name="create"><br><br>
+                <div id="demo" onclick="myFunction()">Create New Item</div>
+                <br><br>
+                <input type="reset" value="Reset">
+            </form>
+            <script>
+                function myFunction() {
+                  document.getElementById("demo").innerHTML = "Item Added!";
+                }
+            </script>
+        </body>
+    </html>

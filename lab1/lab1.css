@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    font-family: Cochin;
+    padding-top: 70;
+}
+
+form {
+    font-size: 30;
+}
+
+input:checked + label {
+    color: white;
+}
+
+#demo {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: black;
+    width: fit-content;
+}
