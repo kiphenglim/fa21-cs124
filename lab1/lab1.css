@@ -5,17 +5,68 @@ h1 {
 }
 
 form {
-    font-size: 30;
+    font-size: large;
 }
 
 input:checked + label {
-    color: white;
+    color: lightgrey;
+    text-decoration: line-through;
 }
 
-#demo {
-    border-style: solid;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: black;
-    width: fit-content;
+.grid-container {
+    display: grid;
 }
+
+#item1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+#item1-edit {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#item2 {
+    grid-column: 1;
+    grid-row: 2;
+}
+#item2-edit {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#item3 {
+    grid-column: 1;
+    grid-row: 3;
+}
+#item3-edit {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.button {
+    display: block;
+    float: right;
+    font-size: medium;
+    font-family: sans-serif;
+    background: lightgrey;
+    padding: 3px;
+    text-align: center;
+    border-radius: 3px;
+    color: black;
+    text-decoration: none;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#new-item-text {
+    order: 1;
+    width: 70%;
+}
+
+#add-item {
+    order: 2;
+}​
