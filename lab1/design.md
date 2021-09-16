@@ -27,8 +27,7 @@ task 3: add item "Call Mom" and mark item "Call Mom" completed
 task 4: add item "Text John" and edit to "Text John about bank statements"
 task 5: show uncompleted tasks
 task 6: delete completed tasks
-
-
+index: contains list of tasks and links to respective pages
 
 
 
