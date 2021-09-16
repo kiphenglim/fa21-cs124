@@ -23,13 +23,14 @@ created html pages with lists and links to transition between them
 decided order of tasks
 task 1: add item "Buy new John Grisham book"
 task 2: add item "Eat lunch"
-task 3: add item "Call Mom" and edit item "Call Mom" completed
+task 3: add item "Call Mom" and mark item "Call Mom" completed
 task 4: add item "Text John" and edit to "Text John about bank statements"
 task 5: show uncompleted tasks
 task 6: delete completed tasks
 
-task 1 begin -> task 1 end -> task 2 begin -> task 2 end -> task 3 begin ->
-task 3 end -> task 4 begin -> task 4 edit -> task 5 -> task 6
+
+
+
 
 user testing: tested by us, going through tasks sequentially, no
 problems found
