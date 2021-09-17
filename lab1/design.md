@@ -5,7 +5,7 @@ rename item
 show incomplete items
 delete completed items
 
-9 Sept
+# 9 Sept
 figure out how to change form/list without javascript code. 
 tried using a form with checkboxes and text inputs as labels. 
 tried changing label color on checking box to resemble deletion. 
@@ -13,12 +13,12 @@ added button for creating new items (non-functional).
 added some css to modify text size and font. 
 challenges: modifying items and deleting completed items.
 
-13 Sept
+# 13 Sept
 received clarification about assignment during office hours, 
 determined task is to create a series of html pages that show
 the specified tasks being executed
 
-16 Sept
+# 16 Sept
 design decisions: used flexbox for list items for better alignment
 and gridbox for list buttons to align with list items. 
 used links to html pages that resembled buttons to make transitioning
