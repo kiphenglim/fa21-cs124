@@ -1,13 +1,15 @@
 # Design Decisions
-+ used flexbox for list items for better and easier 
++ used flexbox for list items for better and easier
 alignment and gridbox for list buttons to align with list items
-+ used links to html pages that resembled buttons to make transitioning 
-between pages easier. 
++ used links to html pages that resembled buttons to make transitioning
+between pages easier.
 + used white, grey, and black for a minimalistic look
 + used san serif font for buttons and serif for other text
 
+![Screenshot of Lab 1](images/design-decisions.png)
+
 # Alternative Designs
-+ no alternative designs 
++ no alternative designs
 
 # User Testing
 + tested by Kip, going through tasks sequentially
@@ -26,14 +28,14 @@ between pages easier.
 # Challenges
 + not understanding the specifications - how the tasks related to each other
   + attended office hours and received clarification about assignment
-  + determined that task is to create a series of html pages that show 
+  + determined that task is to create a series of html pages that show
 the specified tasks being executed
 + Chrome mobile view displays elements with abnormally small size, but 
 other browsers are unaffected
 
 # Design Highlights
 + disguising links as buttons that link to the next page
-+ allowed users to complete the tasks successfully and continuously, 
++ allowed users to complete the tasks successfully and continuously,
 without going back to index
 
 # Timeline
