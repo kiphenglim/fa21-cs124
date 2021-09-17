@@ -28,6 +28,8 @@ between pages easier.
   + attended office hours and received clarification about assignment
   + determined that task is to create a series of html pages that show 
 the specified tasks being executed
++ Chrome mobile view displays elements with abnormally small size, but 
+other browsers are unaffected
 
 # Design Highlights
 + disguising links as buttons that link to the next page
