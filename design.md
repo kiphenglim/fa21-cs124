@@ -17,8 +17,6 @@ between pages easier.
 
 # Final Design
 
-![Task Flow](lab1-images/task-flow.png)
-
 1. task 1: add item "Buy new John Grisham book"
 + To add item "Buy new John Grisham book", type in the desired task name in the text box next to "Add Item",
 then select the Add Item button. After the Add Item button is pressed, the list will update to show the item.
