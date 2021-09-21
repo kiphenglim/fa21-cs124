@@ -22,6 +22,7 @@ between pages easier.
 1. task 1: add item "Buy new John Grisham book"
 + To add item "Buy new John Grisham book", type in the desired task name in the text box next to "Add Item",
 then select the Add Item button. After the Add Item button is pressed, the list will update to show the item.
+
 ![before](lab1-images/t1-begin.png)
 ![add](lab1-images/t1-add.png)
 ![after](lab1-images/t1-end.png)
@@ -29,20 +30,21 @@ then select the Add Item button. After the Add Item button is pressed, the list 
 2. task 2: add item "Eat lunch"
 + To add item "Eat lunch", type in the desired task name in the text box next to "Add Item",
 then select the Add Item button. After the Add Item button is pressed, the list will update to show the item.
+
 ![before](lab1-images/t2-begin.png)
 ![add](lab1-images/t2-add.png)
 ![after](lab1-images/t2-end.png)
 
 3. task 3: mark item "Call Mom" completed
-+ To mark item "Call Mom" completed, the item first needs to be added. To add item, type in the desired task name in the text box next to "Add Item", then select the Add Item button. After the Add Item button is pressed, the list will update to show the item. Then, select the check box left of the item to mark the item
-completed. The list will update to show the item with grey text and strikethrough.
++ To mark item "Call Mom" complete, select the check box left of the item. The list will update to show the item with grey text and strikethrough.
+
 ![before](lab1-images/t3-begin.png)
-![add](lab1-images/t3-add.png)
 ![after](lab1-images/t3-end.png)
 
 4. task 4: edit item "Text John" to "Text John about bank statements"
 + To edit item "Text John", the item first needs to be added. To add item, type in the desired task name in the text box next to "Add Item", then select the Add Item button. After the Add Item button is pressed, the list will update to show the item. Then, select the "Edit" button right of the item to change the item format 
 to a text box, which can then be edited to the desired item name. Then, select "Done" button to confirm the new item name or select "Done" with the original name if the change is no longer desired. The list will update to show the edited item.
+
 ![before](lab1-images/t4-begin.png)
 ![add](lab1-images/t4-edit1.png)
 ![edit](lab1-images/t4-edit2.png)
