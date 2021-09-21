@@ -20,12 +20,15 @@ between pages easier.
 ![Task Flow](lab1-images/task-flow.png)
 
 1. task 1: add item "Buy new John Grisham book"
-![Before adding an item](lab1-images/t1-begin.png)
-![Add a new item by typing in the text box next to "Add Item"](lab1-images/t1-add.png)
-![View of the app after the item is added](lab1-images/t1-end.png)
++ To add item "Buy new John Grisham book", type in the desired task name in the text box next to "Add Item",
+then select the Add Item button. After the Add Item button is pressed, the list will update to show the item.
+![before](lab1-images/t1-begin.png)
+![add](lab1-images/t1-add.png)
+![after](lab1-images/t1-end.png)
 
 2. task 2: add item "Eat lunch"
-3. task 3: add item "Call Mom" and mark item "Call Mom" completed
+3. task 3: mark item "Call Mom" completed
+
 4. task 4: add item "Text John" and edit to "Text John about bank statements"
 5. task 5: show uncompleted tasks
 6. task 6: delete completed tasks
