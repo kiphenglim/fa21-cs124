@@ -51,10 +51,17 @@ to a text box, which can then be edited to the desired item name. Then, select "
 ![after](lab1-images/t4-end.png)
 
 
-5. task 5: show uncompleted tasks
-6. task 6: delete completed tasks
-7. index: contains list of tasks and links to respective pages
+5. task 5: show only uncompleted tasks
++ Uncompleted items are in black with regular formatting. Completed items, which have selected checkboxes, are greyed out and have strikethrough format.
 
+![before](lab1-images/t5-begin.png)
+![after](lab1-images/t5-end.png)
+
+6. task 6: delete completed tasks
++ Select the "Remove Completed" button while one or more items are marked as complete to permanently remove those items from the list. The List will update to contain only the uncompleted items.
+
+![before](lab1-images/t6-begin.png)
+![after](lab1-images/t6-end.png)
 
 
 # Challenges
