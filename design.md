@@ -36,9 +36,9 @@ then select the Add Item button. After the Add Item button is pressed, the list 
 3. task 3: mark item "Call Mom" completed
 + To mark item "Call Mom" completed, the item first needs to be added. To add item, type in the desired task name in the text box next to "Add Item", then select the Add Item button. After the Add Item button is pressed, the list will update to show the item. Then, select the check box left of the item to mark the item
 completed. The list will update to show the item with grey text and strikethrough.
-![before](lab1-images/t2-begin.png)
-![add](lab1-images/t2-add.png)
-![after](lab1-images/t2-end.png)
+![before](lab1-images/t3-begin.png)
+![add](lab1-images/t3-add.png)
+![after](lab1-images/t3-end.png)
 
 4. task 4: add item "Text John" and edit to "Text John about bank statements"
 5. task 5: show uncompleted tasks
