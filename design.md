@@ -7,7 +7,7 @@ between pages easier.
 + show all items at all times
   + don't let editing create a dialog box and hides other items
 
-![Screenshot of Lab 1](images/design-decisions.png)
+![Screenshot of Lab 1](lab1-images/design-decisions.png)
 
 # Alternative Designs
 + no alternative designs
@@ -17,12 +17,12 @@ between pages easier.
 
 # Final Design
 
-![Task Flow](images/task-flow.png)
+![Task Flow](lab1-images/task-flow.png)
 
 1. task 1: add item "Buy new John Grisham book"
-![Before adding an item](images/t1-begin.png)
-![Add a new item by typing in the text box next to "Add Item"](images/t1-add.png)
-![View of the app after the item is added](images/t1-end.png)
+![Before adding an item](lab1-images/t1-begin.png)
+![Add a new item by typing in the text box next to "Add Item"](lab1-images/t1-add.png)
+![View of the app after the item is added](lab1-images/t1-end.png)
 
 2. task 2: add item "Eat lunch"
 3. task 3: add item "Call Mom" and mark item "Call Mom" completed
