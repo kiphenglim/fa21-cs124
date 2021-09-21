@@ -90,3 +90,9 @@ without going back to index
 decided order of tasks
   + used flexbox and gridbox to align elements
   + tested tasks and wrote design.md
+
++ 20 Sept
+  + changed design task flow to include more detailed descriptions of 
+  tasks and images
+  + changed task 5, show only uncompleted tasks, to match edited description 
+  in lab 1 guide
