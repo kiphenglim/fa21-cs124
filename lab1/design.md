@@ -1,10 +1,12 @@
 # Design Decisions
-+ used flexbox for list items for better and easier
-alignment and gridbox for list buttons to align with list items
 + used links to html pages that resembled buttons to make transitioning
 between pages easier.
 + used white, grey, and black for a minimalistic look
 + used san serif font for buttons and serif for other text
+
+# Implementation Decisions
++ used flexbox for list items for better and easier
+alignment and gridbox for list buttons to align with list items
 
 ![Screenshot of Lab 1](images/design-decisions.png)
 
