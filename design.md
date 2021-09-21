@@ -3,10 +3,9 @@
 between pages easier.
 + used white, grey, and black for a minimalistic look
 + used san serif font for buttons and serif for other text
-
-# Implementation Decisions
-+ used flexbox for list items for better and easier
-alignment and gridbox for list buttons to align with list items
++ mark an item as completed by selecting the checkbox next
++ show all items at all times
+  + don't let editing create a dialog box and hides other items
 
 ![Screenshot of Lab 1](images/design-decisions.png)
 
@@ -17,7 +16,14 @@ alignment and gridbox for list buttons to align with list items
 + tested by Kip, going through tasks sequentially
 
 # Final Design
+
+![Task Flow](images/task-flow.png)
+
 1. task 1: add item "Buy new John Grisham book"
+![Before adding an item](images/t1-begin.png)
+![Add a new item by typing in the text box next to "Add Item"](images/t1-add.png)
+![View of the app after the item is added](images/t1-end.png)
+
 2. task 2: add item "Eat lunch"
 3. task 3: add item "Call Mom" and mark item "Call Mom" completed
 4. task 4: add item "Text John" and edit to "Text John about bank statements"
@@ -25,14 +31,14 @@ alignment and gridbox for list buttons to align with list items
 6. task 6: delete completed tasks
 7. index: contains list of tasks and links to respective pages
 
-![Task Flow](images/task-flow.png)
+
 
 # Challenges
 + not understanding the specifications - how the tasks related to each other
   + attended office hours and received clarification about assignment
   + determined that task is to create a series of html pages that show
 the specified tasks being executed
-+ Chrome mobile view displays elements with abnormally small size, but 
++ Chrome mobile view displays elements with abnormally small size, but
 other browsers are unaffected
 
 # Design Highlights
