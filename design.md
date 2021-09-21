@@ -40,7 +40,15 @@ completed. The list will update to show the item with grey text and strikethroug
 ![add](lab1-images/t3-add.png)
 ![after](lab1-images/t3-end.png)
 
-4. task 4: add item "Text John" and edit to "Text John about bank statements"
+4. task 4: edit item "Text John" to "Text John about bank statements"
++ To edit item "Text John", the item first needs to be added. To add item, type in the desired task name in the text box next to "Add Item", then select the Add Item button. After the Add Item button is pressed, the list will update to show the item. Then, select the "Edit" button right of the item to change the item format 
+to a text box, which can then be edited to the desired item name. Then, select "Done" button to confirm the new item name or select "Done" with the original name if the change is no longer desired. The list will update to show the edited item.
+![before](lab1-images/t4-begin.png)
+![add](lab1-images/t4-edit1.png)
+![edit](lab1-images/t4-edit2.png)
+![after](lab1-images/t4-end.png)
+
+
 5. task 5: show uncompleted tasks
 6. task 6: delete completed tasks
 7. index: contains list of tasks and links to respective pages
