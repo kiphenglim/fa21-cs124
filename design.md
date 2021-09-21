@@ -27,6 +27,12 @@ then select the Add Item button. After the Add Item button is pressed, the list 
 ![after](lab1-images/t1-end.png)
 
 2. task 2: add item "Eat lunch"
++ To add item "Eat lunch", type in the desired task name in the text box next to "Add Item",
+then select the Add Item button. After the Add Item button is pressed, the list will update to show the item.
+![before](lab1-images/t2-begin.png)
+![add](lab1-images/t2-add.png)
+![after](lab1-images/t2-end.png)
+
 3. task 3: mark item "Call Mom" completed
 
 4. task 4: add item "Text John" and edit to "Text John about bank statements"
