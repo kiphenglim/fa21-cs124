@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
 
@@ -24,20 +23,47 @@ function handleAdd(newItem) {
 }
 
 function List(props) {
-  const [completed, setCompleted] = useState([]);
+  // const [completed, setCompleted] = useState([]);
+  // const [addingNewItem, setAddingNewItem] = useState([null]);
+  const [isChecked, setIsChecked] = useState(null);
 
-  return <form className="list" action={handleAdd("yes")}>
+  function handleIsCheckedChange(e) {
+    // conditionally add a class if list item checked
+    // console.log("handleCheck", e.target.id, e.target.checked);
+    e.target.checked ? setIsChecked(e.target.id) : setIsChecked(null);
+  }
+
+  return <>
     {props.listItems.map(item =>
-      <ListItem key={item.id} id={item.id} task={item.task}/>)}
-    <input type="text" id="new-item-text" name="new-item-create" />
-    <input type="submit" value="Add Item"/>
-  </form>
+      <ListItem
+        key={item.id}
+        id={item.id}
+        task={item.task}
+        onChange={handleIsCheckedChange}
+        checked={"item-" + item.id == isChecked}/>)}
+
+    <input type="text"
+      id="new-item-text"
+      name="new-item-create"
+      // onChange={e => setAddingNewItem(e)}/>
+      />
+    <input type="button"
+      value="Add Item"
+      // onClick={handleAdd(addingNewItem) && setAddingNewItem(null)}
+    />
+  </>
 }
 
 function ListItem(props) {
   return <div className="item" id={props.id}>
-    <input type="checkbox" id={"item-" + props.id} name={"item-" + props.id}/>
-    <label htmlFor={"item-" + props.id}>{props.task}</label>
+    <input type="checkbox"
+      id={"item-" + props.id}
+      name={"item-" + props.id}
+      onChange={props.onChange}/>
+    <label htmlFor={"item-" + props.id}
+    className={props.checked && "checked"}>
+      {props.task}
+    </label>
   </div>
 }
 
