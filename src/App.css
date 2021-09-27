@@ -1,4 +1,12 @@
+.App {
+  padding: 5% 5% 0 5%;
+}
+
 .checked {
   text-decoration: line-through;
   color: gray;
+}
+
+h1 {
+  text-align: center;
 }
