@@ -5,63 +5,62 @@ let id_counter = 2;
 let data = [
   {
     id: 0,
-    task: "Call Mom"
+    task: "Call Mom",
   },
   {
     id: 1,
-    task: "Text John"
-  }
-]
-
-function handleAdd(newItem) {
-  console.log(newItem);
-  data.push({
-    id: id_counter,
-    text: newItem
-  });
-  id_counter += 1;
-}
+    task: "Text John",
+  },
+  {
+    id: 2,
+    task: "test task 1",
+  },
+  {
+    id: 3,
+    task: "test task 2",
+  },
+];
 
 function List(props) {
-  // const [completed, setCompleted] = useState([]);
-  // const [addingNewItem, setAddingNewItem] = useState([null]);
-  const [isChecked, setIsChecked] = useState(null);
+  const [isChecked, setIsChecked] = useState([]);
 
   function handleIsCheckedChange(e) {
-    // conditionally add a class if list item checked
-    // console.log("handleCheck", e.target.id, e.target.checked);
-    e.target.checked ? setIsChecked(e.target.id) : setIsChecked(null);
+    var newId = parseInt(e.target.id);
+    console.log(newId);
+    if (isChecked.includes(newId)) {
+      setIsChecked(isChecked.filter(id => id !== newId));
+    } else {
+      setIsChecked([...isChecked, newId]);
+    }
   }
 
-  return <>
+  return <div>
     {props.listItems.map(item =>
       <ListItem
         key={item.id}
         id={item.id}
         task={item.task}
         onChange={handleIsCheckedChange}
-        checked={"item-" + item.id == isChecked}/>)}
+        checked={isChecked.includes(item.id)}/>)}
 
     <input type="text"
       id="new-item-text"
       name="new-item-create"
-      // onChange={e => setAddingNewItem(e)}/>
       />
     <input type="button"
       value="Add Item"
-      // onClick={handleAdd(addingNewItem) && setAddingNewItem(null)}
     />
-  </>
+  </div>
 }
 
 function ListItem(props) {
   return <div className="item" id={props.id}>
     <input type="checkbox"
-      id={"item-" + props.id}
-      name={"item-" + props.id}
+      id={props.id}
+      name={props.id}
       onChange={props.onChange}/>
-    <label htmlFor={"item-" + props.id}
-    className={props.checked && "checked"}>
+    <label htmlFor={props.id}
+      className={props.checked ? "checked" : ""}>
       {props.task}
     </label>
   </div>
