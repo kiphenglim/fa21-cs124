@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 
 let id_counter = 4;
-let data = [
+let initialData = [
   {
     id: 0,
     task: "Call Mom",
@@ -24,6 +24,11 @@ let data = [
 function List(props) {
   const [addingNewItem, setAddingNewItem] = useState("");
   const [isChecked, setIsChecked] = useState([]);
+  const [data, setData] = useState(props.listItems);
+
+  function handleAddChange(e) {
+    setAddingNewItem(e.target.value);
+  }
 
   function handleIsCheckedChange(e) {
     var newId = parseInt(e.target.id);
@@ -35,25 +40,25 @@ function List(props) {
   }
 
   function handleAdd() {
-    data.push({
+    setData([...data, {
       id: id_counter,
-      text: addingNewItem,
-    });
+      task: addingNewItem}]);
     setAddingNewItem("");
     id_counter += 1;
-    console.log(id_counter);
-    console.log(data);
+    console.log(addingNewItem);
   }
 
   return (
     <div>
       <ListItemContainer
         checked={isChecked}
-        listItems={props.listItems}
+        listItems={data}
         onChange={handleIsCheckedChange}
-      />
+        />
       <AddItem
+        onChange={handleAddChange}
         onClick={handleAdd}
+        textValue={addingNewItem}
       />
     </div>
   );
@@ -98,7 +103,9 @@ function AddItem(props) {
         type="text"
         id="new-item-text"
         name="new-item-create"
-      />
+        onChange={props.onChange}
+        value={props.textValue}
+        />
       <input
         type="button"
         value="Add Item"
@@ -112,7 +119,7 @@ function App() {
   return (
     <div className="App">
       <h1>CS124 Lab 2</h1>
-      <List listItems={data} />
+      <List listItems={initialData} />
     </div>
   );
 }
