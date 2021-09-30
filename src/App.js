@@ -30,6 +30,12 @@ function List(props) {
     setAddingNewItem(e.target.value);
   }
 
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      handleAdd();
+    }
+  }
+
   function handleIsCheckedChange(e) {
     var newId = parseInt(e.target.id);
     if (isChecked.includes(newId)) {
@@ -45,7 +51,6 @@ function List(props) {
       task: addingNewItem}]);
     setAddingNewItem("");
     id_counter += 1;
-    console.log(addingNewItem);
   }
 
   return (
@@ -58,6 +63,7 @@ function List(props) {
       <AddItem
         onChange={handleAddChange}
         onClick={handleAdd}
+        onKeyUp={handleEnter}
         textValue={addingNewItem}
       />
     </div>
@@ -104,6 +110,7 @@ function AddItem(props) {
         id="new-item-text"
         name="new-item-create"
         onChange={props.onChange}
+        onKeyUp={props.onKeyUp}
         value={props.textValue}
         />
       <input
