@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import CompletionButtons from "./CompletionButtons";
 
 let id_counter = 4;
 let initialData = [
@@ -23,8 +24,18 @@ let initialData = [
 
 function List(props) {
   const [addingNewItem, setAddingNewItem] = useState("");
-  const [isChecked, setIsChecked] = useState([]);
   const [data, setData] = useState(props.listItems);
+  const [isChecked, setIsChecked] = useState([]);
+  const [showingAllTasks, setShowingAllTasks] = useState(true);
+
+  function handleAdd() {
+    setData([...data, {
+      id: id_counter,
+      task: addingNewItem
+    }]);
+    setAddingNewItem("");
+    id_counter += 1;
+  }
 
   function handleAddChange(e) {
     setAddingNewItem(e.target.value);
@@ -45,12 +56,12 @@ function List(props) {
     }
   }
 
-  function handleAdd() {
-    setData([...data, {
-      id: id_counter,
-      task: addingNewItem}]);
-    setAddingNewItem("");
-    id_counter += 1;
+  function handleRemoveClick() {
+    setData(data.filter(e => !isChecked.includes(e.id)))
+  }
+
+  function handleShowAllClick() {
+    setShowingAllTasks(!showingAllTasks);
   }
 
   return (
@@ -59,12 +70,18 @@ function List(props) {
         checked={isChecked}
         listItems={data}
         onChange={handleIsCheckedChange}
+        showAll={showingAllTasks}
         />
       <AddItem
         onChange={handleAddChange}
         onClick={handleAdd}
         onKeyUp={handleEnter}
         textValue={addingNewItem}
+      />
+      <CompletionButtons
+        onShowAllClick={handleShowAllClick}
+        onRemoveClick={handleRemoveClick}
+        showingAllTasks={showingAllTasks}
       />
     </div>
   );
@@ -79,6 +96,7 @@ function ListItemContainer(props) {
           id={item.id}
           key={item.id}
           onChange={props.onChange}
+          showAll={props.showAll}
           task={item.task}
         />
       ))}
@@ -87,15 +105,23 @@ function ListItemContainer(props) {
 }
 
 function ListItem(props) {
+  const classes = ["item"];
+  if (props.checked) {
+    classes.push("checked");
+    if (!props.showAll) {
+      classes.push("invisible")
+    }
+  }
+
   return (
-    <div className="item" id={props.id}>
+    <div className={classes.join(" ")} id={props.id}>
       <input
         id={props.id}
         name={props.id}
         onChange={props.onChange}
         type="checkbox"
       />
-      <label className={props.checked ? "checked" : ""} htmlFor={props.id}>
+      <label htmlFor={props.id}>
         {props.task}
       </label>
     </div>
@@ -113,11 +139,7 @@ function AddItem(props) {
         onKeyUp={props.onKeyUp}
         value={props.textValue}
         />
-      <input
-        type="button"
-        value="Add Item"
-        onClick={props.onClick}
-      />
+      <button onClick={props.onClick}>Add Item</button>
     </div>
   );
 }
