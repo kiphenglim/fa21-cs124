@@ -12,12 +12,15 @@ function ListItem(props) {
       <input
         id={props.id}
         name={props.id}
-        onChange={props.onChange}
+        onChange={props.onCheckedChange}
         type="checkbox"
       />
-      <label htmlFor={props.id}>
-        {props.task}
-      </label>
+      <input
+        id={props.id}
+        onChange={props.onEditChange}
+        type="text"
+        value={props.task}
+      />
     </div>
   );
 }

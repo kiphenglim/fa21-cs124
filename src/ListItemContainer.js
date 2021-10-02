@@ -8,8 +8,10 @@ function ListItemContainer(props) {
           checked={props.checked.includes(item.id)}
           id={item.id}
           key={item.id}
-          onChange={props.onChange}
+          onCheckedChange={props.onCheckedChange}
+          onEditChange={props.onEditChange}
           showAll={props.showAll}
+          // task={item.id === props.isEditing ? props.editingText : item.task}
           task={item.task}
         />
       ))}

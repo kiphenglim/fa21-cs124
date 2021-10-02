@@ -4,11 +4,11 @@ import CompletionButtons from "./CompletionButtons";
 import ListItemContainer from "./ListItemContainer";
 
 function List(props) {
-  const [addingNewItem, setAddingNewItem] = useState("");
   const [data, setData] = useState(props.listItems);
   const [idCounter, setIdCounter] = useState(data.length);
   const [isChecked, setIsChecked] = useState([]);
-  const [isEditing, setIsEditing] = useState(null);
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState("");
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
   function handleAdd() {
@@ -19,9 +19,25 @@ function List(props) {
     setIdCounter(idCounter + 1);
   }
 
+  function handleFinishEdit(e) {
+    var newData = data.map(item => item.id === parseInt(editingId) ? { ...item, task: [editingText] } : item);
+    setData(newData);
+    setEditingId(null);
+    setEditingText("");
+  }
+
+  function handleEditChange(e) {
+    console.log(e.target.id, " editing", e.target.value);
+    setEditingId(e.target.id);
+    setEditingText(e.target.value);
+    
+    var newData = data.map(item => item.id === parseInt(editingId) ? { ...item, task: [editingText] } : item);
+    setData(newData);
+  }
+
   function handleEnter(e) {
     if (e.key === "Enter") {
-      handleAdd();
+      handleFinishEdit();
     }
   }
 
@@ -46,9 +62,11 @@ function List(props) {
     <div>
       <ListItemContainer
         checked={isChecked}
+        isEditing={editingId}
+        editingText={editingText}
         listItems={data}
-        onChange={handleIsCheckedChange}
-        onClick={handleEditItemChange}
+        onCheckedChange={handleIsCheckedChange}
+        onEditChange={handleEditChange}
         showAll={showingAllTasks}
       />
       <AddItem
