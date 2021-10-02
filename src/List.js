@@ -8,19 +8,15 @@ function List(props) {
   const [data, setData] = useState(props.listItems);
   const [idCounter, setIdCounter] = useState(data.length);
   const [isChecked, setIsChecked] = useState([]);
+  const [isEditing, setIsEditing] = useState(null);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
   function handleAdd() {
     setData([...data, {
       id: idCounter,
-      task: addingNewItem
+      task: ""
     }]);
     setIdCounter(idCounter + 1);
-    setAddingNewItem("");
-  }
-
-  function handleAddChange(e) {
-    setAddingNewItem(e.target.value);
   }
 
   function handleEnter(e) {
@@ -52,13 +48,11 @@ function List(props) {
         checked={isChecked}
         listItems={data}
         onChange={handleIsCheckedChange}
+        onClick={handleEditItemChange}
         showAll={showingAllTasks}
       />
       <AddItem
-        onChange={handleAddChange}
         onClick={handleAdd}
-        onKeyUp={handleEnter}
-        textValue={addingNewItem}
       />
       <CompletionButtons
         onShowAllClick={handleShowAllClick}
