@@ -1,5 +1,5 @@
 function CompletionButtons(props) {
-  return (
+  return props.anyCompletedTasks ? (
     <div>
       <button onClick={props.onShowAllClick}>
         {props.showingAllTasks ? "Show Uncompleted Tasks" : "Show All Tasks"}
@@ -8,7 +8,7 @@ function CompletionButtons(props) {
         Remove Completed Tasks
       </button>
     </div>
-  );
+  ) : <></>;
 }
 
 export default CompletionButtons;

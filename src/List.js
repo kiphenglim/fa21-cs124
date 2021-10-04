@@ -7,7 +7,7 @@ function List(props) {
   const [data, setData] = useState(props.listItems);
   const [idCounter, setIdCounter] = useState(data.length);
   const [isChecked, setIsChecked] = useState([]);
-  const [editingId, setEditingId] = useState(null);
+  const [isEditingId, setIsEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
@@ -19,25 +19,35 @@ function List(props) {
     setIdCounter(idCounter + 1);
   }
 
-  function handleFinishEdit(e) {
-    var newData = data.map(item => item.id === parseInt(editingId) ? { ...item, task: [editingText] } : item);
-    setData(newData);
-    setEditingId(null);
-    setEditingText("");
+  function handleEditClick(e) {
+    setIsEditingId(e.target.id);
+    setEditingText(e.target.value);
+    console.log(editingText);
   }
 
   function handleEditChange(e) {
-    console.log(e.target.id, " editing", e.target.value);
-    setEditingId(e.target.id);
     setEditingText(e.target.value);
-    
-    var newData = data.map(item => item.id === parseInt(editingId) ? { ...item, task: [editingText] } : item);
+    console.log(editingText);
+
+    var newData = data.map(item => parseInt(item.id) === parseInt(isEditingId) ? { ...item, task: editingText } : item);
     setData(newData);
   }
 
-  function handleEnter(e) {
+  function handleEditComplete(e) {
+    var newData = data.map((item) =>
+      parseInt(item.id) === parseInt(isEditingId)
+        ? { ...item, task: editingText }
+        : item
+    );
+    setData(newData);
+    setEditingText("");
+    setIsEditingId(null);
+  }
+
+  function handleEditEnter (e) {
     if (e.key === "Enter") {
-      handleFinishEdit();
+      e.target.blur();
+      handleEditComplete(e);
     }
   }
 
@@ -62,17 +72,21 @@ function List(props) {
     <div>
       <ListItemContainer
         checked={isChecked}
-        isEditing={editingId}
+        isEditingId={isEditingId}
         editingText={editingText}
         listItems={data}
         onCheckedChange={handleIsCheckedChange}
+        onEditBlur={handleEditComplete}
         onEditChange={handleEditChange}
+        onEditClick={handleEditClick}
+        onEditEnter={handleEditEnter}
         showAll={showingAllTasks}
       />
       <AddItem
         onClick={handleAdd}
       />
       <CompletionButtons
+        anyCompletedTasks={isChecked.length !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleRemoveAllClick}
         showingAllTasks={showingAllTasks}

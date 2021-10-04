@@ -17,9 +17,12 @@ function ListItem(props) {
       />
       <input
         id={props.id}
+        onBlur={props.onEditBlur}
         onChange={props.onEditChange}
+        onClick={props.onEditClick}
+        onKeyDown={props.onEditEnter}
         type="text"
-        value={props.task}
+        value={parseInt(props.id) === parseInt(props.isEditingId) ? props.editingText : props.task}
       />
     </div>
   );
