@@ -16,6 +16,7 @@ function ListItem(props) {
         type="checkbox"
       />
       <input
+        autocomplete="off"
         id={props.id}
         onBlur={props.onEditBlur}
         onChange={props.onEditChange}
