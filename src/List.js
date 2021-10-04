@@ -29,12 +29,12 @@ function List(props) {
     setEditingText(e.target.value);
     console.log(editingText);
 
-    var newData = data.map(item => parseInt(item.id) === parseInt(isEditingId) ? { ...item, task: editingText } : item);
+    let newData = data.map(item => parseInt(item.id) === parseInt(isEditingId) ? { ...item, task: editingText } : item);
     setData(newData);
   }
 
   function handleEditComplete(e) {
-    var newData = data.map((item) =>
+    let newData = data.map((item) =>
       parseInt(item.id) === parseInt(isEditingId)
         ? { ...item, task: editingText }
         : item
@@ -52,7 +52,7 @@ function List(props) {
   }
 
   function handleIsCheckedChange(e) {
-    var newId = parseInt(e.target.id);
+    let newId = parseInt(e.target.id);
     if (isChecked.includes(newId)) {
       setIsChecked(isChecked.filter((id) => id !== newId));
     } else {
