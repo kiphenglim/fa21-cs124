@@ -22,7 +22,11 @@ function ListItem(props) {
         onClick={props.onEditClick}
         onKeyDown={props.onEditEnter}
         type="text"
-        value={parseInt(props.id) === parseInt(props.isEditingId) ? props.editingText : props.task}
+        value={
+          parseInt(props.id) === parseInt(props.isEditingId)
+            ? props.editingText
+            : props.task
+        }
       />
     </div>
   );
