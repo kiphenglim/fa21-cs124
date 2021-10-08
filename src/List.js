@@ -21,14 +21,14 @@ function List(props) {
   function handleEditClick(e) {
     setIsEditingId(e.target.id);
     setEditingText(e.target.value);
-    console.log(editingText);
   }
 
   function handleEditChange(e) {
     setEditingText(e.target.value);
-    console.log(editingText);
-
-    let newData = data.map(item => parseInt(item.id) === parseInt(isEditingId) ? { ...item, task: editingText } : item);
+    let newData = data.map(item =>
+      parseInt(item.id) === parseInt(isEditingId)
+      ? { ...item, task: editingText }
+      : item);
     setData(newData);
   }
 
@@ -60,7 +60,8 @@ function List(props) {
   }
 
   function handleRemoveAllClick() {
-    setData(data.filter(e => !isChecked.includes(e.id)))
+    setData(data.filter(e => !isChecked.includes(e.id)));
+    setIsChecked([]);
   }
 
   function handleShowAllClick() {

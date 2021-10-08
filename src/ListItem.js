@@ -8,18 +8,20 @@ function ListItem(props) {
   }
 
   return (
-    <div className={classes.join(" ")} id={props.id}>
+    <div className={classes.join(" ")} key={props.id}>
       <input
         className={"listCheckboxes"}
+        key={"itemcheck-"+props.id}
         id={props.id}
-        name={props.id}
         onChange={props.onCheckedChange}
         type="checkbox"
       />
       <input
-        autocomplete="off"
+        autoComplete="off"
         className={"listTextInputs"}
         id={props.id}
+        key={"itemtext-" + props.id}
+        ref={props.newItem}
         onBlur={props.onEditBlur}
         onChange={props.onEditChange}
         onClick={props.onEditClick}
