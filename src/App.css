@@ -14,8 +14,8 @@
   gap: 20px;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
+  margin-right: 20px;
   position: absolute;
-
 }
 
 .ListItemContainer {
