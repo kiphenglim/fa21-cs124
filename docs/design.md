@@ -56,8 +56,8 @@ box
 + To mark item "Call Mom" complete, select the checkbox 
 left of the item. The list will update to show the item with grey text and strikethrough.
 
-![before](lab1-images/t3-begin.png)
-![after](lab1-images/t3-end.png)
+![before](t3-begin.png)
+![after](t3-end.png)
 
 4. task 4: edit item "Text John" to "Text John about 
 bank statements"
