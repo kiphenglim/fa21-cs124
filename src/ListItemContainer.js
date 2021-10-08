@@ -1,3 +1,4 @@
+import AddItem from "./AddItem";
 import ListItem from "./ListItem";
 
 function ListItemContainer(props) {
@@ -19,6 +20,10 @@ function ListItemContainer(props) {
           task={item.task}
         />
       ))}
+
+      <AddItem
+        onClick={props.onAddClick}
+      />
     </div>
   );
 }

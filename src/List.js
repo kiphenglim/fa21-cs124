@@ -1,5 +1,4 @@
 import { useState } from "react";
-import AddItem from "./AddItem";
 import CompletionButtons from "./CompletionButtons";
 import ListItemContainer from "./ListItemContainer";
 
@@ -75,15 +74,13 @@ function List(props) {
         isEditingId={isEditingId}
         editingText={editingText}
         listItems={data}
+        onAddClick={handleAdd}
         onCheckedChange={handleIsCheckedChange}
         onEditBlur={handleEditComplete}
         onEditChange={handleEditChange}
         onEditClick={handleEditClick}
         onEditEnter={handleEditEnter}
         showAll={showingAllTasks}
-      />
-      <AddItem
-        onClick={handleAdd}
       />
       <CompletionButtons
         anyCompletedTasks={isChecked.length !== 0}
