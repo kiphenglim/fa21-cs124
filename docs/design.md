@@ -10,15 +10,12 @@ modeled after Google Keep
 next to it
 + show all items by default
     + users can select the "Show Uncompleted Tasks" to 
-  hide all completed tasks, then "Show All Tasks" to show all tasks
+  hide all completed tasks, then deselect to show all tasks
 + aligned the "Add Item" button with the tasks
 + positioned the "Show Uncompleted Tasks" and 
 "Delete Completed Tasks" buttons at the bottom of the 
 app, to show the difference between them and the other 
 items
-+ made the "Show Uncompleted Tasks" and "Delete 
-Completed Tasks" buttons the same size with symmetrical 
-spacing
 + displays the "Show Uncompleted Tasks" and "Delete 
 Completed Tasks" buttons only when there are completed 
 items, avoiding clutter and useless buttons
@@ -78,7 +75,7 @@ and change the task to the original name.
 bottom left of the app, which appears when one or more 
 items are marked as complete, to temporarily remove those 
 items from the list. The list will update to only 
-display uncompleted tasks. Select "Show All Tasks" 
+display uncompleted tasks. Deselect "Show All Tasks" 
 button to revert to the original list, showing both 
 completed and uncompleted tasks.
 
@@ -106,5 +103,5 @@ new items
 + editing items on selection rather than using a button 
 to begin the editing process
 + showing the "Show Uncompleted Tasks" and "Delete 
-Completed Tasks" buttons only when there are completed
+Completed Tasks" options only when there are completed
 tasks

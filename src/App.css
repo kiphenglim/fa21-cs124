@@ -31,17 +31,20 @@
 
 .RemoveCompletedButton {
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  margin-right: 30px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   width: 100%;
 }
 
 .ShowAllToggle {
-  height: 17px;
+  height: 16px;
 }
 
 .ShowAllToggleLabel {
   font-family: sans-serif;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .Toggle {
