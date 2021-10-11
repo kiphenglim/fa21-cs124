@@ -1,19 +1,7 @@
-import { useRef } from "react";
 import AddItem from "./AddItem";
 import ListItem from "./ListItem";
 
 function ListItemContainer(props) {
-  const newItem = useRef(null);
-
-  function handleAdd() {
-    props.onAddClick();
-    handleFocus();
-  }
-
-  function handleFocus() {
-    console.log(newItem.current);
-    newItem.current.focus();
-  }
   return (
     <div className="ListItemContainer">
       {props.listItems.map((item) => (
@@ -23,7 +11,7 @@ function ListItemContainer(props) {
           key={item.id}
           isEditingId={props.isEditingId}
           editingText={props.editingText}
-          newItem={newItem}
+          // newItem={newItem}
           onCheckedChange={props.onCheckedChange}
           onEditBlur={props.onEditBlur}
           onEditChange={props.onEditChange}
@@ -35,7 +23,7 @@ function ListItemContainer(props) {
       ))}
 
       <AddItem
-        onClick={handleAdd}
+        onClick={props.onAddClick}
       />
     </div>
   );

@@ -3,9 +3,20 @@
 }
 
 .AddItemButton {
+  background-color: white;
+  border: 0px;
   font-family: sans-serif;
   font-size: 16px;
-  margin: 4%;
+  text-align: left;
+  width: 100%;
+}
+
+.AddItemButton .AddIcon {
+  margin-right: 5px;
+}
+
+.AddItemButton:hover {
+  cursor: pointer;
 }
 
 .CompletionButtons {
@@ -41,12 +52,9 @@
   display: none;
 }
 
-.item {
-  padding: 5px;
-}
-
 .item input[type="text"] {
-  border: 0px;
+  outline: 0px lightgrey;
+  border: 0px lightgrey;
   font-size: 17px;
   width:90%;
 }
@@ -54,6 +62,10 @@
 h1 {
   font-family: sans-serif;
   text-align: center;
+}
+
+hr {
+  border: 1px solid #d6d6d6;
 }
 
 label {

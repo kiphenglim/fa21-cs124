@@ -1,4 +1,8 @@
+import { useEffect, useRef } from "react";
+
 function ListItem(props) {
+  const newItem = useRef(null);
+
   const classes = ["item"];
   if (props.checked) {
     classes.push("checked");
@@ -6,6 +10,10 @@ function ListItem(props) {
       classes.push("invisible")
     }
   }
+
+  useEffect(() => {
+    newItem.current.focus();
+  }, [])
 
   return (
     <div className={classes.join(" ")} key={props.id}>
@@ -21,7 +29,7 @@ function ListItem(props) {
         className={"listTextInputs"}
         id={props.id}
         key={"itemtext-" + props.id}
-        ref={props.newItem}
+        ref={newItem}
         onBlur={props.onEditBlur}
         onChange={props.onEditChange}
         onClick={props.onEditClick}
@@ -33,6 +41,7 @@ function ListItem(props) {
             : props.task
         }
       />
+      <hr/>
     </div>
   );
 }
