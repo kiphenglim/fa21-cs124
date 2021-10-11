@@ -17,7 +17,7 @@ function CompletionButtons(props) {
       </div>
       <br/>
       <button className={"RemoveCompletedButton"} onClick={props.onRemoveAllClick}>
-        Remove All Completed Tasks
+        Remove All Completed Items
       </button>
     </div>
   ) : <></>;
