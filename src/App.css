@@ -21,12 +21,8 @@
 
 .CompletionButtons {
   bottom: 10px;
-  display: grid;
-  gap: 20px;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  margin-right: 15px;
   position: absolute;
+  width: 100%;
 }
 
 .ListItemContainer {
@@ -36,11 +32,21 @@
 .RemoveCompletedButton {
   font-family: sans-serif;
   font-size: 14px;
+  width: 100%;
 }
 
-.ShowUncompletedButton {
+.ShowAllToggle {
+  height: 17px;
+}
+
+.ShowAllToggleLabel {
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 17px;
+}
+
+.Toggle {
+  display: flex;
+  justify-content: space-between;
 }
 
 .checked input[type="text"] {

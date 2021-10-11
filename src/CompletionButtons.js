@@ -1,11 +1,23 @@
+import Toggle from 'react-toggle';
+import "react-toggle/style.css";
+
 function CompletionButtons(props) {
   return props.anyCompletedTasks ? (
     <div className={"CompletionButtons"}>
-      <button className={"ShowUncompletedButton"} onClick={props.onShowAllClick}>
-        {props.showingAllTasks ? "Show Uncompleted Tasks" : "Show All Tasks"}
-      </button>
+      <div className={"Toggle"}>
+        <label className={"ShowAllToggleLabel"}
+          htmlFor={"ShowAllToggle"}>
+            Show All Items
+        </label>
+        <Toggle
+          className="ShowAllToggle"
+          defaultChecked={false}
+          icons={false}
+          onChange={props.onShowAllClick} />
+      </div>
+      <br/>
       <button className={"RemoveCompletedButton"} onClick={props.onRemoveAllClick}>
-        Remove Completed Tasks
+        Remove All Completed Tasks
       </button>
     </div>
   ) : <></>;
