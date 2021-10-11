@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddItem from "./AddItem";
+import Alert from "./Alert";
 import CompletionButtons from "./CompletionButtons";
 import ListItem from "./ListItem";
 
@@ -9,6 +10,7 @@ function List(props) {
   const [isChecked, setIsChecked] = useState([]);
   const [isEditingId, setIsEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
   function handleAdd(e) {
@@ -63,6 +65,10 @@ function List(props) {
     }
   }
 
+  function handleToggleAlert() {
+    setShowAlert(!showAlert);
+  }
+
   function handleRemoveAllClick() {
     setData(data.filter(e => !isChecked.includes(e.id)));
     setIsChecked([]);
@@ -96,9 +102,19 @@ function List(props) {
         <CompletionButtons
           anyCompletedTasks={isChecked.length !== 0}
           onShowAllClick={handleShowAllClick}
-          onRemoveAllClick={handleRemoveAllClick}
+          onRemoveAllClick={handleToggleAlert}
           showingAllTasks={showingAllTasks}
         />
+
+        {showAlert && <Alert
+            onCancel={handleToggleAlert}
+            onConfirm={handleRemoveAllClick}>
+          <div className="alert-text">
+            <h3 className="alert-header">WARNING</h3>
+            Your tasks will be permanently deleted, are you sure you want to delete all completed items?
+          </div>
+        </Alert>}
+
     </div>
   );
 }

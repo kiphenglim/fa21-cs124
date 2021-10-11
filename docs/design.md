@@ -4,7 +4,9 @@ modeled after Google Keep app
 + clicking the "Add Item" button adds a new item and 
 focuses on it, allowing users to edit the item immediately,
 modeled after Google Keep
-+ used white, grey, and black for a simpler look
++ used white, grey, and black for a simpler look, except
+the confirm button for the "Remove All Completed Items"
+alert popup, which is red for better visibility
 + used san serif font for all text
 + mark an item as completed by selecting the checkbox 
 next to it
