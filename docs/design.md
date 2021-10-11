@@ -11,16 +11,18 @@ alert popup, which is red for better visibility
 + mark an item as completed by selecting the checkbox 
 next to it
 + show all items by default
-    + users can select the "Show Uncompleted Tasks" to 
-  hide all completed tasks, then deselect to show all tasks
+    + users can toggle the "Show Uncompleted Tasks" slider to 
+  hide all completed tasks, then toggle again to show all tasks
 + aligned the "Add Item" button with the tasks
 + positioned the "Show Uncompleted Tasks" and 
 "Delete Completed Tasks" buttons at the bottom of the 
 app, to show the difference between them and the other 
 items
++ added an alert popup when the user selects "Delete 
+Completed Tasks" to warn user that deletion is irreversible
 + displays the "Show Uncompleted Tasks" and "Delete 
-Completed Tasks" buttons only when there are completed 
-items, avoiding clutter and useless buttons
+Completed Tasks" options only when there are completed 
+items, avoiding clutter
 
 ![Screenshot of Lab 2](design-decisions.png)
 
@@ -73,12 +75,12 @@ and change the task to the original name.
 
 
 5. task 5: show only uncompleted tasks
-+ Select the "Show Uncompleted Tasks" button at the 
++ Toggle the "Show Uncompleted Tasks" slider at the 
 bottom left of the app, which appears when one or more 
 items are marked as complete, to temporarily remove those 
 items from the list. The list will update to only 
-display uncompleted tasks. Deselect "Show All Tasks" 
-button to revert to the original list, showing both 
+display uncompleted tasks. Toggle the slider 
+again to revert to the original list, showing both 
 completed and uncompleted tasks.
 
 ![before](t5-begin.png)
@@ -87,11 +89,13 @@ completed and uncompleted tasks.
 6. task 6: delete completed tasks
 + Select the "Remove Completed Tasks" button, which 
 appears when one or more items are marked as complete, 
-to permanently remove those items from the list. The 
+and select "Confirm" on the alert popup to permanently 
+remove those items from the list. The 
 list will update to contain only the uncompleted items.
 This change is irreversible.
 
 ![before](t6-begin.png)
+![alert](t6-alert.png)
 ![after](t6-end.png)
 
 
