@@ -30,8 +30,9 @@ items, avoiding clutter
 + no alternative designs
 
 # User Testing
-+ tested by Jennifer and Kip, going through tasks 
-sequentially
++ tested by Alicia Lu, tested tasks sequentially 
+with the tasks read out to user, encountered no 
+problems or obstacles
 
 # Final Design
 
