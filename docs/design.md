@@ -33,6 +33,27 @@ items, avoiding clutter
 + tested by Alicia Lu, tested tasks sequentially 
 with the tasks read out to user, encountered no 
 problems or obstacles
++ tested by Jennifer and Kip, going through tasks 
+sequentially
++ also asked completed user tests in the final week of
+iteration with Vivian Pou and Mandy Wu
+  + both users thought that the general interface was
+  very straightforward to use, and neither had any
+  difficulty in completing the specified sequence of
+  tasks
+  + they did feel that the general aesthetic of the
+  checkboxes, buttons, and toggle didn't match each
+  other, so in the next lab, we should spend some time
+  making them more visually similar.
+  + these users both encountered difficulty with
+  clicking on the checkbox when testing on the iPad,
+  sometimes getting no result or accidentally clicking
+  on the text (thus bringing up the keyboard). we could
+  rectify this situation by wrapping the check input
+  with a div that is slightly larger than the bounds of
+  the check input and having the div trigger an onClick
+  that also changes the state of the checkbox.
+  
 
 # Final Design
 
@@ -103,12 +124,23 @@ This change is irreversible.
 # Challenges
 + implementing editing items on selection and 
 updating the displayed text as the edits happen
+  + for some reason we were not able to make this happen
+  when the task ids were strings (for example 'task-2')
+  but we got it to work with integer ids.
 + automatically focusing the newest item after adding 
 new items
+  + we learned that setState is an async function and
+  does not immediately update the state. We ended up
+  using `useEffect` to get the desired component to
+  focus on render.
 
 # Design Highlights
-+ editing items on selection rather than using a button 
++ editing items on task selection rather than using a button 
 to begin the editing process
+  + specifically, you can just click on the task's text
+  to edit it
 + showing the "Show Uncompleted Tasks" and "Delete 
 Completed Tasks" options only when there are completed
 tasks
++ used a toggle for "Show Uncompleted Tasks" since that made
+it clearer that it was a binary state being toggled.
