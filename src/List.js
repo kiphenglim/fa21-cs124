@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import AddItem from "./AddItem";
 import Alert from "./Alert";
 import CompletionButtons from "./CompletionButtons";
@@ -15,13 +16,10 @@ function List(props) {
 
   function handleAdd(e) {
     console.log("adding");
-    setData([...data, {
-      id: idCounter,
-      task: ""
-    }]);
+    const newId = generateUniqueID();
+    props.collection.doc(newId).set({ id: newId, name: "", email: "", phone: "" });
     setIsEditingId(idCounter);
     setEditingText("");
-    setIdCounter(idCounter + 1);
   }
 
   function handleEditClick(e) {
