@@ -1,5 +1,7 @@
+import firebase from "firebase/compat";
 import { useState } from "react";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
+
 import AddItem from "./AddItem";
 import Alert from "./Alert";
 import CompletionButtons from "./CompletionButtons";
@@ -14,7 +16,11 @@ function List(props) {
 
   function handleAdd() {
     const newId = generateUniqueID();
-    props.collection.doc(newId).set({ id: newId, task: ""});
+    let newTask = { id: newId,
+        created: firebase.database.ServerValue.TIMESTAMP,
+        task: "",
+      };
+    props.collection.doc(newId).set(newTask);
     setIsEditingId(newId);
     setEditingText("");
   }
@@ -26,11 +32,11 @@ function List(props) {
 
   function handleEditChange(e) {
     setEditingText(e.target.value);
-    props.collection.doc(e.target.id).set({id: e.target.id, task: editingText});
+    props.collection.doc(e.target.id).update({task: editingText});
   }
 
   function handleEditComplete(e) {
-    props.collection.doc(e.target.id).set({ id: e.target.id, task: editingText });
+    props.collection.doc(e.target.id).update({task: editingText });
     setEditingText("");
     setIsEditingId(null);
   }
@@ -55,7 +61,7 @@ function List(props) {
     setShowAlert(!showAlert);
   }
 
-  function handleRemoveOne(id) {
+  function handleRemoveOneClick(id) {
     props.collection.doc(id).delete();
   }
 
