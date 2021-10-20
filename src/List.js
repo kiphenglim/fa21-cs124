@@ -8,9 +8,9 @@ import CompletionButtons from './CompletionButtons';
 import ListItem from './ListItem';
 
 function List(props) {
+  const [editingText, setEditingText] = useState('');
   const [isChecked, setIsChecked] = useState([]);
   const [isEditingId, setIsEditingId] = useState(null);
-  const [editingText, setEditingText] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
@@ -26,17 +26,18 @@ function List(props) {
   }
 
   function handleEditClick(e) {
-    setIsEditingId(e.target.id);
     setEditingText(e.target.value);
+    setIsEditingId(e.target.id);
   }
 
   function handleEditChange(e) {
     setEditingText(e.target.value);
-    props.collection.doc(e.target.id).update({task: editingText});
+    setIsEditingId(e.target.id);
+    props.collection.doc(e.target.id).set({task: editingText}, { merge: true });
   }
 
   function handleEditComplete(e) {
-    props.collection.doc(e.target.id).update({task: editingText });
+    props.collection.doc(e.target.id).set({task: editingText}, { merge: true });
     setEditingText('');
     setIsEditingId(null);
   }

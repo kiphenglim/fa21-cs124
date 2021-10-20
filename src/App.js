@@ -20,6 +20,7 @@ function App() {
 
   function generateListData() {
     if (!error && value) {
+      value.docs.map(e => console.log(e.data()));
       return value.docs.map(e => { return { ...e.data(), id: e.id } });
     }
   }
