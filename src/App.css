@@ -95,7 +95,7 @@
   background-color: rgba(0, 0, 0, .3);
 }
 
-.checked input[type="text"] {
+.checked input[type='text'] {
   color: gray;
   text-decoration: line-through;
 }
@@ -104,7 +104,7 @@
   display: none;
 }
 
-.item input[type="text"] {
+.item input[type='text'] {
   outline: 0px lightgrey;
   border: 0px lightgrey;
   font-size: 17px;

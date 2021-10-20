@@ -1,16 +1,16 @@
-import firebase from "firebase/compat";
-import { useState } from "react";
-import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
+import firebase from 'firebase/compat';
+import { useState } from 'react';
+import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 
-import AddItem from "./AddItem";
-import Alert from "./Alert";
-import CompletionButtons from "./CompletionButtons";
-import ListItem from "./ListItem";
+import AddItem from './AddItem';
+import Alert from './Alert';
+import CompletionButtons from './CompletionButtons';
+import ListItem from './ListItem';
 
 function List(props) {
   const [isChecked, setIsChecked] = useState([]);
   const [isEditingId, setIsEditingId] = useState(null);
-  const [editingText, setEditingText] = useState("");
+  const [editingText, setEditingText] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
@@ -18,11 +18,11 @@ function List(props) {
     const newId = generateUniqueID();
     let newTask = { id: newId,
         created: firebase.database.ServerValue.TIMESTAMP,
-        task: "",
+        task: '',
       };
     props.collection.doc(newId).set(newTask);
     setIsEditingId(newId);
-    setEditingText("");
+    setEditingText('');
   }
 
   function handleEditClick(e) {
@@ -37,12 +37,12 @@ function List(props) {
 
   function handleEditComplete(e) {
     props.collection.doc(e.target.id).update({task: editingText });
-    setEditingText("");
+    setEditingText('');
     setIsEditingId(null);
   }
 
   function handleEditEnter (e) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.target.blur();
       handleEditComplete(e);
     }
@@ -75,7 +75,7 @@ function List(props) {
   }
 
   return (
-      <div className="ListItemContainer">
+      <div className='ListItemContainer'>
         {props.listItems.map((item) => (
           <ListItem
             checked={isChecked.includes(item.id)}
@@ -105,8 +105,8 @@ function List(props) {
         {showAlert && <Alert
             onCancel={handleToggleAlert}
             onConfirm={handleRemoveAllClick}>
-          <div className="alert-text">
-            <h3 className="alert-header">WARNING</h3>
+          <div className='alert-text'>
+            <h3 className='alert-header'>WARNING</h3>
             Your tasks will be permanently deleted, are you sure you want to delete all completed items?
           </div>
         </Alert>}

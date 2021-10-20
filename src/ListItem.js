@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 function ListItem(props) {
   const newItem = useRef(null);
 
-  const classes = ["item"];
+  const classes = ['item'];
   if (props.checked) {
-    classes.push("checked");
+    classes.push('checked');
     if (!props.showAll) {
-      classes.push("invisible")
+      classes.push('invisible')
     }
   }
 
@@ -16,25 +16,25 @@ function ListItem(props) {
   }, [])
 
   return (
-    <div className={classes.join(" ")} key={props.id}>
+    <div className={classes.join(' ')} key={props.id}>
       <input
-        className={"listCheckboxes"}
-        key={"itemcheck-"+props.id}
+        className={'listCheckboxes'}
+        key={'itemcheck-'+props.id}
         id={props.id}
         onChange={props.onCheckedChange}
-        type="checkbox"
+        type='checkbox'
       />
       <input
-        autoComplete="off"
-        className={"listTextInputs"}
+        autoComplete='off'
+        className={'listTextInputs'}
         id={props.id}
-        key={"itemtext-" + props.id}
+        key={'itemtext-' + props.id}
         ref={newItem}
         onBlur={props.onEditBlur}
         onChange={props.onEditChange}
         onClick={props.onEditClick}
         onKeyDown={props.onEditEnter}
-        type="text"
+        type='text'
         value={
           props.id === props.isEditingId
             ? props.editingText
