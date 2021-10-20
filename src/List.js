@@ -6,19 +6,16 @@ import CompletionButtons from "./CompletionButtons";
 import ListItem from "./ListItem";
 
 function List(props) {
-  const [data, setData] = useState(props.listItems);
-  const [idCounter, setIdCounter] = useState(data.length);
   const [isChecked, setIsChecked] = useState([]);
   const [isEditingId, setIsEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
-  function handleAdd(e) {
-    console.log("adding");
+  function handleAdd() {
     const newId = generateUniqueID();
-    props.collection.doc(newId).set({ id: newId, name: "", email: "", phone: "" });
-    setIsEditingId(idCounter);
+    props.collection.doc(newId).set({ id: newId, task: ""});
+    setIsEditingId(newId);
     setEditingText("");
   }
 
@@ -29,20 +26,11 @@ function List(props) {
 
   function handleEditChange(e) {
     setEditingText(e.target.value);
-    let newData = data.map(item =>
-      parseInt(item.id) === parseInt(isEditingId)
-      ? { ...item, task: editingText }
-      : item);
-    setData(newData);
+    props.collection.doc(e.target.id).set({id: e.target.id, task: editingText});
   }
 
   function handleEditComplete(e) {
-    let newData = data.map((item) =>
-      parseInt(item.id) === parseInt(isEditingId)
-        ? { ...item, task: editingText }
-        : item
-    );
-    setData(newData);
+    props.collection.doc(e.target.id).set({ id: e.target.id, task: editingText });
     setEditingText("");
     setIsEditingId(null);
   }
@@ -55,7 +43,7 @@ function List(props) {
   }
 
   function handleIsCheckedChange(e) {
-    let newId = parseInt(e.target.id);
+    let newId = e.target.id;
     if (isChecked.includes(newId)) {
       setIsChecked(isChecked.filter((id) => id !== newId));
     } else {
@@ -67,8 +55,12 @@ function List(props) {
     setShowAlert(!showAlert);
   }
 
+  function handleRemoveOne(id) {
+    props.collection.doc(id).delete();
+  }
+
   function handleRemoveAllClick() {
-    setData(data.filter(e => !isChecked.includes(e.id)));
+    isChecked.map(e => props.collection.doc(e).delete());
     setIsChecked([]);
   }
 
@@ -78,7 +70,7 @@ function List(props) {
 
   return (
       <div className="ListItemContainer">
-        {data.map((item) => (
+        {props.listItems.map((item) => (
           <ListItem
             checked={isChecked.includes(item.id)}
             id={item.id}

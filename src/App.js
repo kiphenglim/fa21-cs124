@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <h1>CS124 Lab 2</h1>
-      {loading ? <></> : <List collection={collection} listItems={generateListData} />}
+      {loading ? <></> : <List collection={collection} listItems={generateListData()} />}
     </div>
   );
 }
