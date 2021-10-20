@@ -2,6 +2,7 @@ import './App.css';
 import List from './List';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
+import {useState} from "react";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCd9qqxvMpEKpBzwfWcc2tlRFa6ICaLH_s',
@@ -16,7 +17,8 @@ const db = firebase.firestore();
 
 function App() {
   const collection = db.collection('kiphenglim-tasks');
-  const [value, loading, error] = useCollection(collection);
+  const [sortBy, setSortBy] = useState('created');
+  const [value, loading, error] = useCollection(collection.orderBy(sortBy));
 
   function generateListData() {
     if (!error && value) {
@@ -25,12 +27,19 @@ function App() {
     }
   }
 
+  function handleChangeSort(e) {
+    setSortBy(e.target.value);
+  }
+
   return (
     <div className='App'>
       <h1>CS124 Lab 3</h1>
       {loading ?
         <></> :
-        <List collection={collection} listItems={generateListData()} />}
+        <List collection={collection}
+              listItems={generateListData()}
+              onChangeSort={handleChangeSort}
+              sortBy={sortBy} />}
     </div>
   );
 }

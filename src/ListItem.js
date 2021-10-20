@@ -41,6 +41,14 @@ function ListItem(props) {
             : props.task
         }
       />
+      <select className={'priority-select'}
+        id={props.id}
+        onChange={props.onPriorityChange}
+        value={props.priority}>
+          <option value={'1'}>High</option>
+          <option value={'2'}>Med</option>
+          <option value={'3'}>Low</option>
+      </select>
       <hr/>
     </div>
   );

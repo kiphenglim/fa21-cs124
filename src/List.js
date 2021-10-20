@@ -6,6 +6,7 @@ import AddItem from './AddItem';
 import Alert from './Alert';
 import CompletionButtons from './CompletionButtons';
 import ListItem from './ListItem';
+import SortSelect from './SortSelect';
 
 function List(props) {
   const [editingText, setEditingText] = useState('');
@@ -19,6 +20,7 @@ function List(props) {
     let newTask = { id: newId,
         created: firebase.database.ServerValue.TIMESTAMP,
         task: '',
+        priority: '3'
       };
     props.collection.doc(newId).set(newTask);
     setIsEditingId(newId);
@@ -62,6 +64,10 @@ function List(props) {
     setShowAlert(!showAlert);
   }
 
+  function handlePriorityChange(e) {
+    props.collection.doc(e.target.id).set({priority: e.target.value}, { merge: true });
+  }
+
   function handleRemoveOneClick(id) {
     props.collection.doc(id).delete();
   }
@@ -77,6 +83,11 @@ function List(props) {
 
   return (
       <div className='ListItemContainer'>
+        <SortSelect
+          sortBy={props.sortBy}
+          onChange={props.onChangeSort}
+        />
+
         {props.listItems.map((item) => (
           <ListItem
             checked={isChecked.includes(item.id)}
@@ -89,6 +100,8 @@ function List(props) {
             onEditChange={handleEditChange}
             onEditClick={handleEditClick}
             onEditEnter={handleEditEnter}
+            onPriorityChange={handlePriorityChange}
+            priority={item.priority}
             showAll={showingAllTasks}
             task={item.task}
           />

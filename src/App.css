@@ -4,7 +4,7 @@
 
 .AddItemButton {
   background-color: white;
-  border: 0px;
+  border: 0;
   font-family: sans-serif;
   font-size: 16px;
   text-align: left;
@@ -105,10 +105,10 @@
 }
 
 .item input[type='text'] {
-  outline: 0px lightgrey;
-  border: 0px lightgrey;
+  outline: 0 lightgrey;
+  border: 0 lightgrey;
   font-size: 17px;
-  width:90%;
+  width: 70%;
 }
 
 .modal {
@@ -124,6 +124,28 @@
   width: 200pt;
   padding: 10pt;
   position: relative;
+}
+
+.priority-header {
+  font-size: 16px;
+  padding-right: 15px;
+}
+
+.sort-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-label {
+  font-size: 16px;
+}
+
+.sort-menu {
+  margin-left: 10px;
+}
+
+.sort-select {
+  margin-bottom: 15px;
 }
 
 h1 {
