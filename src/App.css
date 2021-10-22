@@ -1,5 +1,7 @@
 .App {
   padding: 5% 5% 0 5%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .AddItemButton {
@@ -20,13 +22,17 @@
 }
 
 .CompletionButtons {
-  bottom: 10px;
-  position: absolute;
-  width: 80%;
+  background-color: white;
+  bottom: 0;
+  padding-top: 10px;
+  position: fixed;
+  width: 82%;
 }
 
 .ListItemContainer {
-  padding: 5%;
+  position: relative;
+  min-height: 100%;
+  padding: 5% 5% 6rem;
 }
 
 .RemoveCompletedButton {
