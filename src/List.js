@@ -10,17 +10,28 @@ import SortSelect from './SortSelect';
 
 function List(props) {
   const [editingText, setEditingText] = useState('');
-  const [isChecked, setIsChecked] = useState([]);
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
+
+  function anyChecked() {
+    props.collection.get()
+
+    docRef.map((doc) =>
+    {
+      console.log(doc.checked);
+      if (doc.checked) return true;
+    });
+    return false;
+  }
 
   function handleAdd() {
     const newId = generateUniqueID();
     let newTask = { id: newId,
         created: firebase.database.ServerValue.TIMESTAMP,
         task: '',
-        priority: '3'
+        priority: '3',
+        checked: false
       };
     props.collection.doc(newId).set(newTask);
     setIsEditingId(newId);
@@ -51,13 +62,10 @@ function List(props) {
     }
   }
 
-  function handleIsCheckedChange(e) {
-    let newId = e.target.id;
-    if (isChecked.includes(newId)) {
-      setIsChecked(isChecked.filter((id) => id !== newId));
-    } else {
-      setIsChecked([...isChecked, newId]);
-    }
+  async function handleIsCheckedChange(e) {
+    const docRef = await props.collection.doc(e.target.id).get();
+    props.collection.doc(e.target.id).set({checked: !docRef.data().checked}, {merge: true});
+    console.log(anyChecked());
   }
 
   function handleToggleAlert() {
@@ -68,13 +76,8 @@ function List(props) {
     props.collection.doc(e.target.id).set({priority: e.target.value}, { merge: true });
   }
 
-  function handleRemoveOneClick(id) {
-    props.collection.doc(id).delete();
-  }
-
   function handleRemoveAllClick() {
-    isChecked.map(e => props.collection.doc(e).delete());
-    setIsChecked([]);
+    props.collection.map(e => e.checked? e.delete(): {});
   }
 
   function handleShowAllClick() {
@@ -90,7 +93,7 @@ function List(props) {
 
         {props.listItems.map((item) => (
           <ListItem
-            checked={isChecked.includes(item.id)}
+            checked={item.checked}
             id={item.id}
             key={item.id}
             isEditingId={isEditingId}
@@ -110,7 +113,7 @@ function List(props) {
         <AddItem onClick={handleAdd}/>
 
         <CompletionButtons
-          anyCompletedTasks={isChecked.length !== 0}
+          anyCompletedTasks={anyChecked()}
           onShowAllClick={handleShowAllClick}
           onRemoveAllClick={handleToggleAlert}
           showingAllTasks={showingAllTasks}

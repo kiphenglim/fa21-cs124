@@ -11,10 +11,6 @@ function ListItem(props) {
     }
   }
 
-  // useEffect(() => {
-  //   newItem.current.focus();
-  // }, [newItem.current])
-
   return (
     <div className={classes.join(' ')} key={props.id}>
       <input
