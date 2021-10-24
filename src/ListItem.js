@@ -23,6 +23,7 @@ function ListItem(props) {
         <div className={classes.join(' ')} key={props.id}>
           <input
             className={'listCheckboxes'}
+            checked={props.checked}
             key={'itemcheck-'+props.id}
             id={props.id}
             onChange={props.onCheckedChange}

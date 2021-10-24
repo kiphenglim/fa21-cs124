@@ -17,13 +17,28 @@ const db = firebase.firestore();
 
 function App() {
   const collection = db.collection('kiphenglim-tasks');
+  const statsDoc = db.collection('kiphenglim-tasks-stats').doc('list1');
   const [sortBy, setSortBy] = useState('created');
   const [value, loading, error] = useCollection(collection.orderBy(sortBy));
 
   function generateListData() {
     if (!error && value) {
-      return value.docs.map(e => { return { ...e.data(), id: e.id } });
+      return value.docs.map(e => {return { ...e.data(), id: e.id } });
     }
+  }
+
+  function generateListStats() {
+    statsDoc.get().then((doc) => {
+      if (doc.exists) {
+        return doc.data();
+      } else {
+        statsDoc.set({ numChecked: 0 });
+        return {numChecked: 0};
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+      return {numChecked: 0};
+    });
   }
 
   function handleChangeSort(e) {
@@ -36,9 +51,12 @@ function App() {
       {loading ?
         <></> :
         <List collection={collection}
+              db={db}
               listItems={generateListData()}
+              listStats={generateListStats()}
               onChangeSort={handleChangeSort}
-              sortBy={sortBy} />}
+              sortBy={sortBy}
+              statsDoc={statsDoc}/>}
     </div>
   );
 }

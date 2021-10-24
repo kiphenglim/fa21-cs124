@@ -15,15 +15,10 @@ function List(props) {
   const [showingAllTasks, setShowingAllTasks] = useState(true);
   const [newestItem, setNewestItem] = useState(null);
 
-  function anyChecked() {
-    // const docRef = props.collection.get()
-    //
-    // docRef.map((doc) =>
-    // {
-    //   console.log(doc.checked);
-    //   if (doc.checked) return true;
-    // });
-    // return false;
+  async function anyChecked() {
+    const statsRef = await props.statsDoc.get();
+    console.log(statsRef.data().numChecked);
+    return statsRef.data().numChecked !== 0;
   }
 
   function handleAdd() {
@@ -64,9 +59,15 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(e) {
-    const docRef = await props.collection.doc(e.target.id).get();
-    props.collection.doc(e.target.id).set({checked: !docRef.data().checked}, {merge: true});
-    console.log(docRef.data().checked);
+    const docRef = props.collection.doc(e.target.id);
+    const doc = await docRef.get();
+    const newCheckedState = !doc.data().checked;
+    await docRef.update({checked: newCheckedState});
+    const statsRef = await props.statsDoc.get();
+    const numChecked = statsRef.data().numChecked;
+    newCheckedState
+      ? await props.statsDoc.update({numChecked: numChecked+1})
+      : await props.statsDoc.update({numChecked: numChecked-1});
   }
 
   function handleToggleAlert() {
@@ -77,8 +78,15 @@ function List(props) {
     props.collection.doc(e.target.id).set({priority: e.target.value}, { merge: true });
   }
 
-  function handleRemoveAllClick() {
-    props.collection.map(e => e.checked? e.delete(): {});
+  async function handleRemoveAllClick() {
+    const querySnapshot = await props.collection.where('checked', '==', true).get();
+    const batch = props.db.batch();
+
+    querySnapshot.docs.forEach((doc) => {
+      batch.delete(doc);
+    });
+    await batch.commit();
+    //props.collection.map(e => e.checked? e.delete(): {});
   }
 
   function handleShowAllClick() {
@@ -114,12 +122,12 @@ function List(props) {
 
         <AddItem onClick={handleAdd}/>
 
-        <CompletionButtons
+        {<CompletionButtons
           anyCompletedTasks={anyChecked()}
           onShowAllClick={handleShowAllClick}
           onRemoveAllClick={handleToggleAlert}
           showingAllTasks={showingAllTasks}
-        />
+        /> }
 
         {showAlert && <Alert
             onCancel={handleToggleAlert}
