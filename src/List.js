@@ -15,14 +15,14 @@ function List(props) {
   const [showingAllTasks, setShowingAllTasks] = useState(true);
 
   function anyChecked() {
-    props.collection.get()
-
-    docRef.map((doc) =>
-    {
-      console.log(doc.checked);
-      if (doc.checked) return true;
-    });
-    return false;
+    // const docRef = props.collection.get()
+    //
+    // docRef.map((doc) =>
+    // {
+    //   console.log(doc.checked);
+    //   if (doc.checked) return true;
+    // });
+    // return false;
   }
 
   function handleAdd() {
@@ -65,7 +65,7 @@ function List(props) {
   async function handleIsCheckedChange(e) {
     const docRef = await props.collection.doc(e.target.id).get();
     props.collection.doc(e.target.id).set({checked: !docRef.data().checked}, {merge: true});
-    console.log(anyChecked());
+    console.log(docRef.data().checked);
   }
 
   function handleToggleAlert() {
@@ -90,7 +90,7 @@ function List(props) {
           sortBy={props.sortBy}
           onChange={props.onChangeSort}
         />
-
+        <br/>
         {props.listItems.map((item) => (
           <ListItem
             checked={item.checked}

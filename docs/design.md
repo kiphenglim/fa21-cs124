@@ -23,10 +23,11 @@ Completed Tasks" to warn user that deletion is irreversible
 + displays the "Show Uncompleted Tasks" and "Delete 
 Completed Tasks" options only when there are completed 
 items, avoiding clutter
-+ use select buttons for priority selection, do not allow 
++ use select buttons for priority selection, does not allow 
 users to manually input priority level
 + use select button for sort selection, with options to 
-choose between date created, task name, or priority level
+choose between date created, task name, or priority level,
+does not allow users to manually input sort criteria
 
 ![Screenshot of Lab 2](design-decisions.png)
 
