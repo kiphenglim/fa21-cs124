@@ -28,7 +28,7 @@ function List(props) {
 
   function handleAdd() {
     const newId = generateUniqueID();
-    let newTask = { id: newId,
+    const newTask = { id: newId,
         created: firebase.database.ServerValue.TIMESTAMP,
         task: '',
         priority: '3',
@@ -39,11 +39,14 @@ function List(props) {
   }
 
   function handleEditClick(e) {
+    console.log('handleeditclick');
     setEditingText(e.target.value);
     setIsEditingId(e.target.id);
+    setNewestItem(null);
   }
 
   function handleEditChange(e) {
+    console.log('handleeditchange');
     setEditingText(e.target.value);
     props.collection.doc(e.target.id).set({task: editingText}, { merge: true });
   }
@@ -55,8 +58,7 @@ function List(props) {
 
   function handleEditEnter(e) {
     if (e.key === 'Enter') {
-      console.log(e);
-      handleEditComplete(e.target.id);
+      handleEditComplete({target: {id: e.target.id}});
       e.target.blur();
     }
   }

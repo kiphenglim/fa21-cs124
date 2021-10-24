@@ -4,9 +4,9 @@ function ListItem(props) {
   const newItem = useRef(null);
 
   useEffect(() => {
-    if (props.newest !== null) {
+    if (props.newest === props.id) {
       newItem.current.focus();
-      props.onEditClick(props.id);
+      props.onEditClick({target: {id: props.id, value: ''}});
     }
   }, [props])
 
