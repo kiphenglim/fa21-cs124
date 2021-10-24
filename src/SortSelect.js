@@ -1,6 +1,6 @@
 function SortSelect(props) {
     return (
-        <div className={'sort-header'}>
+        <div className='sort-header'>
             <div className={'sort-select'}>
                 <label htmlFor={'sort-select'} className={'sort-label'}>Sort By</label>
                 <select className={'sort-menu'}

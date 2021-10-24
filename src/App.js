@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>CS124 Lab 3</h1>
+      <h1 className='list-header'>CS124 Lab 3</h1>
       {loading ?
         <></> :
         <List collection={collection}

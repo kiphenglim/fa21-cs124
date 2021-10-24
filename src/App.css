@@ -123,6 +123,16 @@
   width: 100%;
 }
 
+.list-header {
+  background-color: white;
+  top: 0;
+  padding-bottom: 10px;
+  position: fixed;
+  z-index: 5;
+  text-align: center;
+  width: 100%;
+}
+
 .modal {
   background-color: #fff;
   border-radius: 3px;
@@ -149,7 +159,9 @@
   justify-content: space-between;
   background: lightgrey;
   border-radius: 2px;
-  padding-top: 10px;
+  top: 0px;
+  position: fixed;
+  width: 82%;
 }
 
 .sort-label {
@@ -168,6 +180,8 @@
 h1 {
   font-family: sans-serif;
   text-align: center;
+  margin-top: 0;
+  padding-top: 10px;
 }
 
 hr {
