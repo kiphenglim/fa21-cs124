@@ -19,41 +19,43 @@ function ListItem(props) {
   }
 
   return (
-    <div className={classes.join(' ')} key={props.id}>
-      <input
-        className={'listCheckboxes'}
-        key={'itemcheck-'+props.id}
-        id={props.id}
-        onChange={props.onCheckedChange}
-        type='checkbox'
-      />
-      <input
-        autoComplete='off'
-        className={'listTextInputs'}
-        id={props.id}
-        key={'itemtext-' + props.id}
-        onBlur={props.onEditBlur}
-        onChange={props.onEditChange}
-        onClick={props.onEditClick}
-        onKeyDown={props.onEditEnter}
-        ref={newItem}
-        type='text'
-        value={
-          props.isEditingId === props.id ?
-          props.editingText :
-          props.task
-        }
-      />
-      <select className={'priority-select'}
-        id={props.id}
-        onChange={props.onPriorityChange}
-        value={props.priority}>
-          <option value={'1'}>High</option>
-          <option value={'2'}>Med</option>
-          <option value={'3'}>Low</option>
-      </select>
-      <hr/>
-    </div>
+      <div>
+        <div className={classes.join(' ')} key={props.id}>
+          <input
+            className={'listCheckboxes'}
+            key={'itemcheck-'+props.id}
+            id={props.id}
+            onChange={props.onCheckedChange}
+            type='checkbox'
+          />
+          <input
+            autoComplete='off'
+            className={'listTextInputs'}
+            id={props.id}
+            key={'itemtext-' + props.id}
+            onBlur={props.onEditBlur}
+            onChange={props.onEditChange}
+            onClick={props.onEditClick}
+            onKeyDown={props.onEditEnter}
+            ref={newItem}
+            type='text'
+            value={
+              props.isEditingId === props.id ?
+              props.editingText :
+              props.task
+            }
+          />
+          <select className={'priority-select'}
+            id={props.id}
+            onChange={props.onPriorityChange}
+            value={props.priority}>
+              <option value={'1'}>High</option>
+              <option value={'2'}>Med</option>
+              <option value={'3'}>Low</option>
+          </select>
+        </div>
+        <hr/>
+      </div>
   );
 }
 
