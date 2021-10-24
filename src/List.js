@@ -78,15 +78,25 @@ function List(props) {
     props.collection.doc(e.target.id).set({priority: e.target.value}, { merge: true });
   }
 
-  async function handleRemoveAllClick() {
-    const querySnapshot = await props.collection.where('checked', '==', true).get();
-    const batch = props.db.batch();
+  async function handleRemoveAllClick(e) {
+    const snapshot = await props.collection.where('checked', '==', true).get();
+    const batchSize = snapshot.size;
+    if (batchSize === 0) {
+      return;
+    }
 
-    querySnapshot.docs.forEach((doc) => {
-      batch.delete(doc);
+    // Delete documents in a batch
+    const batch = props.db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
     });
     await batch.commit();
-    //props.collection.map(e => e.checked? e.delete(): {});
+
+    // Recurse on the next process tick, to avoid
+    // exploding the stack.
+    process.nextTick(() => {
+      handleRemoveAllClick(e);
+    });
   }
 
   function handleShowAllClick() {
