@@ -2,7 +2,7 @@ function SortSelect(props) {
     return (
         <div className={'sort-header'}>
             <div className={'sort-select'}>
-                <label for={'sort-select'} className={'sort-label'}>Sort By</label>
+                <label htmlFor={'sort-select'} className={'sort-label'}>Sort By</label>
                 <select className={'sort-menu'}
                   onChange={props.onChange}
                   value={props.sortBy}>

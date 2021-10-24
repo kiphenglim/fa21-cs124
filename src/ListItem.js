@@ -3,6 +3,13 @@ import { useEffect, useRef } from 'react';
 function ListItem(props) {
   const newItem = useRef(null);
 
+  useEffect(() => {
+    if (props.newest !== null) {
+      newItem.current.focus();
+      props.onEditClick(props.id);
+    }
+  }, [props])
+
   const classes = ['item'];
   if (props.checked) {
     classes.push('checked');
@@ -25,16 +32,16 @@ function ListItem(props) {
         className={'listTextInputs'}
         id={props.id}
         key={'itemtext-' + props.id}
-        ref={newItem}
         onBlur={props.onEditBlur}
         onChange={props.onEditChange}
         onClick={props.onEditClick}
         onKeyDown={props.onEditEnter}
+        ref={newItem}
         type='text'
         value={
-          props.id === props.isEditingId
-            ? props.editingText
-            : props.task
+          props.isEditingId === props.id ?
+          props.editingText :
+          props.task
         }
       />
       <select className={'priority-select'}

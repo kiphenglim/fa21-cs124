@@ -13,6 +13,7 @@ function List(props) {
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
+  const [newestItem, setNewestItem] = useState(null);
 
   function anyChecked() {
     props.collection.get()
@@ -34,8 +35,7 @@ function List(props) {
         checked: false
       };
     props.collection.doc(newId).set(newTask);
-    setIsEditingId(newId);
-    setEditingText('');
+    setNewestItem(newId);
   }
 
   function handleEditClick(e) {
@@ -45,20 +45,19 @@ function List(props) {
 
   function handleEditChange(e) {
     setEditingText(e.target.value);
-    setIsEditingId(e.target.id);
     props.collection.doc(e.target.id).set({task: editingText}, { merge: true });
   }
 
   function handleEditComplete(e) {
     props.collection.doc(e.target.id).set({task: editingText}, { merge: true });
-    setEditingText('');
     setIsEditingId(null);
   }
 
-  function handleEditEnter (e) {
+  function handleEditEnter(e) {
     if (e.key === 'Enter') {
+      console.log(e);
+      handleEditComplete(e.target.id);
       e.target.blur();
-      handleEditComplete(e);
     }
   }
 
@@ -98,6 +97,7 @@ function List(props) {
             key={item.id}
             isEditingId={isEditingId}
             editingText={editingText}
+            newest={newestItem}
             onCheckedChange={handleIsCheckedChange}
             onEditBlur={handleEditComplete}
             onEditChange={handleEditChange}
