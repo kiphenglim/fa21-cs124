@@ -160,6 +160,7 @@
   background: lightgrey;
   border-radius: 2px;
   top: 0px;
+  padding-top: 68px;
   position: fixed;
   width: 82%;
 }

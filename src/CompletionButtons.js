@@ -7,7 +7,7 @@ function CompletionButtons(props) {
       <div className={'Toggle'}>
         <label className={'ShowAllToggleLabel'}
           htmlFor={'ShowAllToggle'}>
-            Show Uncompleted Items
+            Show Only Uncompleted Items
         </label>
         <Toggle
           className='ShowAllToggle'
