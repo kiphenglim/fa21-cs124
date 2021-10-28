@@ -97,6 +97,8 @@ function List(props) {
     process.nextTick(() => {
       handleRemoveAllClick(e);
     });
+
+    props.statsDoc.update({numChecked: 0});
   }
 
   function handleShowAllClick() {
