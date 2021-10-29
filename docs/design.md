@@ -29,7 +29,7 @@ users to manually input priority level
 choose between date created, task name, or priority level,
 does not allow users to manually input sort criteria
 
-![Screenshot of Lab 2](design-decisions.png)
+![Screenshot of Lab 3](lab3-basic.png)
 
 # Alternative Designs
 + no alternative designs
