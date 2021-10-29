@@ -68,8 +68,6 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  position: relative;
-  bottom: -20px;
 }
 
 .alert-buttons > * {
@@ -93,7 +91,7 @@
 
 .alert-header {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .backdrop {
@@ -106,6 +104,19 @@
   height: 100%;
   background-color: rgba(0, 0, 0, .3);
   z-index: 2;
+}
+
+.checkbox {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 2em;
+  justify-content: center;
+  width: 2.5em;
+}
+
+input[type="checkbox"] {
+  margin: 0 0 0 0;
 }
 
 .checked input[type='text'] {
@@ -145,6 +156,9 @@
   border-style: solid;
   border-width: 3px;
   border-color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 20px;
   margin: 0 auto;
   top: 80pt;

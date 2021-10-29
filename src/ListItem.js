@@ -21,14 +21,20 @@ function ListItem(props) {
   return (
       <div>
         <div className={classes.join(' ')} key={props.id}>
-          <input
-            className={'listCheckboxes'}
-            checked={props.checked}
-            key={'itemcheck-'+props.id}
+          <div
+            className={"checkbox"}
             id={props.id}
-            onChange={props.onCheckedChange}
-            type='checkbox'
-          />
+            onClick={props.onCheckedChange}
+          >
+            <input
+              className={'listCheckboxes'}
+              checked={props.checked}
+              key={'itemcheck-'+props.id}
+              id={props.id}
+              onChange={props.onCheckedChange}
+              type='checkbox'
+            />
+          </div>
           <input
             autoComplete='off'
             className={'listTextInputs'}
