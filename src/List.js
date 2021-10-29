@@ -108,7 +108,6 @@ function List(props) {
         sortBy={props.sortBy}
         onChange={props.onChangeSort}
       />
-      <br />
 
       <div className={'ListItems'}>
         {props.listItems.map((item) => (
