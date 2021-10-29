@@ -9,7 +9,8 @@ import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
 function List(props) {
-  const [anyChecked, setAnyChecked] = useState(false);
+  const [numChecked, setNumChecked] = useState(0);
+  const [totalChecked, setTotalChecked] = useState(0);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -17,8 +18,11 @@ function List(props) {
   const [newestItem, setNewestItem] = useState(null);
 
   useEffect(() => {
-    props.collection.where('checked', '==', true).get().then(v => { setAnyChecked(!v.empty)})
-  }, [props.collection])
+    const allSnap = props.collection.get();
+    allSnap.then(snap => setTotalChecked(snap.size));
+    const checkedSnap = props.collection.where('checked', '==', true).get();
+    checkedSnap.then(snap => setNumChecked(snap.size));
+  }, [props.collection]);
 
   function handleAdd() {
     const newId = generateUniqueID();
@@ -131,7 +135,7 @@ function List(props) {
       <AddItem onClick={handleAdd} />
 
       {<CompletionButtons
-        anyCompletedTasks={anyChecked}
+        anyCompletedTasks={numChecked !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleToggleAlert}
         showingAllTasks={showingAllTasks}
