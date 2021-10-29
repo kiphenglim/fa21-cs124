@@ -112,25 +112,27 @@ function List(props) {
           onChange={props.onChangeSort}
         />
         <br/>
-        {props.listItems.map((item) => (
-          <ListItem
-            checked={item.checked}
-            id={item.id}
-            key={item.id}
-            isEditingId={isEditingId}
-            editingText={editingText}
-            newest={newestItem}
-            onCheckedChange={handleIsCheckedChange}
-            onEditBlur={handleEditComplete}
-            onEditChange={handleEditChange}
-            onEditClick={handleEditClick}
-            onEditEnter={handleEditEnter}
-            onPriorityChange={handlePriorityChange}
-            priority={item.priority}
-            showAll={showingAllTasks}
-            task={item.task}
-          />
-        ))}
+        <div className={'ListItems'}>
+          {props.listItems.map((item) => (
+            <ListItem
+              checked={item.checked}
+              id={item.id}
+              key={item.id}
+              isEditingId={isEditingId}
+              editingText={editingText}
+              newest={newestItem}
+              onCheckedChange={handleIsCheckedChange}
+              onEditBlur={handleEditComplete}
+              onEditChange={handleEditChange}
+              onEditClick={handleEditClick}
+              onEditEnter={handleEditEnter}
+              onPriorityChange={handlePriorityChange}
+              priority={item.priority}
+              showAll={showingAllTasks}
+              task={item.task}
+            />
+          ))}
+        </div>
 
         <AddItem onClick={handleAdd}/>
 
