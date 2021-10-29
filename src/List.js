@@ -10,7 +10,7 @@ import SortSelect from './SortSelect';
 
 function List(props) {
   const [numChecked, setNumChecked] = useState(0);
-  const [totalChecked, setTotalChecked] = useState(0);
+  const [totalTasks, setTotalTasks] = useState(0);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -19,7 +19,7 @@ function List(props) {
 
   useEffect(() => {
     const allSnap = props.collection.get();
-    allSnap.then(snap => setTotalChecked(snap.size));
+    allSnap.then(snap => setTotalTasks(snap.size));
     const checkedSnap = props.collection.where('checked', '==', true).get();
     checkedSnap.then(snap => setNumChecked(snap.size));
   }, [props.collection]);
@@ -145,7 +145,8 @@ function List(props) {
         onConfirm={handleRemoveAllClick}>
         <div className='alert-text'>
           <h3 className='alert-header'>WARNING</h3>
-          Your tasks will be permanently deleted, are you sure you want to delete all completed items?
+          Your tasks will be permanently deleted,
+          are you sure you want to delete {numChecked} of {totalTasks} items?
         </div>
       </Alert>}
 

@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 function App() {
-  const collection = db.collection('kiphenglim-tasks');
+  const collection = db.collection('kiphenglim-lab3');
   const [sortBy, setSortBy] = useState('created');
   const [value, loading, error] = useCollection(collection.orderBy(sortBy));
 
