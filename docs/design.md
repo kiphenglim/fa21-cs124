@@ -125,6 +125,17 @@ This change is irreversible.
 ![alert](t6-alert.png)
 ![after](t6-end.png)
 
+Changes from Lab 2
++ added header with sorting options and priority label
++ made header, "Show Only Uncompleted Tasks" toggle, and 
+"Remove Completed Tasks" button sticky so no scrolling 
+is necessary even with large number of tasks
++ changed "Show Uncompleted Tasks" to "Show Only 
+Uncompleted Tasks" for description accuracy and clarity
+
+![lab 3 appearance](lab3-basic.png)
+![sticky header and footer](sticky.png)
+
 
 # Challenges
 + implementing editing items on selection and 
@@ -149,3 +160,4 @@ Completed Tasks" options only when there are completed
 tasks
 + used a toggle for "Show Uncompleted Tasks" since that made
 it clearer that it was a binary state being toggled.
++ sticky header and footer
