@@ -61,7 +61,7 @@ function ListItem(props) {
               <option value={'3'}>Low</option>
           </select>
         </div>
-        <hr/>
+        <hr className={(props.checked && !props.showAll) && 'invisible'}/>
       </div>
   );
 }

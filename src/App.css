@@ -125,7 +125,7 @@ input[type="checkbox"] {
 }
 
 .invisible {
-  display: none;
+  display: none !important;
 }
 
 .item {
