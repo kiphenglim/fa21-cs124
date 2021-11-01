@@ -5,7 +5,7 @@ function AddItem(props) {
     <button className={'AddItemButton'}>
       <img className={'AddIcon'}
         src={plus}
-        alt='a plus icon'
+        alt='add new item'
         width={14}
         height={14}/>
       Add Item
