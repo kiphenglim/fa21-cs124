@@ -9,20 +9,11 @@ import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
 function List(props) {
-  const [numChecked, setNumChecked] = useState(0);
-  const [totalTasks, setTotalTasks] = useState(0);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
   const [newestItem, setNewestItem] = useState(null);
-
-  useEffect(() => {
-    const allSnap = props.collection.get();
-    allSnap.then(snap => setTotalTasks(snap.size));
-    const checkedSnap = props.collection.where('checked', '==', true).get();
-    checkedSnap.then(snap => setNumChecked(snap.size));
-  }, [props.collection]);
 
   function handleAdd() {
     const newId = generateUniqueID();
@@ -105,6 +96,11 @@ function List(props) {
     setShowingAllTasks(!showingAllTasks);
   }
 
+  function numChecked() {
+    const checkedItems = props.listItems.filter((item) => item.checked);
+    return checkedItems.length;
+  }
+
   return (
     <div className='ListItemContainer'>
       <SortSelect
@@ -155,7 +151,7 @@ function List(props) {
         <div className='alert-text'>
           <h3 className='alert-header'>WARNING</h3>
           Your tasks will be permanently deleted,
-          are you sure you want to delete {numChecked} of {totalTasks} items?
+          are you sure you want to delete {numChecked()} of {props.listItems.length} items?
         </div>
       </Alert>}
 
