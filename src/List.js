@@ -47,11 +47,13 @@ function List(props) {
   function handleEditChange(e) {
     console.log('handleeditchange');
     setEditingText(e.target.value);
-    props.collection.doc(e.target.id).set({ task: editingText }, { merge: true });
+    const docRef = props.collection.doc(e.target.id);
+    docRef.update({ task: editingText });
   }
 
   function handleEditComplete(e) {
-    props.collection.doc(e.target.id).set({ task: editingText }, { merge: true });
+    const docRef = props.collection.doc(e.target.id);
+    docRef.update({ task: editingText });
     setIsEditingId(null);
   }
 
@@ -66,7 +68,7 @@ function List(props) {
     const docRef = props.collection.doc(e.target.id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
-    await docRef.update({ checked: newCheckedState });
+    docRef.update({ checked: newCheckedState });
   }
 
   function handleToggleAlert() {
@@ -74,7 +76,8 @@ function List(props) {
   }
 
   function handlePriorityChange(e) {
-    props.collection.doc(e.target.id).set({ priority: e.target.value }, { merge: true });
+    const docRef = props.collection.doc(e.target.id);
+    docRef.update({ priority: e.target.value });
   }
 
   async function handleRemoveAllClick(e) {
