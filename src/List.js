@@ -56,6 +56,10 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(id) {
+    props.listItems.map(e => {
+      return e.id === id
+      ? {...e, checked: !e.checked}
+      : e});
     const docRef = props.collection.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
@@ -67,6 +71,12 @@ function List(props) {
   }
 
   function handlePriorityChange(id, v) {
+    props.listItems.map(e =>
+      {return e.id === id
+        ? { ...e, priority: v }
+        : e;
+      }
+    );
     const docRef = props.collection.doc(id);
     docRef.update({ priority: v });
   }
