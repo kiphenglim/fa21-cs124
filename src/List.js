@@ -37,35 +37,35 @@ function List(props) {
     setNewestItem(newId);
   }
 
-  function handleEditClick(e) {
+  function handleEditClick(id, v) {
     console.log('handleeditclick');
-    setEditingText(e.target.value);
-    setIsEditingId(e.target.id);
+    setEditingText(v);
+    setIsEditingId(id);
     setNewestItem(null);
   }
 
-  function handleEditChange(e) {
+  function handleEditChange(id, v) {
     console.log('handleeditchange');
-    setEditingText(e.target.value);
-    const docRef = props.collection.doc(e.target.id);
+    setEditingText(v);
+    const docRef = props.collection.doc(id);
     docRef.update({ task: editingText });
   }
 
-  function handleEditComplete(e) {
-    const docRef = props.collection.doc(e.target.id);
+  function handleEditComplete(id) {
+    const docRef = props.collection.doc(id);
     docRef.update({ task: editingText });
     setIsEditingId(null);
   }
 
-  function handleEditEnter(e) {
-    if (e.key === 'Enter') {
-      handleEditComplete({ target: { id: e.target.id } });
-      e.target.blur();
+  function handleEditEnter(id, target, key) {
+    if (key === 'Enter') {
+      handleEditComplete(id);
+      target.blur();
     }
   }
 
-  async function handleIsCheckedChange(e) {
-    const docRef = props.collection.doc(e.target.id);
+  async function handleIsCheckedChange(id) {
+    const docRef = props.collection.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
@@ -75,12 +75,12 @@ function List(props) {
     setShowAlert(!showAlert);
   }
 
-  function handlePriorityChange(e) {
-    const docRef = props.collection.doc(e.target.id);
-    docRef.update({ priority: e.target.value });
+  function handlePriorityChange(id, v) {
+    const docRef = props.collection.doc(id);
+    docRef.update({ priority: v });
   }
 
-  async function handleRemoveAllClick(e) {
+  async function handleRemoveAllClick() {
     const snapshot = await props.collection.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
@@ -97,7 +97,7 @@ function List(props) {
     // Recurse on the next process tick, to avoid
     // exploding the stack.
     process.nextTick(() => {
-      handleRemoveAllClick(e);
+      handleRemoveAllClick();
     });
   }
 
@@ -121,12 +121,18 @@ function List(props) {
             isEditingId={isEditingId}
             editingText={editingText}
             newest={newestItem}
-            onCheckedChange={handleIsCheckedChange}
-            onEditBlur={handleEditComplete}
-            onEditChange={handleEditChange}
-            onEditClick={handleEditClick}
-            onEditEnter={handleEditEnter}
-            onPriorityChange={handlePriorityChange}
+            onCheckedChange={e =>
+              handleIsCheckedChange(e.target.id)}
+            onEditBlur={e =>
+              handleEditComplete(e.target.id)}
+            onEditChange={e =>
+              handleEditChange(e.target.id, e.target.value)}
+            onEditClick={e =>
+              handleEditClick(e.target.id, e.target.value)}
+            onEditEnter={e =>
+              handleEditEnter(e.target.id, e.target, e.key)}
+            onPriorityChange={e =>
+              handlePriorityChange(e.target.id, e.target.value)}
             priority={item.priority}
             showAll={showingAllTasks}
             task={item.task}
