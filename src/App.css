@@ -32,7 +32,9 @@
 }
 
 .ListItemContainer {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  /*position: relative;*/
   min-height: 100%;
   padding: 35px 4% 5% 4%;
 }

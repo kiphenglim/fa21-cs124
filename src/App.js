@@ -32,7 +32,6 @@ function App() {
 
   return (
     <div className='App'>
-      <h1 className='list-header'>Lab 3</h1>
       {loading ?
         <></> :
         <List collection={collection}
