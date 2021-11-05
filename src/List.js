@@ -104,7 +104,7 @@ function List(props) {
   return (
     <div className='ListItemContainer'>
 
-      <h1 className='list-header'>Lab 3</h1>
+      <h1 className='ListHeader'>Lab 3</h1>
 
       <SortSelect
         sortBy={props.sortBy}
@@ -142,7 +142,7 @@ function List(props) {
       <AddItem onClick={handleAdd} />
 
       {<CompletionButtons
-        anyCompletedTasks={numChecked !== 0}
+        anyCompletedTasks={numChecked() !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleToggleAlert}
         showingAllTasks={showingAllTasks}
