@@ -33,6 +33,7 @@ function ListMenu(props) {
                     listName={item.name}
                     listSort={item.sort}
                     onChangeDisplay={props.onChangeDisplay}
+                    onDeleteList={handleDeleteList}
                 />
             ))}
 

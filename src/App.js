@@ -1,4 +1,5 @@
 import './App.css';
+import List from './List'
 import ListMenu from './ListMenu';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
@@ -41,7 +42,12 @@ function App() {
           listItems={generateListData()}
           onChangeDisplay={handleChangeDisplay}
           /> :
-            currentDisplay === 'list' ? <></> : <></>}
+            currentDisplay === 'list' ?
+              // <List
+              //     id={currentDisplay}
+              //     listData={}
+              // ></List>
+              <></> : <></>}
 
     </div>
   );
