@@ -1,9 +1,9 @@
 function SortSelect(props) {
     return (
-        <div className='sort-header'>
-            <div className={'sort-select'}>
-                <label htmlFor={'sort-select'} className={'sort-label'}>Sort By</label>
-                <select className={'sort-menu'}
+        <div className='SortHeader'>
+            <div className={'SortSelect'}>
+                <label htmlFor={'SortSelect'} className={'SortLabel'}>Sort By</label>
+                <select className={'SortMenu'}
                   onChange={props.onChange}
                   value={props.sortBy}>
                     <option value={'created'}>Date</option>
@@ -11,7 +11,7 @@ function SortSelect(props) {
                     <option value={'priority'}>Priority</option>
                 </select>
             </div>
-            <span className={'priority-header'}>Priority</span>
+            <span className={'PriorityHeader'}>Priority</span>
         </div>
     )
 }

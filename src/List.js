@@ -104,7 +104,7 @@ function List(props) {
   return (
     <div className='ListItemContainer'>
 
-      <h1 className='list-header'>Lab 3</h1>
+      <h1 className='ListHeader'>Lab 3</h1>
 
       <SortSelect
         sortBy={props.sortBy}
