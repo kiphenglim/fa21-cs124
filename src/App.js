@@ -1,5 +1,5 @@
 import './App.css';
-import List from './List';
+import ListMenu from './ListMenu';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
 import {useState} from "react";
@@ -16,9 +16,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 function App() {
-  const collection = db.collection('kiphenglim-lab3');
-  const [sortBy, setSortBy] = useState('created');
-  const [value, loading, error] = useCollection(collection.orderBy(sortBy));
+  const collection = db.collection('kiphenglim-lab4');
+  const [currentDisplay, setCurrentDisplay] = useState('menu');
+  const [value, loading, error] = useCollection(collection);
 
   function generateListData() {
     if (!error && value) {
@@ -26,19 +26,23 @@ function App() {
     }
   }
 
-  function handleChangeSort(e) {
-    setSortBy(e.target.value);
+  function handleChangeDisplay(value) {
+    console.log(value);
+    // setCurrentDisplay(value);
   }
 
   return (
     <div className='App'>
       {loading ?
         <></> :
-        <List collection={collection}
-              db={db}
-              listItems={generateListData()}
-              onChangeSort={handleChangeSort}
-              sortBy={sortBy}/>}
+        currentDisplay === 'menu' ?
+          <ListMenu
+          collection={collection}
+          listItems={generateListData()}
+          onChangeDisplay={handleChangeDisplay}
+          /> :
+            currentDisplay === 'list' ? <></> : <></>}
+
     </div>
   );
 }

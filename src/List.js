@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 
 import AddItem from './AddItem';
