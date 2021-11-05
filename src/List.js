@@ -142,7 +142,7 @@ function List(props) {
       <AddItem onClick={handleAdd} />
 
       {<CompletionButtons
-        anyCompletedTasks={numChecked !== 0}
+        anyCompletedTasks={numChecked() !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleToggleAlert}
         showingAllTasks={showingAllTasks}
