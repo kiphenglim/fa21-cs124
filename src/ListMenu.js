@@ -24,7 +24,7 @@ function ListMenu(props) {
             sort: 'date',
             data: []
         };
-        console.log(newList.name);
+        setNewestItem(newId);
         props.collection.doc(newId).set(newList);
     }
 
@@ -71,8 +71,8 @@ function ListMenu(props) {
     }
 
     return (
-        <div className={'ListMenu'}>
-            <h1 className={'list-menu-title'}>Lab 4</h1>
+        <div className={'ListMenuContainer'}>
+            <h1 className={'ListMenuTitle'}>Lab 4</h1>
 
             {props.listItems.map((item) => (
                 <ListMenuItem

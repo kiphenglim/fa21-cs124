@@ -27,6 +27,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
 
 .ListHeader {
@@ -51,6 +52,16 @@
   padding: 0 1% 0 1%;
 }
 
+.ListMenuButtons {
+
+}
+
+.ListMenuContainer {
+  height: 96vh;
+  width: 96vw;
+  margin: 2vh 2vw 2vh 2vw;
+}
+
 .ListMenuDelete {
   background-color: white;
   border-style: none;
@@ -58,16 +69,19 @@
   margin: 0;
 }
 
-.ListMenu {
-  padding: 0 4% 5% 4%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .ListMenuItem {
   display: flex;
   justify-content: space-between;
+  overflow: scroll;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.ListMenuItem input[type='text'] {
+  outline: 0 lightgrey;
+  border: 0 lightgrey;
+  font-size: 17px;
+  width: 80%;
 }
 
 .ListMenuNext {
@@ -197,10 +211,6 @@ input[type="checkbox"] {
   text-decoration: line-through;
 }
 
-.CompletionButtons {
-  padding-bottom: 10px;
-}
-
 .invisible {
   display: none !important;
 }
@@ -217,7 +227,7 @@ input[type="checkbox"] {
   width: 100%;
 }
 
-.list-menu-add {
+.ListMenuAdd {
   margin-top: 10px;
 }
 
