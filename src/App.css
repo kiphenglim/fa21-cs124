@@ -52,7 +52,10 @@
 }
 
 .ListMenuDelete {
+  background-color: white;
+  border-style: none;
   padding-top: 3px;
+  margin: 0;
 }
 
 .PriorityHeader {
@@ -72,6 +75,13 @@
 .ListMenuItem {
   display: flex;
   justify-content: space-between;
+}
+
+.ListMenuNext {
+  background-color: white;
+  border-style: none;
+  margin-left: 5px;
+  padding-bottom: 3px;
 }
 
 .RemoveCompletedButton {
@@ -233,6 +243,7 @@ h1 {
 
 hr {
   border: 1px solid #d6d6d6;
+  margin-top: 2px;
 }
 
 label {
