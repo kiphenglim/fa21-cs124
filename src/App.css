@@ -58,13 +58,6 @@
   margin: 0;
 }
 
-.PriorityHeader {
-  align-items: center;
-  display: flex;
-  font-size: 16px;
-  padding-right: 2%;
-}
-
 .ListMenu {
   padding: 0 4% 5% 4%;
   display: flex;
@@ -82,6 +75,13 @@
   border-style: none;
   margin-left: 5px;
   padding-bottom: 3px;
+}
+
+.PriorityHeader {
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  padding-right: 2%;
 }
 
 .RemoveCompletedButton {

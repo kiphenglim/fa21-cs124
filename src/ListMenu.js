@@ -9,8 +9,11 @@ import plus from './plus.png';
 
 function ListMenu(props) {
 
-    const [showAlert, setShowAlert] = useState(false);
+    const [editingText, setEditingText] = useState('');
+    const [isEditingId, setIsEditingId] = useState(null);
     const [listToDelete, setListToDelete] = useState(null);
+    const [newestItem, setNewestItem] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
 
     function handleAddList() {
         const newId = generateUniqueID();
@@ -27,6 +30,31 @@ function ListMenu(props) {
 
     function handleDeleteList() {
         props.collection.doc(listToDelete).delete();
+    }
+
+    function handleEditClick(id, v) {
+        setEditingText(v);
+        setIsEditingId(id);
+        setNewestItem(null);
+    }
+
+    function handleEditChange(id, v) {
+        setEditingText(v);
+        const docRef = props.collection.doc(id);
+        docRef.update({ task: editingText });
+    }
+
+    function handleEditComplete(id) {
+        const docRef = props.collection.doc(id);
+        docRef.update({ name: editingText });
+        setIsEditingId(null);
+    }
+
+    function handleEditEnter(id, target, key) {
+        if (key === 'Enter') {
+            handleEditComplete(id);
+            target.blur();
+        }
     }
 
     function handleToggleAlert() {
@@ -49,11 +77,24 @@ function ListMenu(props) {
             {props.listItems.map((item) => (
                 <ListMenuItem
                     id={item.id}
+                    key={item.id}
                     listName={item.name}
                     listSort={item.sort}
                     onChangeDisplay={props.onChangeDisplay}
                     onDeleteAlert={handleToggleAlert}
                     onSetDeletion={handleSetDeletion}
+
+                    isEditingId={isEditingId}
+                    editingText={editingText}
+                    newest={newestItem}
+                    onEditBlur={e =>
+                        handleEditComplete(e.target.id)}
+                    onEditChange={e =>
+                        handleEditChange(e.target.id, e.target.value)}
+                    onEditClick={e =>
+                        handleEditClick(e.target.id, e.target.value)}
+                    onEditEnter={e =>
+                        handleEditEnter(e.target.id, e.target, e.key)}
                 />
             ))}
 

@@ -27,7 +27,7 @@ function ListItem(props) {
             onClick={props.onCheckedChange}
           >
             <input
-              className={'listCheckboxes'}
+              className={'ListCheckboxes'}
               checked={props.checked}
               key={'itemcheck-'+props.id}
               id={props.id}
@@ -37,7 +37,7 @@ function ListItem(props) {
           </div>
           <input
             autoComplete='off'
-            className={'listTextInputs'}
+            className={'ListTextInputs'}
             id={props.id}
             key={'itemtext-' + props.id}
             onBlur={props.onEditBlur}

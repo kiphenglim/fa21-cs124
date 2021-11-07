@@ -1,11 +1,38 @@
 import next from './next.png'
 import trashcan from './trashcan.png'
+import { useEffect, useRef } from 'react';
 
 function ListMenuItem(props) {
+
+    const newItem = useRef(null);
+
+    useEffect(() => {
+        if (props.newest === props.id) {
+            newItem.current.focus();
+            props.onEditClick({target: {id: props.id, value: ''}});
+        }
+    }, [props])
+
     return (
         <div>
             <div className={'ListMenuItem'}>
-                <div className={'list-menu-item-name'}>{props.listName}</div>
+                <input
+                    autoComplete='off'
+                    className={'ListMenuTextInputs'}
+                    id={props.id}
+                    key={'itemtext-' + props.id}
+                    onBlur={props.onEditBlur}
+                    onChange={props.onEditChange}
+                    onClick={props.onEditClick}
+                    onKeyDown={props.onEditEnter}
+                    ref={newItem}
+                    type='text'
+                    value={
+                        props.isEditingId === props.id ?
+                            props.editingText :
+                            props.listName
+                    }
+                />
                 <div className={'ListMenuButtons'}>
                     <button className={'ListMenuDelete'}
                             onClick={() => {

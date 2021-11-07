@@ -29,14 +29,12 @@ function List(props) {
   }
 
   function handleEditClick(id, v) {
-    console.log('handleeditclick');
     setEditingText(v);
     setIsEditingId(id);
     setNewestItem(null);
   }
 
   function handleEditChange(id, v) {
-    console.log('handleeditchange');
     setEditingText(v);
     const docRef = props.collection.doc(id);
     docRef.update({ task: editingText });
