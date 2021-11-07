@@ -22,14 +22,13 @@ function ListMenu(props) {
             created: firebase.database.ServerValue.TIMESTAMP,
             name: '',
             sort: 'date',
-            data: []
         };
         setNewestItem(newId);
-        props.collection.doc(newId).set(newList);
+        props.ownedListsCollection.doc(newId).set(newList);
     }
 
     function handleDeleteList() {
-        props.collection.doc(listToDelete).delete();
+        props.ownedListsCollection.doc(listToDelete).delete();
     }
 
     function handleEditClick(id, v) {
