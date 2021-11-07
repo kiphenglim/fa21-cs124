@@ -8,12 +8,15 @@ function ListMenuItem(props) {
                 <div className={'list-menu-item-name'}>{props.listName}</div>
                 <div className={'ListMenuButtons'}>
                     <button className={'ListMenuDelete'}
-                            onClick={(e) => props.onDeleteList(props.id)}>
+                            onClick={() => {
+                                props.onSetDeletion(props.id);
+                                props.onDeleteAlert();
+                            }}>
                         <img className={'DeleteIcon'}
-                             src={trashcan}
-                             alt='delete list'
-                             width={14}
-                             height={14}
+                            src={trashcan}
+                            alt='delete list'
+                            width={14}
+                            height={14}
                         />
                     </button>
                     <button className={'ListMenuNext'}
@@ -21,8 +24,8 @@ function ListMenuItem(props) {
                         <img className={'NextIcon'}
                             src={next}
                             alt='edit list'
-                             width={14}
-                             height={14}
+                            width={14}
+                            height={14}
                         />
                     </button>
                 </div>

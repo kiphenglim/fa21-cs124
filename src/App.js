@@ -38,9 +38,9 @@ function App() {
         <></> :
         currentDisplay === 'menu' ?
           <ListMenu
-          collection={collection}
-          listItems={generateListData()}
-          onChangeDisplay={handleChangeDisplay}
+            collection={collection}
+            listItems={generateListData()}
+            onChangeDisplay={handleChangeDisplay}
           /> :
             currentDisplay === 'list' ?
               // <List

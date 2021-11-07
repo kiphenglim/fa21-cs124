@@ -1,10 +1,16 @@
 import firebase from 'firebase/compat';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
+import { useState } from 'react';
+
+import Alert from './Alert'
 import ListMenuItem from './ListMenuItem';
 import plus from './plus.png';
 
 
 function ListMenu(props) {
+
+    const [showAlert, setShowAlert] = useState(false);
+    const [listToDelete, setListToDelete] = useState(null);
 
     function handleAddList() {
         const newId = generateUniqueID();
@@ -19,8 +25,21 @@ function ListMenu(props) {
         props.collection.doc(newId).set(newList);
     }
 
-    function handleDeleteList(id) {
-        props.collection.doc(id).delete();
+    function handleDeleteList() {
+        props.collection.doc(listToDelete).delete();
+    }
+
+    function handleToggleAlert() {
+        setShowAlert(!showAlert);
+    }
+
+    function handleSetDeletion(id) {
+        setListToDelete(id);
+    }
+
+    function getListName(id) {
+        const list = props.listItems.find(e => e.id == id);
+        return list.name;
     }
 
     return (
@@ -33,7 +52,8 @@ function ListMenu(props) {
                     listName={item.name}
                     listSort={item.sort}
                     onChangeDisplay={props.onChangeDisplay}
-                    onDeleteList={handleDeleteList}
+                    onDeleteAlert={handleToggleAlert}
+                    onSetDeletion={handleSetDeletion}
                 />
             ))}
 
@@ -45,6 +65,21 @@ function ListMenu(props) {
                      width={14}
                      height={14}/>
                 Add List</button>
+
+            {showAlert && <Alert
+                onCancel={handleToggleAlert}
+                onConfirm={() => {
+                    handleDeleteList();
+                    handleSetDeletion(null);
+                }}>
+                <div className='alert-info'>
+                    <h3 className='alert-header'>WARNING</h3>
+                    <div className='alert-text'>
+                        Your list will be permanently deleted,
+                        are you sure you want to delete {getListName(listToDelete)}?
+                    </div>
+                </div>
+            </Alert>}
         </div>
     )
 }

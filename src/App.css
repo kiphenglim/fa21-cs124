@@ -153,13 +153,18 @@
   color: #690907;
 }
 
-.alert-text {
-  font-size: 16px;
-}
-
 .alert-header {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.alert-info {
+  font-size: 16px;
+}
+
+.alert-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .backdrop {
