@@ -20,7 +20,7 @@ function ListMenu(props) {
         const newList = {
             id: newId,
             created: firebase.database.ServerValue.TIMESTAMP,
-            name: 'New List',
+            name: '',
             sort: 'date',
             data: []
         };
@@ -74,29 +74,32 @@ function ListMenu(props) {
         <div className={'ListMenuContainer'}>
             <h1 className={'ListMenuTitle'}>Lab 4</h1>
 
-            {props.listItems.map((item) => (
-                <ListMenuItem
-                    id={item.id}
-                    key={item.id}
-                    listName={item.name}
-                    listSort={item.sort}
-                    onChangeDisplay={props.onChangeDisplay}
-                    onDeleteAlert={handleToggleAlert}
-                    onSetDeletion={handleSetDeletion}
+            <div className={'ListMenuItems'}>
+                {props.listItems.map((item) => (
+                    <ListMenuItem
+                        id={item.id}
+                        key={item.id}
+                        listName={item.name}
+                        listSort={item.sort}
+                        onChangeDisplay={props.onChangeDisplay}
+                        onDeleteAlert={handleToggleAlert}
+                        onSetDeletion={handleSetDeletion}
 
-                    isEditingId={isEditingId}
-                    editingText={editingText}
-                    newest={newestItem}
-                    onEditBlur={e =>
-                        handleEditComplete(e.target.id)}
-                    onEditChange={e =>
-                        handleEditChange(e.target.id, e.target.value)}
-                    onEditClick={e =>
-                        handleEditClick(e.target.id, e.target.value)}
-                    onEditEnter={e =>
-                        handleEditEnter(e.target.id, e.target, e.key)}
-                />
-            ))}
+                        isEditingId={isEditingId}
+                        editingText={editingText}
+                        newest={newestItem}
+                        onEditBlur={e =>
+                            handleEditComplete(e.target.id)}
+                        onEditChange={e =>
+                            handleEditChange(e.target.id, e.target.value)}
+                        onEditClick={e =>
+                            handleEditClick(e.target.id, e.target.value)}
+                        onEditEnter={e =>
+                            handleEditEnter(e.target.id, e.target, e.key)}
+                    />
+                ))}
+
+            </div>
 
             <button className={'AddItemButton'}
                     onClick={handleAddList}>
@@ -117,7 +120,7 @@ function ListMenu(props) {
                     <h3 className='alert-header'>WARNING</h3>
                     <div className='alert-text'>
                         Your list will be permanently deleted,
-                        are you sure you want to delete {getListName(listToDelete)}?
+                        are you sure you want to delete <strong>{getListName(listToDelete)}</strong>?
                     </div>
                 </div>
             </Alert>}
