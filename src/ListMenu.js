@@ -39,12 +39,12 @@ function ListMenu(props) {
 
     function handleEditChange(id, v) {
         setEditingText(v);
-        const docRef = props.collection.doc(id);
+        const docRef = props.ownedListsCollection.doc(id);
         docRef.update({ task: editingText });
     }
 
     function handleEditComplete(id) {
-        const docRef = props.collection.doc(id);
+        const docRef = props.ownedListsCollection.doc(id);
         docRef.update({ name: editingText });
         setIsEditingId(null);
     }
@@ -65,7 +65,7 @@ function ListMenu(props) {
     }
 
     function getListName(id) {
-        const list = props.listItems.find(e => e.id == id);
+        const list = props.listItems.find(e => e.id === id);
         return list.name;
     }
 

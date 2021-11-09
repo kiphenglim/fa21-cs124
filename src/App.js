@@ -17,6 +17,20 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 function App() {
+
+  /*
+  collection: top level with lists document containing:
+    ownedlists: collection of lists with following properties
+      id
+      created
+      name
+      sort
+    sharedlists: collection of lists with following properties
+      id
+      created
+      name
+      sort
+   */
   const collection = db.collection('kiphenglim-lab4');
   const ownedListsCollection = collection.doc('lists').collection('owned-lists');
   const [olvalue, olloading, olerror] = useCollection(ownedListsCollection);
