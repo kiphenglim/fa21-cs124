@@ -2,8 +2,8 @@ import firebase from 'firebase/compat';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 import { useState } from 'react';
 
-import Alert from './Alert'
-import ListMenuItem from './ListMenuItem';
+import Alert from './Alert';
+import OwnedListMenuItem from './OwnedListMenuItem';
 import plus from './plus.png';
 
 
@@ -127,4 +127,4 @@ function OwnedListMenu(props) {
     )
 }
 
-export default ListMenu;
+export default OwnedListMenu;

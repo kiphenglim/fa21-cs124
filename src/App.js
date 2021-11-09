@@ -1,6 +1,7 @@
 import './App.css';
 import List from './List'
-import ListMenu from './ListMenu';
+import OwnedListMenu from './OwnedListMenu';
+import TabList from './TabList';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
 import {useState} from "react";
@@ -78,21 +79,20 @@ function App() {
         olloading || slloading
           ? <></>
           : currentDisplay === 'menu'
-            ? <>
-                <OwnedListMenu
-                collection={collection}
-                listItems={generateOwnedLists()}
-                onChangeDisplay={handleChangeDisplay}
-                ownedListsCollection={ownedListsCollection}
-                />
-                {/* List sharing in upcoming labs */}
-                {/* <ListMenu
-                  collection={collection}
-                  ownedListsCollection={ownedListsCollection}
-                  listItems={generateSharedLists()}
-                  onChangeDisplay={handleChangeDisplay}
-                /> */}
-              </>
+            ?
+              <TabList>
+                <div key={'owned'}>
+                  <OwnedListMenu
+                    collection={collection}
+                    listItems={generateOwnedLists()}
+                    onChangeDisplay={handleChangeDisplay}
+                    ownedListsCollection={ownedListsCollection}
+                  />
+                </div>
+                <div key={'shared'} align={'center'}>
+                    Shared Lists Here
+                </div>
+              </TabList>
             : <List
                 collection={collection}
                 id={currentDisplay}

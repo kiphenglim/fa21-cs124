@@ -62,4 +62,4 @@ function OwnedListMenuItem(props) {
     );
 }
 
-export default ListMenuItem;
+export default OwnedListMenuItem;
