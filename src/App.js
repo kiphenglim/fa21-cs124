@@ -55,12 +55,11 @@ function App() {
     }
   }
 
-  function generateListData() {
-    queryListData(currentDisplay).then(d => setCurrentListItems(d));
+  function generateListData(id) {
+    queryListData(id).then(d => setCurrentListItems(d));
   }
 
   async function queryListData(id) {
-    console.log(id);
     const snapshot = await ownedListsCollection.doc(id).collection('tasks').get();
     let data = [];
     snapshot.forEach(e => {data.push(e.data())});
@@ -70,7 +69,7 @@ function App() {
 
   function handleChangeDisplay(id) {
     setCurrentDisplay(id);
-    generateListData();
+    generateListData(id);
   }
 
   return (
@@ -94,13 +93,11 @@ function App() {
                 </div>
               </TabList>
             : <List
-                collection={collection}
                 id={currentDisplay}
                 listItems={currentListItems}
                 sortBy={'date'}
-                onChangeSort={null}
                 onChangeDisplay={handleChangeDisplay}
-                ownedListsCollection={ownedListsCollection}
+                currentList={ownedListsCollection.doc(currentDisplay).collection('tasks')}
               />
       }
 

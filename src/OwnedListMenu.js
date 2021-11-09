@@ -2,7 +2,7 @@ import firebase from 'firebase/compat';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 import { useState } from 'react';
 
-import Alert from './Alert';
+import Alert from './Alert'
 import OwnedListMenuItem from './OwnedListMenuItem';
 import plus from './plus.png';
 

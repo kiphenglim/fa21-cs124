@@ -24,7 +24,8 @@ function List(props) {
       priority: '3',
       checked: false
     };
-    props.ownedListCollection.doc(newId).set(newTask);
+    console.log(newId);
+    props.currentList.doc(newId).set(newTask);
     setNewestItem(newId);
   }
 
@@ -36,12 +37,12 @@ function List(props) {
 
   function handleEditChange(id, v) {
     setEditingText(v);
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
   }
 
   function handleEditComplete(id) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
     setIsEditingId(null);
   }
@@ -54,7 +55,7 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(id) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
@@ -65,12 +66,12 @@ function List(props) {
   }
 
   function handlePriorityChange(id, v) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ priority: v });
   }
 
   async function handleRemoveAllClick() {
-    const snapshot = await props.ownedListCollection.where('checked', '==', true).get();
+    const snapshot = await props.currentList.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
       return;
