@@ -2,7 +2,7 @@ import next from './next.png'
 import trashcan from './trashcan.png'
 import { useEffect, useRef } from 'react';
 
-function ListMenuItem(props) {
+function OwnedListMenuItem(props) {
 
     const newItem = useRef(null);
 

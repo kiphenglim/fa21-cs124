@@ -7,7 +7,7 @@ import ListMenuItem from './ListMenuItem';
 import plus from './plus.png';
 
 
-function ListMenu(props) {
+function OwnedListMenu(props) {
 
     const [editingText, setEditingText] = useState('');
     const [isEditingId, setIsEditingId] = useState(null);
@@ -75,7 +75,7 @@ function ListMenu(props) {
 
             <div className={'ListMenuItems'}>
                 {props.listItems.map((item) => (
-                    <ListMenuItem
+                    <OwnedListMenuItem
                         id={item.id}
                         key={item.id}
                         listName={item.name}

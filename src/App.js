@@ -79,7 +79,7 @@ function App() {
           ? <></>
           : currentDisplay === 'menu'
             ? <>
-                <ListMenu
+                <OwnedListMenu
                 collection={collection}
                 listItems={generateOwnedLists()}
                 onChangeDisplay={handleChangeDisplay}
