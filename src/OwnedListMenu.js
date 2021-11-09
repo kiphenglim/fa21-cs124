@@ -3,7 +3,7 @@ import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 import { useState } from 'react';
 
 import Alert from './Alert'
-import ListMenuItem from './ListMenuItem';
+import OwnedListMenuItem from './OwnedListMenuItem';
 import plus from './plus.png';
 
 
@@ -127,4 +127,4 @@ function OwnedListMenu(props) {
     )
 }
 
-export default ListMenu;
+export default OwnedListMenu;

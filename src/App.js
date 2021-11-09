@@ -1,6 +1,6 @@
 import './App.css';
 import List from './List'
-import ListMenu from './ListMenu';
+import OwnedListMenu from './OwnedListMenu';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
 import {useState} from "react";
