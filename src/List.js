@@ -9,7 +9,6 @@ import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
 function List(props) {
-  const [listItems, setListItems] = useState(props.listItems);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -27,7 +26,6 @@ function List(props) {
     };
     console.log(newId);
     props.currentList.doc(newId).set(newTask);
-    setListItems({...listItems, newTask});
     setNewestItem(newId);
   }
 
@@ -41,13 +39,11 @@ function List(props) {
     setEditingText(v);
     const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
-    setListItems(listItems.filter(t => t.id === id ? {...t, task: v} : t));
   }
 
   function handleEditComplete(id) {
     const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
-    setListItems(listItems.filter(t => t.id === id ? { ...t, task: editingText } : t));
     setIsEditingId(null);
   }
 
@@ -63,7 +59,6 @@ function List(props) {
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
-    setListItems(listItems.filter(t => t.id === id ? { ...t, checked: !t.checked } : t));
   }
 
   function handleToggleAlert() {
@@ -73,19 +68,9 @@ function List(props) {
   function handlePriorityChange(id, v) {
     const docRef = props.currentList.doc(id);
     docRef.update({ priority: v });
-    setListItems(listItems.filter(t => t.id === id ? { ...t, priority: v } : t));
   }
 
-  function handleRemoveAllClick() {
-    handleRemoveAllClickState();
-    handleRemoveAllClickDb();
-  }
-
-  function handleRemoveAllClickState() {
-    setListItems(listItems.filter(t => !t.checked));
-  }
-
-  async function handleRemoveAllClickDb() {
+  async function handleRemoveAllClick() {
     const snapshot = await props.currentList.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
@@ -126,9 +111,7 @@ function List(props) {
       />
 
       <div className={'ListItems'}>
-        {console.log(props.listItems)}
-        {console.log(listItems)}
-        {/* {props.listItems.map((item) => (
+        {props.listItems.map((item) => (
           <ListItem
             checked={item.checked}
             id={item.id}
@@ -152,7 +135,7 @@ function List(props) {
             showAll={showingAllTasks}
             task={item.task}
           />
-        ))} */}
+        ))}
       </div>
 
       <AddItem onClick={handleAdd} />

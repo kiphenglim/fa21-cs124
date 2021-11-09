@@ -59,7 +59,6 @@ function App() {
   }
 
   async function queryListData(id) {
-    console.log(id);
     const snapshot = await ownedListsCollection.doc(id).collection('tasks').get();
     let data = [];
     snapshot.forEach(e => {data.push(e.data())});
@@ -97,7 +96,6 @@ function App() {
                 id={currentDisplay}
                 listItems={currentListItems}
                 sortBy={'date'}
-                onChangeSort={null}
                 onChangeDisplay={handleChangeDisplay}
                 currentList={ownedListsCollection.doc(currentDisplay).collection('tasks')}
               />
