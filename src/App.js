@@ -54,8 +54,8 @@ function App() {
     }
   }
 
-  function generateListData() {
-    queryListData(currentDisplay).then(d => setCurrentListItems(d));
+  function generateListData(id) {
+    queryListData(id).then(d => setCurrentListItems(d));
   }
 
   async function queryListData(id) {
@@ -69,7 +69,7 @@ function App() {
 
   function handleChangeDisplay(id) {
     setCurrentDisplay(id);
-    generateListData();
+    generateListData(id);
   }
 
   return (
@@ -94,13 +94,12 @@ function App() {
                 /> */}
               </>
             : <List
-                collection={collection}
                 id={currentDisplay}
                 listItems={currentListItems}
                 sortBy={'date'}
                 onChangeSort={null}
                 onChangeDisplay={handleChangeDisplay}
-                ownedListsCollection={ownedListsCollection}
+                currentList={ownedListsCollection.doc(currentDisplay).collection('tasks')}
               />
       }
 

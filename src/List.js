@@ -9,6 +9,7 @@ import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
 function List(props) {
+  const [listItems, setListItems] = useState(props.listItems);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -24,7 +25,9 @@ function List(props) {
       priority: '3',
       checked: false
     };
-    props.ownedListCollection.doc(newId).set(newTask);
+    console.log(newId);
+    props.currentList.doc(newId).set(newTask);
+    setListItems({...listItems, newTask});
     setNewestItem(newId);
   }
 
@@ -36,13 +39,15 @@ function List(props) {
 
   function handleEditChange(id, v) {
     setEditingText(v);
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
+    setListItems(listItems.filter(t => t.id === id ? {...t, task: v} : t));
   }
 
   function handleEditComplete(id) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ task: editingText });
+    setListItems(listItems.filter(t => t.id === id ? { ...t, task: editingText } : t));
     setIsEditingId(null);
   }
 
@@ -54,10 +59,11 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(id) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
+    setListItems(listItems.filter(t => t.id === id ? { ...t, checked: !t.checked } : t));
   }
 
   function handleToggleAlert() {
@@ -65,12 +71,22 @@ function List(props) {
   }
 
   function handlePriorityChange(id, v) {
-    const docRef = props.ownedListCollection.doc(id);
+    const docRef = props.currentList.doc(id);
     docRef.update({ priority: v });
+    setListItems(listItems.filter(t => t.id === id ? { ...t, priority: v } : t));
   }
 
-  async function handleRemoveAllClick() {
-    const snapshot = await props.ownedListCollection.where('checked', '==', true).get();
+  function handleRemoveAllClick() {
+    handleRemoveAllClickState();
+    handleRemoveAllClickDb();
+  }
+
+  function handleRemoveAllClickState() {
+    setListItems(listItems.filter(t => !t.checked));
+  }
+
+  async function handleRemoveAllClickDb() {
+    const snapshot = await props.currentList.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
       return;
@@ -110,7 +126,9 @@ function List(props) {
       />
 
       <div className={'ListItems'}>
-        {props.listItems.map((item) => (
+        {console.log(props.listItems)}
+        {console.log(listItems)}
+        {/* {props.listItems.map((item) => (
           <ListItem
             checked={item.checked}
             id={item.id}
@@ -134,7 +152,7 @@ function List(props) {
             showAll={showingAllTasks}
             task={item.task}
           />
-        ))}
+        ))} */}
       </div>
 
       <AddItem onClick={handleAdd} />
