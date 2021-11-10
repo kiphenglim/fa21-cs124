@@ -24,11 +24,11 @@ function OwnedListMenu(props) {
             sort: 'date',
         };
         setNewestItem(newId);
-        props.ownedListsCollection.doc(newId).set(newList);
+        props.collection.doc(newId).set(newList);
     }
 
     function handleDeleteList() {
-        props.ownedListsCollection.doc(listToDelete).delete();
+        props.collection.doc(listToDelete).delete();
     }
 
     function handleEditClick(id, v) {
@@ -39,12 +39,12 @@ function OwnedListMenu(props) {
 
     function handleEditChange(id, v) {
         setEditingText(v);
-        const docRef = props.ownedListsCollection.doc(id);
+        const docRef = props.collection.doc(id);
         docRef.update({ task: editingText });
     }
 
     function handleEditComplete(id) {
-        const docRef = props.ownedListsCollection.doc(id);
+        const docRef = props.collection.doc(id);
         docRef.update({ name: editingText });
         setIsEditingId(null);
     }

@@ -8,7 +8,7 @@ function TabList(props) {
     return (
         <div className={'Tabs'}>
             <ol className={'TabList'}>
-                <Tab 
+                <Tab
                     name={'owned'}
                     label={'My Lists'}
                     activeTab={activeTab}
@@ -22,10 +22,10 @@ function TabList(props) {
                 />
             </ol>
 
-            {props.children.map((item) => item.key == activeTab && item)}
+            {props.children.map((item) => item.key === activeTab && item)}
         </div>
-    ) 
-    
+    )
+
 }
 
 export default TabList;

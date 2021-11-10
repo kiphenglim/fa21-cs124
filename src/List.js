@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 
 import AddItem from './AddItem';
@@ -9,11 +10,24 @@ import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
 function List(props) {
+  const [value, loading, error] = useCollection(props.listCollection);
+
+  const [currentTasks, setCurrentTasks] = useState([]);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
   const [newestItem, setNewestItem] = useState(null);
+
+  useEffect( () => {generateListData()}, [loading] )
+
+  function generateListData() {
+    if (!error && value) {
+      const data = value.docs.map(e => { return e.data() });
+      console.log(data);
+      return setCurrentTasks(data);
+    }
+  }
 
   function handleAdd() {
     const newId = generateUniqueID();
@@ -25,7 +39,8 @@ function List(props) {
       checked: false
     };
     console.log(newId);
-    props.currentList.doc(newId).set(newTask);
+    props.listCollection.doc(newId).set(newTask);
+    setCurrentTasks([...currentTasks, newTask]);
     setNewestItem(newId);
   }
 
@@ -37,13 +52,15 @@ function List(props) {
 
   function handleEditChange(id, v) {
     setEditingText(v);
-    const docRef = props.currentList.doc(id);
+    const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
+    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, task: editingText } : t));
   }
 
   function handleEditComplete(id) {
-    const docRef = props.currentList.doc(id);
+    const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
+    setCurrentTasks(currentTasks.map(t => t.id === id ? {...t, task: editingText} : t));
     setIsEditingId(null);
   }
 
@@ -55,10 +72,11 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(id) {
-    const docRef = props.currentList.doc(id);
+    const docRef = props.listCollection.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
+    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, checked: newCheckedState } : t));
   }
 
   function handleToggleAlert() {
@@ -66,12 +84,13 @@ function List(props) {
   }
 
   function handlePriorityChange(id, v) {
-    const docRef = props.currentList.doc(id);
+    const docRef = props.listCollection.doc(id);
     docRef.update({ priority: v });
+    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, priority: v } : t));
   }
 
   async function handleRemoveAllClick() {
-    const snapshot = await props.currentList.where('checked', '==', true).get();
+    const snapshot = await props.listCollection.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
       return;
@@ -96,14 +115,14 @@ function List(props) {
   }
 
   function numChecked() {
-    const checkedItems = props.listItems.filter((item) => item.checked);
+    const checkedItems = currentTasks.filter((item) => item.checked);
     return checkedItems.length;
   }
 
   return (
     <div className='ListItemContainer'>
 
-      <h1 className='ListHeader'>Lab 3</h1>
+      <h1 className='ListHeader'>List Name</h1>
 
       <SortSelect
         sortBy={props.sortBy}
@@ -111,7 +130,9 @@ function List(props) {
       />
 
       <div className={'ListItems'}>
-        {props.listItems.map((item) => (
+        {loading || currentTasks === []
+          ? <></>
+          : currentTasks.map((item) => (
           <ListItem
             checked={item.checked}
             id={item.id}
