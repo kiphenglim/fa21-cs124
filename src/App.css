@@ -35,7 +35,18 @@
   background-color: white;
   text-align: center;
   z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ListHeaderBack {
+  background-color: white;
+  border-style: none;
+}
+
+.ListHeaderName {
   width: 100%;
+  margin-right: 24px;
 }
 
 .ListItemContainer {
@@ -48,9 +59,9 @@
 }
 
 .ListItems {
-  height: 60vh;
+  height: 80vh;
   overflow: scroll;
-  padding: 0 1% 0 1%;
+  padding: 10px 1% 0 1%;
 }
 
 .ListMenuContainer {

@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 
@@ -9,24 +9,30 @@ import CompletionButtons from './CompletionButtons';
 import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
-function List(props) {
-  const [value, loading, error] = useCollection(props.listCollection);
+import back from './back.png';
 
-  const [currentTasks, setCurrentTasks] = useState([]);
+function List(props) {
+  // props.list  => includes id, name, sortBy
+  const [value, loading, error] = useCollection(props.listCollection.orderBy(getListSort()));
+
+  // const [currentTasks, setCurrentTasks] = useState([]);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
   const [newestItem, setNewestItem] = useState(null);
 
-  useEffect( () => {generateListData()}, [loading] )
+  let data = [];
+  if (value) {
+    data = value.docs.map(e => { return e.data() });
+  }
 
-  function generateListData() {
-    if (!error && value) {
-      const data = value.docs.map(e => { return e.data() });
-      console.log(data);
-      return setCurrentTasks(data);
-    }
+  function getListName() {
+    return props.listData.name;
+  }
+
+  function getListSort() {
+    return props.listData.sort;
   }
 
   function handleAdd() {
@@ -38,10 +44,13 @@ function List(props) {
       priority: '3',
       checked: false
     };
-    console.log(newId);
     props.listCollection.doc(newId).set(newTask);
-    setCurrentTasks([...currentTasks, newTask]);
     setNewestItem(newId);
+  }
+
+  function handleChangeSort(v) {
+    props.listDocRef.update({'sort': v});
+    console.log(v);
   }
 
   function handleEditClick(id, v) {
@@ -54,13 +63,11 @@ function List(props) {
     setEditingText(v);
     const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
-    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, task: editingText } : t));
   }
 
   function handleEditComplete(id) {
     const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
-    setCurrentTasks(currentTasks.map(t => t.id === id ? {...t, task: editingText} : t));
     setIsEditingId(null);
   }
 
@@ -76,7 +83,6 @@ function List(props) {
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
-    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, checked: newCheckedState } : t));
   }
 
   function handleToggleAlert() {
@@ -86,7 +92,6 @@ function List(props) {
   function handlePriorityChange(id, v) {
     const docRef = props.listCollection.doc(id);
     docRef.update({ priority: v });
-    setCurrentTasks(currentTasks.map(t => t.id === id ? { ...t, priority: v } : t));
   }
 
   async function handleRemoveAllClick() {
@@ -115,24 +120,35 @@ function List(props) {
   }
 
   function numChecked() {
-    const checkedItems = currentTasks.filter((item) => item.checked);
+    const checkedItems = data.filter((item) => item.checked);
     return checkedItems.length;
   }
 
   return (
-    <div className='ListItemContainer'>
+    <div className={'ListItemContainer'}>
 
-      <h1 className='ListHeader'>List Name</h1>
+      <div className={'ListHeader'}>
+        <button className={'ListHeaderBack'}
+                onClick={() => {props.onChangeDisplay('menu')}}>
+          <img className={'BackIcon'}
+               src={back}
+               alt='return to list menu'
+               width={24}
+               height={24}/>
+        </button>
+
+        <h1 className={'ListHeaderName'}>{getListName()}</h1>
+      </div>
 
       <SortSelect
-        sortBy={props.sortBy}
-        onChange={props.onChangeSort}
+        sortBy={getListSort()}
+        onChange={e => handleChangeSort(e.target.value)}
       />
 
       <div className={'ListItems'}>
-        {loading || currentTasks === []
+        {loading || data === []
           ? <></>
-          : currentTasks.map((item) => (
+          : data.map((item) => (
           <ListItem
             checked={item.checked}
             id={item.id}
@@ -174,7 +190,7 @@ function List(props) {
         <div className='alert-text'>
           <h3 className='alert-header'>WARNING</h3>
           Your tasks will be permanently deleted,
-          are you sure you want to delete {numChecked()} of {props.listItems.length} items?
+          are you sure you want to delete {numChecked()} of {data.length} items?
         </div>
       </Alert>}
 

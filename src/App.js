@@ -20,31 +20,26 @@ const db = firebase.firestore();
 function App() {
 
   /*
-  collection: top level with lists document containing:
-    ownedlists: collection of lists with following properties
-      id
-      created
-      name
-      sort
-    sharedlists: collection of lists with following properties
-      id
-      created
-      name
-      sort
+  collection: collection of lists each with properties:
+    id
+    created
+    name
+    sort
+    tasks
+    to be added in lab 5: ownerId, sharedId
    */
   const collection = db.collection('kiphenglim-lab4');
   const [value, loading, error] = useCollection(collection);
 
   const [currentDisplay, setCurrentDisplay] = useState('menu');
 
-  function generateLists() {
-    if (!error && value) {
-      const data = value.docs.map(e => { return e.data() });
-      return data;
-    }
+  let lists = [];
+  if (value) {
+    lists = value.docs.map(e => { return e.data() });
   }
 
   function handleChangeDisplay(id) {
+    console.log(id);
     setCurrentDisplay(id);
   }
 
@@ -59,18 +54,19 @@ function App() {
                 <div key={'owned'}>
                   <OwnedListMenu
                     collection={collection}
-                    listItems={generateLists()}
+                    listItems={lists}
                     onChangeDisplay={handleChangeDisplay}
                   />
                 </div>
                 <div key={'shared'} align={'center'}>
-                    Shared Lists Here
+                    Lists Shared With Me
                 </div>
               </TabList>
             : <List
                 id={currentDisplay}
+                listData={lists.find(e => e.id === currentDisplay)}
+                listDocRef={collection.doc(currentDisplay)}
                 listCollection={collection.doc(currentDisplay).collection('tasks')}
-                sortBy={'date'}
                 onChangeDisplay={handleChangeDisplay}
               />
       }
