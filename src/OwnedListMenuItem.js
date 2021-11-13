@@ -15,8 +15,9 @@ function OwnedListMenuItem(props) {
 
     return (
         <div>
-            <div className={'ListMenuItem'}>
+            <div className={'ListMenuItem'} aria-label={'list'}>
                 <input
+                    aria-label={props.listName}
                     autoComplete='off'
                     className={'ListMenuTextInputs'}
                     id={props.id}
@@ -34,24 +35,26 @@ function OwnedListMenuItem(props) {
                             props.listName
                     }
                 />
-                <div className={'ListMenuButtons'}>
+                <div className={'ListMenuButtons'} aria-label={'list options'}>
                     <button className={'ListMenuDelete'}
+                            aria-label={'delete list'}
                             onClick={() => {
                                 props.onSetDeletion(props.id);
                                 props.onDeleteAlert();
                             }}>
                         <img className={'DeleteIcon'}
                             src={trashcan}
-                            alt='delete list'
+                            alt='delete list icon'
                             width={14}
                             height={14}
                         />
                     </button>
                     <button className={'ListMenuNext'}
+                            aria-label={'edit list'}
                         onClick={(e) => props.onChangeDisplay(props.id)}>
                         <img className={'NextIcon'}
                             src={next}
-                            alt='edit list'
+                            alt='edit list icon'
                             width={14}
                             height={14}
                         />

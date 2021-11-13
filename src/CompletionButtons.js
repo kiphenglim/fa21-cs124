@@ -4,7 +4,10 @@ import 'react-toggle/style.css';
 function CompletionButtons(props) {
   return props.anyCompletedTasks ? (
     <div className={'CompletionButtons'}>
-      <div className={'Toggle'}>
+      <div className={'Toggle'}
+           aria-label={props.showingAllTasks
+               ? 'show only uncompleted tasks'
+               : 'show all tasks'}>
         <label className={'ShowAllToggleLabel'}
           htmlFor={'ShowAllToggle'}>
             Show Only Uncompleted Items
@@ -16,7 +19,9 @@ function CompletionButtons(props) {
           onChange={props.onShowAllClick} />
       </div>
       <br/>
-      <button className={'RemoveCompletedButton'} onClick={props.onRemoveAllClick}>
+      <button className={'RemoveCompletedButton'}
+              aria-label={'remove all completed tasks'}
+              onClick={props.onRemoveAllClick} >
         Remove All Completed Items
       </button>
     </div>

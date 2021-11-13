@@ -50,8 +50,9 @@ function App() {
           ? <></>
           : currentDisplay === 'menu'
             ?
-              <TabList aria-label={''}>
-                <div key={'owned'}>
+              <TabList aria-label={'switch tabs to view owned or shared list'}>
+                <div key={'owned'}
+                     aria-label={'list owned by me'}>
                   <OwnedListMenu
                     collection={collection}
                     listItems={lists}

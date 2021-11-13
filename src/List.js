@@ -129,23 +129,25 @@ function List(props) {
 
       <div className={'ListHeader'}>
         <button className={'ListHeaderBack'}
+                aria-label={'return to list menu'}
                 onClick={() => {props.onChangeDisplay('menu')}}>
           <img className={'BackIcon'}
                src={back}
-               alt='return to list menu'
+               alt='back arrow icon'
                width={24}
                height={24}/>
         </button>
 
-        <h1 className={'ListHeaderName'}>{getListName()}</h1>
+        <h1 className={'ListHeaderName'}
+            aria-label={getListName()}>{getListName()}</h1>
       </div>
 
       <SortSelect
-        sortBy={getListSort()}
-        onChange={e => handleChangeSort(e.target.value)}
+          sortBy={getListSort()}
+          onChange={e => handleChangeSort(e.target.value)}
       />
 
-      <div className={'ListItems'}>
+      <div className={'ListItems'} aria-label={'checklist of tasks'}>
         {loading || data === []
           ? <></>
           : data.map((item) => (
@@ -187,7 +189,7 @@ function List(props) {
       {showAlert && <Alert
         onCancel={handleToggleAlert}
         onConfirm={handleRemoveAllClick}>
-        <div className='alert-text'>
+        <div className='alert-text' aria-label={'task deletion alert'}>
           <h3 className='alert-header'>WARNING</h3>
           Your tasks will be permanently deleted,
           are you sure you want to delete {numChecked()} of {data.length} items?

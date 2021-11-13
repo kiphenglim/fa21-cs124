@@ -70,7 +70,7 @@ function OwnedListMenu(props) {
     }
 
     return (
-        <div className={'ListMenuContainer'}>
+        <div className={'ListMenuContainer'} aria-label={'my lists'}>
             <h1 className={'ListMenuTitle'}>Lab 4</h1>
 
             <div className={'ListMenuItems'}>
@@ -101,10 +101,11 @@ function OwnedListMenu(props) {
             </div>
 
             <button className={'AddItemButton'}
+                    aria-label={'add new list'}
                     onClick={handleAddList}>
                 <img className={'AddIcon'}
                      src={plus}
-                     alt='add new item'
+                     alt='add list icon'
                      width={14}
                      height={14}/>
                 Add List</button>
@@ -115,7 +116,7 @@ function OwnedListMenu(props) {
                     handleDeleteList();
                     handleSetDeletion(null);
                 }}>
-                <div className='alert-info'>
+                <div className='alert-info' aria-label={'list deletion alert'}>
                     <h3 className='alert-header'>WARNING</h3>
                     <div className='alert-text'>
                         Your list will be permanently deleted,

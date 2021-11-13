@@ -20,9 +20,10 @@ function ListItem(props) {
 
   return (
       <div>
-        <div className={classes.join(' ')} key={props.id}>
+        <div className={classes.join(' ')} key={props.id} aria-label={'task item'}>
           <div
             className={"checkbox"}
+            aria-label={props.checked? 'mark task incomplete': 'mark task complete'}
             id={props.id}
             onClick={props.onCheckedChange}
           >
@@ -36,6 +37,7 @@ function ListItem(props) {
             />
           </div>
           <input
+            aria-label={'task name' + props.task}
             autoComplete='off'
             className={'ListTextInputs'}
             id={props.id}
@@ -53,13 +55,15 @@ function ListItem(props) {
               props.task
             }
           />
-          <select className={'priority-select'}
+          <select
+            className={'priority-select'}
+            aria-label={'change task priority'}
             id={props.id}
             onChange={props.onPriorityChange}
             value={props.priority}>
-              <option value={'1'}>High</option>
-              <option value={'2'}>Med</option>
-              <option value={'3'}>Low</option>
+              <option value={'1'} aria-label={'high priority'}>High</option>
+              <option value={'2'} aria-label={'medium priority'}>Med</option>
+              <option value={'3'} aria-label={'low priority'}>Low</option>
           </select>
         </div>
         <hr className={(props.checked && !props.showAll) && 'invisible'}/>
