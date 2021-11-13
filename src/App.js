@@ -63,6 +63,7 @@ function App() {
                 </div>
               </TabList>
             : <List
+                db={db}
                 id={currentDisplay}
                 listData={lists.find(e => e.id === currentDisplay)}
                 listDocRef={collection.doc(currentDisplay)}
