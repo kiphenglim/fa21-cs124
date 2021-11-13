@@ -15,7 +15,6 @@ function List(props) {
   // props.list  => includes id, name, sortBy
   const [value, loading, error] = useCollection(props.listCollection.orderBy(getListSort()));
 
-  // const [currentTasks, setCurrentTasks] = useState([]);
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
