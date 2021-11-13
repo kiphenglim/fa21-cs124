@@ -23,6 +23,7 @@ function OwnedListMenuItem(props) {
                     key={'itemtext-' + props.id}
                     onBlur={props.onEditBlur}
                     onChange={props.onEditChange}
+                    onFocus={props.onEditClick}
                     onClick={props.onEditClick}
                     onKeyDown={props.onEditEnter}
                     ref={newItem}
