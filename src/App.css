@@ -83,7 +83,6 @@
 .ListMenuItem {
   display: flex;
   justify-content: space-between;
-  overflow: scroll;
   padding-top: 3px;
   padding-bottom: 3px;
 }
