@@ -28,6 +28,25 @@ users to manually input priority level
 + use select button for sort selection, with options to 
 choose between date created, task name, or priority level,
 does not allow users to manually input sort criteria
++ added "My Lists" and "Shared With Me" tabs to the top
+of the list menu, in anticipation of Lab 5. The
+"Shared With Me" tab currently only contains "Lists
+Shared With Me" text, while the "My Lists" tab contains
+a list menu
++ the list menu displays lists in rows, with each row
+displaying the list name, a trash can icon, and a 
+next arrow icon
++ list names can be edited from the list menu and 
+lists can be deleted from the list menu, but in order 
+to make any changes to the tasks users must first
+select the editing option from the list menu
++ added an alert popup when the user selects the trash 
+can icon on a list to warn user that deletion 
+is irreversible
++ clicking the "Add List" button adds a new list and
+focuses on it, allowing users to edit the list immediately,
+similar to the design for adding tasks
+
 
 ![Screenshot of Lab 3](lab3-basic.png)
 
@@ -125,16 +144,18 @@ This change is irreversible.
 ![alert](t6-alert.png)
 ![after](t6-end.png)
 
-Changes from Lab 2
-+ added header with sorting options and priority label
-+ made header, "Show Only Uncompleted Tasks" toggle, and 
-"Remove Completed Tasks" button sticky so no scrolling 
-is necessary even with large number of tasks
-+ changed "Show Uncompleted Tasks" to "Show Only 
-Uncompleted Tasks" for description accuracy and clarity
 
-![lab 3 appearance](lab3-basic.png)
-![sticky header and footer](sticky.png)
+# Changes from Lab 3 to Lab 4
++ added a menu of lists, displaying the lists in 
+rows with each row containing the list name and buttons
+for delete list and edit list
++ added tabs to separate owned lists and shared lists,
+though the shared lists tab is currently empty
++ the add list option adds a new list and automatically
+focuses on the list name for instant editing
+
+![lab 4](listmenu.png)
+
 
 
 # Challenges
