@@ -63,7 +63,6 @@ function List(props) {
     setEditingText(v);
     const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
-    console.log(v);
   }
 
   function handleEditComplete(id) {

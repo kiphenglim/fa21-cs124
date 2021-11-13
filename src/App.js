@@ -20,7 +20,7 @@ const db = firebase.firestore();
 function App() {
 
   /*
-  collection: collection of lists each with properties:
+  collection: collection of lists each with following properties:
     id
     created
     name
@@ -50,7 +50,7 @@ function App() {
           ? <></>
           : currentDisplay === 'menu'
             ?
-              <TabList>
+              <TabList aria-label={''}>
                 <div key={'owned'}>
                   <OwnedListMenu
                     collection={collection}
@@ -58,7 +58,9 @@ function App() {
                     onChangeDisplay={handleChangeDisplay}
                   />
                 </div>
-                <div key={'shared'} align={'center'}>
+                <div key={'shared'}
+                     align={'center'}
+                     aria-label={'lists shared with me'}>
                     Lists Shared With Me
                 </div>
               </TabList>

@@ -119,7 +119,10 @@ function OwnedListMenu(props) {
                     <h3 className='alert-header'>WARNING</h3>
                     <div className='alert-text'>
                         Your list will be permanently deleted,
-                        are you sure you want to delete <strong>{getListName(listToDelete)}</strong>?
+                        are you sure you want to delete
+                        {getListName(listToDelete) !== ''
+                            ? <strong> {getListName(listToDelete)}</strong>
+                            : ' this list'}?
                     </div>
                 </div>
             </Alert>}
