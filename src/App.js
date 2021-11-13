@@ -7,13 +7,15 @@ import {useCollection} from 'react-firebase-hooks/firestore';
 import {useState} from "react";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCd9qqxvMpEKpBzwfWcc2tlRFa6ICaLH_s',
-  authDomain: 'hmc-cs124-fa21-labs.firebaseapp.com',
-  projectId: 'hmc-cs124-fa21-labs',
-  storageBucket: 'hmc-cs124-fa21-labs.appspot.com',
-  messagingSenderId: '949410042946',
-  appId: '1:949410042946:web:0113b139a7e3cd1cc709db'
+  apiKey: "AIzaSyAlILmNMlZ8xYJbCBm2N4gjZ-ZFM7e8S2o",
+  authDomain: "fa21-cs124.firebaseapp.com",
+  projectId: "fa21-cs124",
+  storageBucket: "fa21-cs124.appspot.com",
+  messagingSenderId: "61985211143",
+  appId: "1:61985211143:web:d10c025299ac719dc0fba2",
+  measurementId: "G-8CXFS46XVY"
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
