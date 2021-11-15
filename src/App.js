@@ -1,6 +1,6 @@
 import './App.css';
 import List from './List'
-import OwnedListMenu from './OwnedListMenu';
+import ListMenu from './ListMenu';
 import TabList from './TabList';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
@@ -55,7 +55,7 @@ function App() {
               <TabList aria-label={'switch tabs to view owned or shared list'}>
                 <div key={'owned'}
                      aria-label={'list owned by me'}>
-                  <OwnedListMenu
+                  <ListMenu
                     collection={collection}
                     listItems={lists}
                     onChangeDisplay={handleChangeDisplay}
