@@ -11,16 +11,16 @@ alert popup, which is red for better visibility
 + mark an item as completed by selecting the checkbox 
 next to it
 + show all items by default
-    + users can toggle the "Show Uncompleted Tasks" slider to 
-  hide all completed tasks, then toggle again to show all tasks
++ users can toggle the "Hide Completed Tasks" slider to 
+hide all completed tasks, then toggle again to show all tasks
 + aligned the "Add Item" button with the tasks
-+ positioned the "Show Uncompleted Tasks" and 
++ positioned the "Hide Completed Tasks" and 
 "Delete Completed Tasks" buttons at the bottom of the 
 app, to show the difference between them and the other 
 items
 + added an alert popup when the user selects "Delete 
 Completed Tasks" to warn user that deletion is irreversible
-+ displays the "Show Uncompleted Tasks" and "Delete 
++ displays the "Hide Completed Tasks" and "Delete 
 Completed Tasks" options only when there are completed 
 items, avoiding clutter
 + use select buttons for priority selection, does not allow 
@@ -46,6 +46,9 @@ is irreversible
 + clicking the "Add List" button adds a new list and
 focuses on it, allowing users to edit the list immediately,
 similar to the design for adding tasks
++ changed "Hide Completed Tasks" toggle label to
+"Hide Completed Tasks" according to Lab 3 pull request 
+feedback
 
 
 ![Screenshot of Lab 3](lab3-basic.png)
@@ -78,6 +81,8 @@ iteration with Vivian Pou and Mandy Wu
   the check input and having the div trigger an onClick
   that also changes the state of the checkbox.
   
+# Accessibility Testing
+[Keyboard and Screen Reader Demo]()
 
 # Final Design
 
@@ -121,7 +126,7 @@ and change the task to the original name.
 
 
 5. task 5: show only uncompleted tasks
-+ Toggle the "Show Uncompleted Tasks" slider at the 
++ Toggle the "Hide Completed Tasks" slider at the 
 bottom left of the app, which appears when one or more 
 items are marked as complete, to temporarily remove those 
 items from the list. The list will update to only 
@@ -157,28 +162,29 @@ focuses on the list name for instant editing
 ![lab 4](listmenu.png)
 
 
-
 # Challenges
 + implementing editing items on selection and 
 updating the displayed text as the edits happen
-  + for some reason we were not able to make this happen
-  when the task ids were strings (for example 'task-2')
-  but we got it to work with integer ids.
++ for some reason we were not able to make this happen
+when the task ids were strings (for example 'task-2')
+but we got it to work with integer ids.
 + automatically focusing the newest item after adding 
 new items
-  + we learned that setState is an async function and
-  does not immediately update the state. We ended up
-  using `useEffect` to get the desired component to
-  focus on render.
++ we learned that setState is an async function and
+does not immediately update the state. We ended up
+using `useEffect` to get the desired component to
+focus on render
++ using a `useState` to change the menu or list 
+displayed
 
 # Design Highlights
 + editing items on task selection rather than using a button 
 to begin the editing process
   + specifically, you can just click on the task's text
   to edit it
-+ showing the "Show Uncompleted Tasks" and "Delete 
++ showing the "Hide Completed Tasks" and "Delete 
 Completed Tasks" options only when there are completed
 tasks
-+ used a toggle for "Show Uncompleted Tasks" since that made
++ used a toggle for "Hide Completed Tasks" since that made
 it clearer that it was a binary state being toggled.
 + sticky header and footer

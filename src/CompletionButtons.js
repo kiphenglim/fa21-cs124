@@ -6,11 +6,11 @@ function CompletionButtons(props) {
     <div className={'CompletionButtons'}>
       <div className={'Toggle'}
            aria-label={props.showingAllTasks
-               ? 'show only uncompleted tasks'
+               ? 'hide completed tasks'
                : 'show all tasks'}>
         <label className={'ShowAllToggleLabel'}
           htmlFor={'ShowAllToggle'}>
-            Hide Completed Items
+            Hide Completed Tasks
         </label>
         <Toggle
           className='ShowAllToggle'
@@ -22,7 +22,7 @@ function CompletionButtons(props) {
       <button className={'RemoveCompletedButton'}
               aria-label={'remove all completed tasks'}
               onClick={props.onRemoveAllClick} >
-        Remove All Completed Items
+        Remove All Completed Tasks
       </button>
     </div>
   ) : <></>;
