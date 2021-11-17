@@ -25,7 +25,7 @@ function ListItem(props) {
             className={"checkbox"}
             id={props.id}
             onClick={props.onCheckedChange}
-            >
+          >
             <input
             aria-label={props.task + (props.checked
                 ? 'marked complete'

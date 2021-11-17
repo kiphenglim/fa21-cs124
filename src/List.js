@@ -60,8 +60,6 @@ function List(props) {
 
   function handleEditChange(id, v) {
     setEditingText(v);
-    // const docRef = props.listCollection.doc(id);
-    // docRef.update({ task: editingText });
   }
 
   function handleEditComplete(id) {
@@ -142,8 +140,8 @@ function List(props) {
       </div>
 
       <SortSelect
-          sortBy={getListSort()}
-          onChange={e => handleChangeSort(e.target.value)}
+        sortBy={getListSort()}
+        onChange={e => handleChangeSort(e.target.value)}
       />
 
       <div className={'ListItems'} aria-label={'checklist of tasks'}>
