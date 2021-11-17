@@ -2,7 +2,7 @@ import next from './next.png'
 import trashcan from './trashcan.png'
 import { useEffect, useRef } from 'react';
 
-function OwnedListMenuItem(props) {
+function ListMenuItem(props) {
 
     const newItem = useRef(null);
 
@@ -66,4 +66,4 @@ function OwnedListMenuItem(props) {
     );
 }
 
-export default OwnedListMenuItem;
+export default ListMenuItem;

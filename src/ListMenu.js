@@ -3,7 +3,7 @@ import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 import { useState } from "react";
 
 import Alert from "./Alert";
-import OwnedListMenuItem from "./OwnedListMenuItem";
+import ListMenuItem from "./ListMenuItem";
 import plus from "./plus.png";
 
 function ListMenu(props) {
@@ -73,7 +73,7 @@ function ListMenu(props) {
 
       <div className={"ListMenuItems"}>
         {props.listItems.map((item) => (
-          <OwnedListMenuItem
+          <ListMenuItem
             id={item.id}
             key={item.id}
             listName={item.name}
