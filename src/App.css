@@ -60,7 +60,7 @@
 
 .ListItems {
   height: 80vh;
-  overflow: scroll;
+  overflow: auto;
   padding: 10px 1% 0 1%;
 }
 
@@ -89,7 +89,7 @@
 
 .ListMenuItems {
   height: 80vh;
-  overflow: scroll;
+  overflow: auto;
   padding: 0 1% 0 1%;
 }
 
