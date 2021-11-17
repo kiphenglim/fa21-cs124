@@ -60,8 +60,8 @@ function List(props) {
 
   function handleEditChange(id, v) {
     setEditingText(v);
-    const docRef = props.listCollection.doc(id);
-    docRef.update({ task: editingText });
+    // const docRef = props.listCollection.doc(id);
+    // docRef.update({ task: editingText });
   }
 
   function handleEditComplete(id) {
