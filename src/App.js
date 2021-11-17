@@ -4,7 +4,8 @@ import ListMenu from './ListMenu';
 import TabList from './TabList';
 import firebase from 'firebase/compat';
 import {useCollection} from 'react-firebase-hooks/firestore';
-import {useState} from "react";
+import {useState} from 'react';
+import loadingIcon from './loading.gif';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlILmNMlZ8xYJbCBm2N4gjZ-ZFM7e8S2o",
@@ -49,7 +50,7 @@ function App() {
     <div className='App'>
       {
         loading
-          ? <></>
+          ? <img className={'LoadingIcon'} src={loadingIcon} alt="loading..." />
           : currentDisplay === 'menu'
             ?
               <TabList aria-label={'switch tabs to view owned or shared list'}>

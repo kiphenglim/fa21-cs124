@@ -114,6 +114,14 @@
   width: 100%;
 }
 
+.LoadingIcon {
+  display: block;
+  margin: auto;
+  padding-top: 40vh;
+  width: 48px;
+  height: 48px;
+}
+
 .PriorityHeader {
   align-items: center;
   display: flex;
