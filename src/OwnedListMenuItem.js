@@ -37,7 +37,7 @@ function OwnedListMenuItem(props) {
                 />
                 <div className={'ListMenuButtons'} aria-label={'list options'}>
                     <button className={'ListMenuDelete'}
-                            aria-label={'delete list'}
+                            aria-label={props.listName + 'delete list'}
                             onClick={() => {
                                 props.onSetDeletion(props.id);
                                 props.onDeleteAlert();
@@ -61,7 +61,7 @@ function OwnedListMenuItem(props) {
                     </button>
                 </div>
             </div>
-            <hr/>
+            <hr className={(props.checked && !props.showAll) && 'invisible'}/>
         </div>
     );
 }
