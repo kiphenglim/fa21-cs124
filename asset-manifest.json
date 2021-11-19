@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/fa21-cs124/static/css/main.09c5228f.chunk.css",
-    "main.js": "/fa21-cs124/static/js/main.664b9d0b.chunk.js",
-    "main.js.map": "/fa21-cs124/static/js/main.664b9d0b.chunk.js.map",
+    "main.js": "/fa21-cs124/static/js/main.bcecda03.chunk.js",
+    "main.js.map": "/fa21-cs124/static/js/main.bcecda03.chunk.js.map",
     "runtime-main.js": "/fa21-cs124/static/js/runtime-main.344686fa.js",
     "runtime-main.js.map": "/fa21-cs124/static/js/runtime-main.344686fa.js.map",
     "static/css/2.65aefc5a.chunk.css": "/fa21-cs124/static/css/2.65aefc5a.chunk.css",
-    "static/js/2.5bf67c80.chunk.js": "/fa21-cs124/static/js/2.5bf67c80.chunk.js",
-    "static/js/2.5bf67c80.chunk.js.map": "/fa21-cs124/static/js/2.5bf67c80.chunk.js.map",
+    "static/js/2.26229247.chunk.js": "/fa21-cs124/static/js/2.26229247.chunk.js",
+    "static/js/2.26229247.chunk.js.map": "/fa21-cs124/static/js/2.26229247.chunk.js.map",
     "static/js/3.0da8df0d.chunk.js": "/fa21-cs124/static/js/3.0da8df0d.chunk.js",
     "static/js/3.0da8df0d.chunk.js.map": "/fa21-cs124/static/js/3.0da8df0d.chunk.js.map",
     "index.html": "/fa21-cs124/index.html",
     "static/css/2.65aefc5a.chunk.css.map": "/fa21-cs124/static/css/2.65aefc5a.chunk.css.map",
     "static/css/main.09c5228f.chunk.css.map": "/fa21-cs124/static/css/main.09c5228f.chunk.css.map",
-    "static/js/2.5bf67c80.chunk.js.LICENSE.txt": "/fa21-cs124/static/js/2.5bf67c80.chunk.js.LICENSE.txt",
+    "static/js/2.26229247.chunk.js.LICENSE.txt": "/fa21-cs124/static/js/2.26229247.chunk.js.LICENSE.txt",
     "static/media/loading.a1a99674.gif": "/fa21-cs124/static/media/loading.a1a99674.gif",
     "static/media/trashcan.c4f0af28.png": "/fa21-cs124/static/media/trashcan.c4f0af28.png"
   },
   "entrypoints": [
     "static/js/runtime-main.344686fa.js",
     "static/css/2.65aefc5a.chunk.css",
-    "static/js/2.5bf67c80.chunk.js",
+    "static/js/2.26229247.chunk.js",
     "static/css/main.09c5228f.chunk.css",
-    "static/js/main.664b9d0b.chunk.js"
+    "static/js/main.bcecda03.chunk.js"
   ]
 }
