@@ -44,17 +44,17 @@ function ListMenuItem(props) {
                             }}>
                         <img className={'DeleteIcon'}
                             src={trashcan}
-                            alt='delete list icon'
+                            alt={props.listName + 'delete list'}
                             width={14}
                             height={14}
                         />
                     </button>
                     <button className={'ListMenuNext'}
-                            aria-label={'edit list'}
+                            aria-label={props.listName + 'edit list'}
                         onClick={(e) => props.onChangeDisplay(props.id)}>
                         <img className={'NextIcon'}
                             src={next}
-                            alt='edit list icon'
+                            alt={props.listName + 'edit list'}
                             width={14}
                             height={14}
                         />

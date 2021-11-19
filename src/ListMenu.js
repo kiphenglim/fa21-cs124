@@ -100,7 +100,7 @@ function ListMenu(props) {
         <img
           className={"AddIcon"}
           src={plus}
-          alt="add list icon"
+          alt="add new list"
           width={14}
           height={14}
         />
