@@ -28,8 +28,8 @@ function ListItem(props) {
           >
             <input
             aria-label={props.task + (props.checked
-                ? 'marked complete'
-                : 'marked incomplete')}
+                ? 'mark incomplete'
+                : 'mark complete')}
               className={'ListCheckboxes'}
               checked={props.checked}
               key={'itemcheck-'+props.id}
