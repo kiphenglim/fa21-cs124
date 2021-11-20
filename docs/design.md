@@ -163,7 +163,7 @@ focuses on the list name for instant editing
 ![lab 4](listmenu.png)
 
 + added support for screen readers
-![video of us using the app using screen reader and keyboard](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
+  + [here's a video of us using the app using screen reader and keyboard!](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
 
 
 # Challenges
