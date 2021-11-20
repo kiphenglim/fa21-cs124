@@ -49,6 +49,7 @@ similar to the design for adding tasks
 + changed "Hide Completed Tasks" toggle label to
 "Hide Completed Tasks" according to Lab 3 pull request 
 feedback
++ when alert is showing, made all other items unselectable
 
 
 ![Screenshot of Lab 3](lab3-basic.png)
@@ -75,8 +76,8 @@ iteration with Vivian Pou and Mandy Wu
   + these users both encountered difficulty with
   clicking on the checkbox when testing on the iPad,
   sometimes getting no result or accidentally clicking
-  on the text (thus bringing up the keyboard). we could
-  rectify this situation by wrapping the check input
+  on the text (thus bringing up the keyboard). We
+  rectified this situation by wrapping the check input
   with a div that is slightly larger than the bounds of
   the check input and having the div trigger an onClick
   that also changes the state of the checkbox.
