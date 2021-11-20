@@ -136,7 +136,10 @@ function List(props) {
         </button>
 
         <h1 className={'ListHeaderName'}
-            aria-label={getListName()}>{getListName()}</h1>
+            aria-label={getListName()}
+            tabIndex={0}>
+          {getListName()}
+        </h1>
       </div>
 
       <SortSelect
