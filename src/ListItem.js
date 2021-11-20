@@ -35,6 +35,7 @@ function ListItem(props) {
               key={'itemcheck-'+props.id}
               id={props.id}
               onChange={props.onCheckedChange}
+              tabIndex={props.showAlert? -1 : 0}
               type='checkbox'
             />
           </div>
@@ -50,6 +51,7 @@ function ListItem(props) {
             onClick={props.onEditClick}
             onKeyDown={props.onEditEnter}
             ref={newItem}
+            tabIndex={props.showAlert? -1 : 0}
             type='text'
             value={
               props.isEditingId === props.id ?
@@ -62,6 +64,7 @@ function ListItem(props) {
             aria-label={props.task + 'change priority'}
             id={props.id}
             onChange={props.onPriorityChange}
+            tabIndex={props.showAlert? -1 : 0}
             value={props.priority}>
               <option value={'1'} aria-label={'high priority'}>High</option>
               <option value={'2'} aria-label={'medium priority'}>Med</option>

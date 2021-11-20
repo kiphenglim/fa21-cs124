@@ -27,6 +27,7 @@ function ListMenuItem(props) {
                     onFocus={props.onEditClick}
                     onClick={props.onEditClick}
                     onKeyDown={props.onEditEnter}
+                    tabIndex={props.showAlert? -1 : 0}
                     ref={newItem}
                     type='text'
                     value={
@@ -38,6 +39,7 @@ function ListMenuItem(props) {
                 <div className={'ListMenuButtons'} aria-label={'list options'}>
                     <button className={'ListMenuDelete'}
                             aria-label={props.listName + ' delete list'}
+                            tabIndex={props.showAlert? -1 : 0}
                             onClick={() => {
                                 props.onSetDeletion(props.id);
                                 props.onDeleteAlert();
@@ -51,7 +53,8 @@ function ListMenuItem(props) {
                     </button>
                     <button className={'ListMenuNext'}
                             aria-label={props.listName + ' edit list'}
-                        onClick={(e) => props.onChangeDisplay(props.id)}>
+                            tabIndex={props.showAlert? -1 : 0}
+                            onClick={(e) => props.onChangeDisplay(props.id)}>
                         <img className={'NextIcon'}
                             src={next}
                             alt={props.listName + ' edit list'}

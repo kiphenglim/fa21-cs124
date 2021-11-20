@@ -71,7 +71,7 @@ function ListMenu(props) {
     <div className={"ListMenuContainer"} aria-label={"my lists"}>
       <h1 className={"ListMenuTitle"}>Lab 4</h1>
 
-      <div className={"ListMenuItems"}>
+      <div className={" ListMenuItems"}>
         {props.listItems.map((item) => (
           <ListMenuItem
             id={item.id}
@@ -84,6 +84,7 @@ function ListMenu(props) {
             isEditingId={isEditingId}
             editingText={editingText}
             newest={newestItem}
+            showAlert={showAlert}
             onEditBlur={(e) => handleEditComplete(e.target.id)}
             onEditChange={(e) => handleEditChange(e.target.id, e.target.value)}
             onEditClick={(e) => handleEditClick(e.target.id, e.target.value)}
@@ -95,6 +96,7 @@ function ListMenu(props) {
       <button
         className={"AddItemButton"}
         aria-label={"add new list"}
+        tabIndex={showAlert? -1 : 0}
         onClick={handleAddList}
       >
         <img

@@ -168,18 +168,20 @@ function List(props) {
             onPriorityChange={e =>
               handlePriorityChange(e.target.id, e.target.value)}
             priority={item.priority}
+            showAlert={showAlert}
             showAll={showingAllTasks}
             task={item.task}
           />
         ))}
       </div>
 
-      <AddItem onClick={handleAdd} />
+      <AddItem onClick={handleAdd} showAlert={showAlert} />
 
       {<CompletionButtons
         anyCompletedTasks={numChecked() !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleToggleAlert}
+        showAlert={showAlert}
         showingAllTasks={showingAllTasks}
       />}
 
