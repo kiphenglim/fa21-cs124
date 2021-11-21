@@ -21,12 +21,12 @@ function SignUp(props) {
     {error && <p>"Error signing up: " {error.message}</p>}
     <h1>Sign Up</h1>
     <label>
-      Email:
-      <input onChange={v=>setEmail(v.target.value)} type='text'/>
+      Email
+      <input onChange={v=>setEmail(v.target.value)} type='email'/>
     </label>
     <br/>
     <label>
-      Password:
+      Password
       <input onChange={v=>setPass(v.target.value)} type='password' name='password'/>
     </label>
     <br/>

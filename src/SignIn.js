@@ -25,12 +25,12 @@ function SignIn(props) {
     </button>
     <br/>
     <label>
-      Email:
-      <input onChange={v=>setEmail(v)} type='text'/>
+      Email
+      <input onChange={v=>setEmail(v)} type='email'/>
     </label>
     <br/>
     <label>
-      Password:
+      Password
       <input onChange={v=>setPass(v)} type='password' name='password'/>
     </label>
     <br/>
