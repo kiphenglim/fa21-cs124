@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Alert from "./Alert";
 import ListMenuItem from "./ListMenuItem";
+import ShareList from "./ShareList";
 import plus from "./plus.png";
 
 function ListMenu(props) {
@@ -12,6 +13,8 @@ function ListMenu(props) {
   const [listToDelete, setListToDelete] = useState(null);
   const [newestItem, setNewestItem] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+  const [showShare, setShowShare] = useState(null);
+  const disableTab = showAlert || (showShare !== null);
 
   function handleAddList() {
     const newId = generateUniqueID();
@@ -58,6 +61,11 @@ function ListMenu(props) {
     setShowAlert(!showAlert);
   }
 
+  function handleToggleShare(id) {
+    setShowShare(id);
+    console.log(showShare);
+  }
+
   function handleSetDeletion(id) {
     setListToDelete(id);
   }
@@ -72,7 +80,7 @@ function ListMenu(props) {
       <h1
         aria-label={"Lab 4"}
         className={"ListMenuTitle"}
-        tabIndex={0}
+        tabIndex={disableTab? -1: 0}
         >
           Lab 4
       </h1>
@@ -87,10 +95,11 @@ function ListMenu(props) {
             onChangeDisplay={props.onChangeDisplay}
             onDeleteAlert={handleToggleAlert}
             onSetDeletion={handleSetDeletion}
+            onShare={handleToggleShare}
             isEditingId={isEditingId}
             editingText={editingText}
             newest={newestItem}
-            showAlert={showAlert}
+            disableTab={disableTab}
             onEditBlur={(e) => handleEditComplete(e.target.id)}
             onEditChange={(e) => handleEditChange(e.target.id, e.target.value)}
             onEditClick={(e) => handleEditClick(e.target.id, e.target.value)}
@@ -102,7 +111,7 @@ function ListMenu(props) {
       <button
         className={"AddItemButton"}
         aria-label={"add new list"}
-        tabIndex={showAlert? -1 : 0}
+        tabIndex={disableTab? -1 : 0}
         onClick={handleAddList}
       >
         <img
@@ -138,6 +147,19 @@ function ListMenu(props) {
           </div>
         </Alert>
       )}
+
+      {(showShare !== null) && (
+          <ShareList
+            id={showShare}
+            onCancel={handleToggleShare}
+            onConfirm={handleToggleShare}
+          >
+            <h3 className="alert-header">SHARE {getListName(showShare)} </h3>
+            <div className={'SharedWith'}>Shared with...</div>
+            <input className={'ShareInputText'} type={'text'} />
+        </ShareList>
+      )}
+
     </div>
   );
 }

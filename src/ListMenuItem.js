@@ -1,4 +1,5 @@
 import next from './next.png'
+import share from './share.png'
 import trashcan from './trashcan.png'
 import { useEffect, useRef } from 'react';
 
@@ -27,7 +28,7 @@ function ListMenuItem(props) {
                     onFocus={props.onEditClick}
                     onClick={props.onEditClick}
                     onKeyDown={props.onEditEnter}
-                    tabIndex={props.showAlert? -1 : 0}
+                    tabIndex={props.disableTab? -1 : 0}
                     ref={newItem}
                     type='text'
                     value={
@@ -39,7 +40,7 @@ function ListMenuItem(props) {
                 <div className={'ListMenuButtons'} aria-label={'list options'}>
                     <button className={'ListMenuDelete'}
                             aria-label={props.listName + ' delete list'}
-                            tabIndex={props.showAlert? -1 : 0}
+                            tabIndex={props.disableTab? -1 : 0}
                             onClick={() => {
                                 props.onSetDeletion(props.id);
                                 props.onDeleteAlert();
@@ -51,9 +52,20 @@ function ListMenuItem(props) {
                             height={14}
                         />
                     </button>
+                    <button className={'ListMenuShare'}
+                            aria-label={props.listName + ' share list'}
+                            tabIndex={props.disableTab? -1 : 0}
+                            onClick={() => { props.onShare(props.id); }}>
+                        <img className={'ShareIcon'}
+                             src={share}
+                             alt={props.listName + ' share list'}
+                             width={14}
+                             height={14}
+                        />
+                    </button>
                     <button className={'ListMenuNext'}
                             aria-label={props.listName + ' edit list'}
-                            tabIndex={props.showAlert? -1 : 0}
+                            tabIndex={props.disableTab? -1 : 0}
                             onClick={(e) => props.onChangeDisplay(props.id)}>
                         <img className={'NextIcon'}
                             src={next}

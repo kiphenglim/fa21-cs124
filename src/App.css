@@ -87,6 +87,10 @@
   padding-bottom: 3px;
 }
 
+.ListMenuButtons {
+  flex: 0 0 auto;
+}
+
 .ListMenuItems {
   height: 80vh;
   overflow: auto;
@@ -94,17 +98,24 @@
 }
 
 .ListMenuItem input[type='text'] {
+  flex: 1 1 auto;
   outline: 0 lightgrey;
   border: 0 lightgrey;
   font-size: 17px;
-  width: 80%;
 }
 
 .ListMenuNext {
   background-color: white;
   border-style: none;
-  margin-left: 5px;
-  padding-bottom: 3px;
+  margin: 0;
+  padding-left: 3px;
+}
+
+.ListMenuShare {
+  background-color: white;
+  border-style: none;
+  padding-top: 3px;
+  margin: 0;
 }
 
 .ListMenuTitle {
@@ -135,6 +146,11 @@
   padding-bottom: 5px;
   padding-top: 5px;
   width: 100%;
+}
+
+.ShareInputText {
+  outline: 0 lightgrey;
+  font-size: 17px;
 }
 
 .ShowAllToggleLabel {
@@ -304,6 +320,13 @@ input[type="checkbox"] {
   padding: 10pt;
   position: relative;
   z-index: 3;
+}
+
+.modal > input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 h1 {

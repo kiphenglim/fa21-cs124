@@ -29,7 +29,8 @@ function App() {
     name
     sort
     tasks
-    to be added in lab 5: ownerId, sharedId
+    ownerId
+    sharedId
    */
   const collection = db.collection('kiphenglim-lab4');
   const [value, loading, error] = useCollection(collection);
