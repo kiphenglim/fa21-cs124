@@ -23,6 +23,8 @@ function ListMenu(props) {
       created: firebase.database.ServerValue.TIMESTAMP,
       name: "",
       sort: "created",
+      ownerId: props.user,
+      sharedId: [],
     };
     setNewestItem(newId);
     props.collection.doc(newId).set(newList);
