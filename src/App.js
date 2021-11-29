@@ -61,7 +61,7 @@ function App() {
       if (dbLoading) {
         return <img className={'LoadingIcon'} src={loadingIcon} alt="loading..." />
       } else if (dbError) {
-        return <p>Error retrieving tasks</p>
+        return <p>Database error: {dbError.message}</p>
       } else {
         return <div>
           <HeaderBar
