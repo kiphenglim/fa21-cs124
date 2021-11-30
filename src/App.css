@@ -31,6 +31,17 @@
   padding-bottom: 10px;
 }
 
+.HeaderBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 3vw 5px 3vw;
+  height: 4vh;
+}
+
+.HeaderBarLogout {
+  height: 28px;
+}
+
 .ListHeader {
   background-color: white;
   text-align: center;
@@ -53,7 +64,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 96vh;
+  height: 90vh;
   width: 96vw;
   margin: 2vh 2vw 2vh 2vw;
 }
@@ -68,7 +79,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 99vh;
+  height: 94vh;
   margin: 0vh 2vw 0vh 2vw;
   width: 96vw;
 }
@@ -158,6 +169,13 @@
   font-size: 16px;
 }
 
+.SignInWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .SortHeader {
   align-content: center;
   background: lightgrey;
@@ -217,6 +235,11 @@
   justify-content: space-between;
   padding: 1vh 1vw 1vh 1vw;
   width: 100%;
+}
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .alert-buttons {

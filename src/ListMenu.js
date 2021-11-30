@@ -114,7 +114,7 @@ function ListMenu(props) {
         className={"ListMenuTitle"}
         tabIndex={disableTab ? -1 : 0}
       >
-        Lab 4
+        Lab 5
       </h1>
 
       <div className={"ListMenuItems"}>

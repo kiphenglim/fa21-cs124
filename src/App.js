@@ -63,7 +63,7 @@ function App() {
       } else if (dbError) {
         return <p>Database error: {dbError.message}</p>
       } else {
-        return <div>
+        return <div className={'Wrapper'}>
           <HeaderBar
             auth={auth}
             userEmail={user.email}
@@ -99,18 +99,18 @@ function App() {
       }
   }
   else {
-    return <>
+    return <div className={'SignInWrapper'}>
       {authError && <p> Error App: {authError.message} </p>}
-        <SignIn
-          auth={auth}
-          gProv={gProvider}
-          key="Sign In"
-        />
-        <SignUp
-          auth={auth}
-          key="Sign Up"
-        />
-    </>
+      <SignIn
+        auth={auth}
+        gProv={gProvider}
+        key="Sign In"
+      />
+      <SignUp
+        auth={auth}
+        key="Sign Up"
+      />
+    </div>
   }
 }
 

@@ -1,7 +1,8 @@
 function HeaderBar(props) {
-  return <div>
-    <p>Welcome, {props.userEmail} ({props.userId})</p>
+  return <div className={'HeaderBar'}>
+    Welcome, {props.userEmail}
     <button
+      className={'HeaderBarLogout'}
       onClick={() => props.auth.signOut()}
       type="button"
     >
