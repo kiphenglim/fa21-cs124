@@ -1,13 +1,14 @@
 import firebase from "firebase/compat";
-import { arrayUnion } from "firebase/firestore";
+import { arrayUnion, arrayRemove } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
 import { useState } from "react";
 import { generateUniqueID } from "web-vitals/dist/modules/lib/generateUniqueID";
 
 import Alert from "./Alert";
 import ListMenuItem from "./ListMenuItem";
-import ShareList from "./ShareList";
 import plus from "./plus.png";
+import ShareList from "./ShareList";
+import SharedUsers from "./SharedUsers";
 
 function ListMenu(props) {
   const [editingText, setEditingText] = useState("");
@@ -25,21 +26,12 @@ function ListMenu(props) {
     // validate email for existing user
     // convert email to uid
     // add uid to current list's sharedId
-    // getAuth()
-    //   .getUserByEmail(email)
-    //   .then(userRecord => {
-    //     console.log(userRecord.getUid());
-    //     // props.collection.doc(listId).update({
-    //     //   sharedId: arrayUnion(userRecord.getUid())
-    //     // });
-    //   })
-    //   .catch(error => {
-    //     console.log("Error fetching user data:", error);
-    //   });
 
-    props.collection.doc(listId).update({
-      sharedId: arrayUnion(email)
-    });
+    if(email !== '') {
+      props.collection.doc(listId).update({
+        sharedId: arrayUnion(email)
+      });
+    }
     setShareInputText('');
   }
 
@@ -86,26 +78,34 @@ function ListMenu(props) {
     }
   }
 
-  function handleToggleAlert() {
-    setShowAlert(!showAlert);
+  function getListName(id) {
+    console.log(id);
+    const list = props.listItems.find((e) => e.id === id);
+    return list.name;
   }
 
-  async function handleToggleShare(id) {
+  function handleRemoveEditor(email) {
+    const docRef = props.collection.doc(showShare);
+    docRef.update({ sharedId: arrayRemove(email) });
+    setShowShare(null);
+  }
+
+  async function handleShowShare(id) {
     setShowShare(id);
     const docRef = props.collection.doc(id);
     const doc = await docRef.get();
-    setSharedWithIds(doc.data().sharedId)
-    console.log(showShare);
+    setSharedWithIds(doc.data().sharedId);
   }
 
   function handleSetDeletion(id) {
     setListToDelete(id);
   }
 
-  function getListName(id) {
-    const list = props.listItems.find((e) => e.id === id);
-    return list.name;
+  function handleToggleAlert() {
+    setShowAlert(!showAlert);
   }
+
+
 
   return (
     <div className={"ListMenuContainer"} aria-label={"my lists"}>
@@ -127,7 +127,7 @@ function ListMenu(props) {
             onChangeDisplay={props.onChangeDisplay}
             onDeleteAlert={handleToggleAlert}
             onSetDeletion={handleSetDeletion}
-            onShare={handleToggleShare}
+            onShare={handleShowShare}
             isEditingId={isEditingId}
             editingText={editingText}
             newest={newestItem}
@@ -183,15 +183,17 @@ function ListMenu(props) {
       {showShare !== null && (
         <ShareList
           id={showShare}
-          onCancel={handleToggleShare}
-          // onConfirm={handleToggleShare}
+          onCancel={() => setShowShare(null)}
           onConfirm={() => handleAddEditor(showShare, shareInputText)}
         >
           <h3 className="alert-header">SHARE {getListName(showShare)} </h3>
           <div className={"SharedWith"}>Shared with...</div>
-          {sharedWithIds.map((email) => (
-            <p>{email}</p>
-          ))}
+
+          <SharedUsers
+            emails={sharedWithIds}
+            removeEditor={handleRemoveEditor}
+          />
+
           <input
             className={"ShareInputText"}
             onChange={(e) => setShareInputText(e.target.value)}
