@@ -4,11 +4,11 @@ function SharedUsers(props) {
   return props.emails.map((email) => (
     <div>
       {email}
-      <button className={'SharedUserRemove'}
+      <button className={'ListMenuDelete'}
         aria-label={props.listName + ' remove editor'}
         tabIndex={props.disableTab ? -1 : 0}
         onClick={() => props.removeEditor(email)}>
-        <img className={'DeleteIcon'}
+        <img className={'SharedUserDelete'}
           src={trashcan}
           alt={props.listName + ' remove editor'}
           width={14}
