@@ -1,5 +1,6 @@
 import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth';
 import { useState } from "react";
+import google from "./google.png";
 
 
 function SignIn(props) {
@@ -17,26 +18,31 @@ function SignIn(props) {
   } else if (loading) {
     return <p>Logging in…</p>
   }
-  return <div>
-    {error && <p>Error logging in: {error.message}</p>}
-    <h1>Sign In</h1>
-    <button onClick={() => props.auth.signInWithPopup(props.gProv)}>
-      Sign In With Google
-    </button>
-    <br/>
+  return <div className={'SignIn'}>
+    {error && <p>Error: {error.message}</p>}
+    <h2>Sign In</h2>
     <label>
-      Email
+      <div>Email</div>
       <input onChange={v=>setEmail(v)} type='email'/>
     </label>
-    <br/>
     <label>
-      Password
+      <div>Password</div>
       <input onChange={v=>setPass(v)} type='password' name='password'/>
     </label>
     <br/>
-    <button onClick={() => signInWithEmailAndPassword(email, pass)}>
+    <button className={'SignInButton'} onClick={() => signInWithEmailAndPassword(email, pass)}>
       Sign In
     </button>
+    <br/>
+    <button className={'SignInGoogleButton'} onClick={() => props.auth.signInWithPopup(props.gProv)}>
+      <img className={'GoogleIcon'}
+           src={google}
+           alt='google icon'
+           width={18}
+           height={18}/>
+      <div> &nbsp;&nbsp;Sign In With Google</div>
+    </button>
+    <br/>
   </div>
 }
 

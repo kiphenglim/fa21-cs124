@@ -17,20 +17,19 @@ function SignUp(props) {
   } else if (loading) {
     return <p>Signing up…</p>
   }
-  return <div>
+  return <div className={'SignUp'}>
     {error && <p>"Error signing up: " {error.message}</p>}
-    <h1>Sign Up</h1>
+    <h2>Sign Up</h2>
     <label>
-      Email
+      <div>Email</div>
       <input onChange={v=>setEmail(v.target.value)} type='email'/>
     </label>
-    <br/>
     <label>
-      Password
+      <div>Password</div>
       <input onChange={v=>setPass(v.target.value)} type='password' name='password'/>
     </label>
     <br/>
-    <button onClick={() => createUserWithEmailAndPassword(email, pass) } >
+    <button className={'SignInButton'} onClick={() => createUserWithEmailAndPassword(email, pass) } >
       Sign Up
     </button>
   </div>

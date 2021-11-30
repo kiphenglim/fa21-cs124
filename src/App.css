@@ -38,6 +38,10 @@
   height: 4vh;
 }
 
+.HeaderBar > span {
+  padding-top: 5px;
+}
+
 .HeaderBarLogout {
   height: 28px;
 }
@@ -169,11 +173,51 @@
   font-size: 16px;
 }
 
+.SignIn {
+  display: flex;
+  flex-direction: column;
+}
+
+.SignInButton {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 60vw;
+  font-size: 16px;
+}
+
+.SignInGoogleButton {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  width: 60vw;
+  display: flex;
+  font-size: 16px;
+  background-color: white;
+  border-style: none;
+  align-self: center;
+}
+
 .SignInWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  height: 98vh;
+  margin: 2vh 20vw 0 20vw;
+}
+
+.SignInWrapper input[type='email']{
+  font-size: 17px;
+  width: 58vw;
+  margin-bottom: 10px;
+}
+
+.SignInWrapper input[type='password']{
+  font-size: 17px;
+  width: 58vw;
+}
+
+.SignUp {
+  display: flex;
+  flex-direction: column;
 }
 
 .SortHeader {
@@ -350,6 +394,10 @@ input[type="checkbox"] {
   margin-bottom: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+div {
+  font-family: sans-serif;
 }
 
 h1 {

@@ -106,6 +106,7 @@ function App() {
         gProv={gProvider}
         key="Sign In"
       />
+      <div><hr/></div>
       <SignUp
         auth={auth}
         key="Sign Up"
