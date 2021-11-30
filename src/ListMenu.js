@@ -109,14 +109,7 @@ function ListMenu(props) {
 
   return (
     <div className={"ListMenuContainer"} aria-label={"my lists"}>
-      <h1
-        aria-label={"Lab 5"}
-        className={"ListMenuTitle"}
-        tabIndex={disableTab ? -1 : 0}
-      >
-        Lab 5
-      </h1>
-
+      <br/>
       <div className={"ListMenuItems"}>
         {props.listItems.map((item) => (
           <ListMenuItem

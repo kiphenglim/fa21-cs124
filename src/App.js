@@ -71,22 +71,22 @@ function App() {
           />
           {currentDisplay === 'menu'
             ?
-            // <TabList aria-label={'switch tabs to view owned or shared list'}>
-            //   <div key={'owned'}
-            //        aria-label={'list owned by me'}>
-            <ListMenu
-              collection={collection}
-              listItems={lists}
-              onChangeDisplay={handleChangeDisplay}
-              user={user.uid}
-            />
-            //   </div>
-            //   <div key={'shared'}
-            //        align={'center'}
-            //        aria-label={'lists shared with me'}>
-            //       Lists Shared With Me
-            //   </div>
-            // </TabList>
+            <TabList aria-label={'switch tabs to view owned or shared list'}>
+              <div key={'owned'}
+                   aria-label={'list owned by me'}>
+              <ListMenu
+                collection={collection}
+                listItems={lists}
+                onChangeDisplay={handleChangeDisplay}
+                user={user.uid}
+              />
+               </div>
+               <div key={'shared'}
+                   align={'center'}
+                   aria-label={'lists shared with me'}>
+                  Lists Shared With Me
+              </div>
+            </TabList>
             : <List
               db={db}
               id={currentDisplay}

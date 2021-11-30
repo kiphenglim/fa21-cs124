@@ -7,6 +7,12 @@ function TabList(props) {
 
     return (
         <div className={'Tabs'}>
+            {/*<h1*/}
+            {/*  aria-label={"Lab 5"}*/}
+            {/*  className={"ListMenuTitle"}*/}
+            {/*>*/}
+            {/*  Lab 5*/}
+            {/*</h1>*/}
             <ol className={'TabList'}>
                 <Tab
                     name={'owned'}

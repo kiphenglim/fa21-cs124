@@ -34,7 +34,7 @@
 .HeaderBar {
   display: flex;
   justify-content: space-between;
-  margin: 5px 3vw 5px 3vw;
+  margin: 5px 3vw 2vh 3vw;
   height: 4vh;
 }
 
@@ -83,7 +83,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 94vh;
+  height: 84vh;
   margin: 0vh 2vw 0vh 2vw;
   width: 96vw;
 }
@@ -264,7 +264,7 @@
   border-width: 2px 2px 0 2px;
   font-family: sans-serif;
   font-size: 17px;
-
+  border-radius: 5% 5% 0 0;
 }
 
 .TabListActive {
