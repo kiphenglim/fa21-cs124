@@ -86,7 +86,7 @@ iteration with Vivian Pou and Mandy Wu
   that also changes the state of the checkbox.
 
 # Accessibility Testing
-[Keyboard and Screen Reader Demo]()
+[Keyboard and Screen Reader Demo](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
 
 # Final Design
 
@@ -164,9 +164,6 @@ though the shared lists tab is currently empty
 focuses on the list name for instant editing
 
 ![lab 4](listmenu.png)
-
-+ added support for screen readers
-  + [here's a video of us using the app using screen reader and keyboard!](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
 
 
 # Challenges
