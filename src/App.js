@@ -86,7 +86,7 @@ function App() {
                    aria-label={'lists shared with me'}>
                 <ListMenu
                   collection={collection}
-                  listItems={lists.filter((i) => i.sharedId.contains(user.uid))}
+                  listItems={lists.filter((i) => i.sharedId.includes(user.uid))}
                   onChangeDisplay={handleChangeDisplay}
                   user={user.uid}
                 />
