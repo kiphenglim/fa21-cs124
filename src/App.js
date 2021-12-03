@@ -74,17 +74,22 @@ function App() {
             <TabList aria-label={'switch tabs to view owned or shared list'}>
               <div key={'owned'}
                    aria-label={'list owned by me'}>
-              <ListMenu
-                collection={collection}
-                listItems={lists}
-                onChangeDisplay={handleChangeDisplay}
-                user={user.uid}
-              />
+                <ListMenu
+                  collection={collection}
+                  listItems={lists.filter((i) => i.ownerId === user.uid)}
+                  onChangeDisplay={handleChangeDisplay}
+                  user={user.uid}
+                />
                </div>
-               <div key={'shared'}
+              <div key={'shared'}
                    align={'center'}
                    aria-label={'lists shared with me'}>
-                  Lists Shared With Me
+                <ListMenu
+                  collection={collection}
+                  listItems={lists.filter((i) => i.sharedId.contains(user.uid))}
+                  onChangeDisplay={handleChangeDisplay}
+                  user={user.uid}
+                />
               </div>
             </TabList>
             : <List
