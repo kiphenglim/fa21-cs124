@@ -154,16 +154,19 @@ This change is irreversible.
 ![after](t6-end.png)
 
 
-# Changes from Lab 3 to Lab 4
-+ added a menu of lists, displaying the lists in
-rows with each row containing the list name and buttons
-for delete list and edit list
-+ added tabs to separate owned lists and shared lists,
-though the shared lists tab is currently empty
-+ the add list option adds a new list and automatically
-focuses on the list name for instant editing
+# Changes from Lab 4 to Lab 5
++ added a sign in/up page for when the user is not 
+logged in
++ only allows users to access lists owned by or shared 
+with them
++ added a menu of lists for list owned by the user and a 
+menu for lists shared with the user
++ added tabs to separate owned lists and shared lists
++ the share function allows the shared user to view, but 
+not edit, the shared list
 
-![lab 4](listmenu.png)
+![lab 5](listmenu.png)
+![sign in page](signin.png)
 
 
 # Challenges
@@ -180,6 +183,8 @@ using `useEffect` to get the desired component to
 focus on render
 + using a `useState` to change the menu or list
 displayed
++ adjusting firestore permissions to allow sharing of 
+lists and access only owned or shared lists
 
 # Design Highlights
 + editing items on task selection rather than using a button
