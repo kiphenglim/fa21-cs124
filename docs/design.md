@@ -50,7 +50,10 @@ similar to the design for adding tasks
 "Hide Completed Tasks" according to Lab 3 pull request
 feedback
 + when alert is showing, made all other items unselectable
-
++ list owners have read and write permission, shared 
+users have read only permission
++ the Sign In and Sign Up options are on the same 
+page, with a Sign In With Google option included
 
 ![Screenshot of Lab 3](lab3-basic.png)
 
