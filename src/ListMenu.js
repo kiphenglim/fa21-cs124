@@ -125,6 +125,7 @@ function ListMenu(props) {
             editingText={editingText}
             newest={newestItem}
             disableTab={disableTab}
+            type={props.type}
             onEditBlur={(e) => handleEditComplete(e.target.id)}
             onEditChange={(e) => handleEditChange(e.target.id, e.target.value)}
             onEditClick={(e) => handleEditClick(e.target.id, e.target.value)}
@@ -133,21 +134,21 @@ function ListMenu(props) {
         ))}
       </div>
 
-      <button
-        className={"AddItemButton"}
-        aria-label={"add new list"}
-        tabIndex={disableTab ? -1 : 0}
-        onClick={handleAddList}
+      {(props.type === 'owned') && <button
+          className={"AddItemButton"}
+          aria-label={"add new list"}
+          tabIndex={disableTab ? -1 : 0}
+          onClick={handleAddList}
       >
         <img
-          className={"AddIcon"}
-          src={plus}
-          alt="add new list"
-          width={14}
-          height={14}
+            className={"AddIcon"}
+            src={plus}
+            alt="add new list"
+            width={14}
+            height={14}
         />
         Add List
-      </button>
+      </button>}
 
       {showAlert && (
         <Alert

@@ -38,40 +38,42 @@ function ListMenuItem(props) {
                     }
                 />
                 <div className={'ListMenuButtons'} aria-label={'list options'}>
-                    <button className={'ListMenuDelete'}
+                    {(props.type === 'owned') && <button className={'ListMenuDelete'}
                             aria-label={props.listName + ' delete list'}
-                            tabIndex={props.disableTab? -1 : 0}
+                            tabIndex={props.disableTab ? -1 : 0}
                             onClick={() => {
                                 props.onSetDeletion(props.id);
                                 props.onDeleteAlert();
                             }}>
                         <img className={'DeleteIcon'}
-                            src={trashcan}
-                            alt={props.listName + ' delete list'}
-                            width={14}
-                            height={14}
+                             src={trashcan}
+                             alt={props.listName + ' delete list'}
+                             width={14}
+                             height={14}
                         />
-                    </button>
-                    <button className={'ListMenuShare'}
+                    </button>}
+                    {(props.type === 'owned') && <button className={'ListMenuShare'}
                             aria-label={props.listName + ' share list'}
-                            tabIndex={props.disableTab? -1 : 0}
-                            onClick={() => { props.onShare(props.id); }}>
+                            tabIndex={props.disableTab ? -1 : 0}
+                            onClick={() => {
+                                props.onShare(props.id);
+                            }}>
                         <img className={'ShareIcon'}
                              src={share}
                              alt={props.listName + ' share list'}
                              width={14}
                              height={14}
                         />
-                    </button>
+                    </button>}
                     <button className={'ListMenuNext'}
                             aria-label={props.listName + ' edit list'}
-                            tabIndex={props.disableTab? -1 : 0}
+                            tabIndex={props.disableTab ? -1 : 0}
                             onClick={(e) => props.onChangeDisplay(props.id)}>
                         <img className={'NextIcon'}
-                            src={next}
-                            alt={props.listName + ' edit list'}
-                            width={14}
-                            height={14}
+                             src={next}
+                             alt={props.listName + ' edit list'}
+                             width={14}
+                             height={14}
                         />
                     </button>
                 </div>

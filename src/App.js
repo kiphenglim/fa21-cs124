@@ -78,6 +78,7 @@ function App() {
                   collection={collection}
                   listItems={lists.filter((i) => i.ownerId === user.uid)}
                   onChangeDisplay={handleChangeDisplay}
+                  type={'owned'}
                   user={user.uid}
                 />
                </div>
@@ -88,6 +89,7 @@ function App() {
                   collection={collection}
                   listItems={lists.filter((i) => i.sharedId.includes(user.uid))}
                   onChangeDisplay={handleChangeDisplay}
+                  type={'shared'}
                   user={user.uid}
                 />
               </div>
