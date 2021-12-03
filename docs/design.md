@@ -155,8 +155,6 @@ This change is irreversible.
 + added a menu of lists, displaying the lists in
 rows with each row containing the list name and buttons
 for delete list and edit list
-+ added tabs to separate owned lists and shared lists,
-though the shared lists tab is currently empty
 + the add list option adds a new list and automatically
 focuses on the list name for instant editing
 
