@@ -23,11 +23,11 @@ function SignIn(props) {
     <h2>Sign In</h2>
     <label>
       <div>Email</div>
-      <input onChange={v=>setEmail(v)} type='email'/>
+      <input onChange={e=>setEmail(e.target.value)} type='email'/>
     </label>
     <label>
       <div>Password</div>
-      <input onChange={v=>setPass(v)} type='password' name='password'/>
+      <input onChange={e=>setPass(e.target.value)} type='password' name='password'/>
     </label>
     <br/>
     <button className={'SignInButton'} onClick={() => signInWithEmailAndPassword(email, pass)}>
