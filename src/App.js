@@ -41,13 +41,21 @@ function App() {
     sharedId
    */
   const collection = db.collection('kiphenglim-lab5');
-  const [value, dbLoading, dbError] = useCollection(collection);
+  const [ownedValue, ownedLoading, ownedError] =
+    useCollection(collection.where('ownerId', '==', user ? user.uid : 0));
+  const [sharedValue, sharedLoading, sharedError] =
+    useCollection(collection.where('sharedId', "array-contains", user ? user.email : ''));
 
   const [currentDisplay, setCurrentDisplay] = useState('menu');
 
-  let lists = [];
-  if (value) {
-    lists = value.docs.map(e => { return e.data() });
+  let ownedLists = [];
+  if (ownedValue) {
+    ownedLists = ownedValue.docs.map(e => { return e.data() });
+  }
+
+  let sharedLists = [];
+  if (sharedValue) {
+    sharedLists = sharedValue.docs.map(e => { return e.data() });
   }
 
   function handleChangeDisplay(id) {
@@ -55,13 +63,25 @@ function App() {
     setCurrentDisplay(id);
   }
 
+  function findList() {
+    const ownedList = ownedLists.find(e => e.id === currentDisplay);
+    const sharedList = sharedLists.find(e => e.id === currentDisplay);
+    if (ownedList) {
+      return ownedList;
+    } else if (sharedList) {
+      return sharedList;
+    } else {
+      return -1;
+    }
+  }
+
   if (authLoading) {
     return <p>Checking authentication</p>
   } else if (user) {
-      if (dbLoading) {
+      if (ownedLoading || sharedLoading) {
         return <img className={'LoadingIcon'} src={loadingIcon} alt="loading..." />
-      } else if (dbError) {
-        return <p>Database error: {dbError.message}</p>
+      } else if (ownedError || sharedError) {
+        return <p>Database error: {ownedError.message} {sharedError.message}</p>
       } else {
         return <div className={'Wrapper'}>
           <HeaderBar
@@ -76,7 +96,7 @@ function App() {
                    aria-label={'list owned by me'}>
                 <ListMenu
                   collection={collection}
-                  listItems={lists.filter((i) => i.ownerId === user.uid)}
+                  listItems={ownedLists}
                   onChangeDisplay={handleChangeDisplay}
                   type={'owned'}
                   user={user.uid}
@@ -87,7 +107,7 @@ function App() {
                    aria-label={'lists shared with me'}>
                 <ListMenu
                   collection={collection}
-                  listItems={lists.filter((i) => i.sharedId.includes(user.uid))}
+                  listItems={sharedLists}
                   onChangeDisplay={handleChangeDisplay}
                   type={'shared'}
                   user={user.uid}
@@ -97,7 +117,7 @@ function App() {
             : <List
               db={db}
               id={currentDisplay}
-              listData={lists.find(e => e.id === currentDisplay)}
+              listData={findList()}
               listDocRef={collection.doc(currentDisplay)}
               listCollection={collection.doc(currentDisplay).collection('tasks')}
               onChangeDisplay={handleChangeDisplay}
