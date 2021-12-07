@@ -50,10 +50,22 @@ similar to the design for adding tasks
 "Hide Completed Tasks" according to Lab 3 pull request
 feedback
 + when alert is showing, made all other items unselectable
-+ list owners have read and write permission, shared 
-users have read only permission
-+ the Sign In and Sign Up options are on the same 
-page, with a Sign In With Google option included
+
+## Authentication and Sharing Decisions
+  + the Sign In and Sign Up options are on the same page, with a Sign In
+    With Google option included
+  + list owners have read and write and delete permission on lists, shared
+    users have update only permission to the name of the list and the tasks
+    that are in it
+  + shared users are unable to change the sharing permissions of the list or
+    delete the list
+  + once a list owner shares a list with another person, the recipient does
+    not need to do anything in order for it to appear in their shared lists
+  + list owners cannot change who owns the list, nor can they remove
+    themselves from who has access to the list unless they delete the list
+  + owned lists and shared lists appear on separate tabs, and the user can
+    toggle between them as desired
+  + no lists are viewable if the user is not signed in
 
 ![Screenshot of Lab 3](lab3-basic.png)
 
@@ -159,14 +171,14 @@ This change is irreversible.
 
 
 # Changes from Lab 4 to Lab 5
-+ added a sign in/up page for when the user is not 
++ added a sign in/up page for when the user is not
 logged in
-+ only allows users to access lists owned by or shared 
++ only allows users to access lists owned by or shared
 with them
-+ added a menu of lists for list owned by the user and a 
++ added a menu of lists for list owned by the user and a
 menu for lists shared with the user
 + added tabs to separate owned lists and shared lists
-+ the share function allows the shared user to view, but 
++ the share function allows the shared user to view, but
 not edit, the shared list
 
 ![lab 5](listmenu.png)
@@ -187,8 +199,9 @@ using `useEffect` to get the desired component to
 focus on render
 + using a `useState` to change the menu or list
 displayed
-+ adjusting firestore permissions to allow sharing of 
++ adjusting firestore permissions to allow sharing of
 lists and access only owned or shared lists
+  + fixed this by narrowing the query on the useCollection
 
 # Design Highlights
 + editing items on task selection rather than using a button
@@ -201,3 +214,6 @@ tasks
 + used a toggle for "Hide Completed Tasks" since that made
 it clearer that it was a binary state being toggled.
 + sticky header and footer
++ separate tabs for the list menus: one for owned list and another for shared
+  lists
+
