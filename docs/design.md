@@ -88,6 +88,10 @@ iteration with Vivian Pou and Mandy Wu
 # Accessibility Testing
 [Keyboard and Screen Reader Demo](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
 
+# Firestore Rules
+![firestore rules](rules.png)
+
+
 # Final Design
 
 1. task 1: add item "Buy new John Grisham book"
