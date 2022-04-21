@@ -1,119 +1,202 @@
-import { useState } from "react";
-import AddItem from "./AddItem";
-import Alert from "./Alert";
-import CompletionButtons from "./CompletionButtons";
-import ListItem from "./ListItem";
+import firebase from 'firebase/compat';
+import { useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
+
+import AddItem from './AddItem';
+import Alert from './Alert';
+import CompletionButtons from './CompletionButtons';
+import ListItem from './ListItem';
+import SortSelect from './SortSelect';
+
+import back from './back.png';
 
 function List(props) {
-  const [data, setData] = useState(props.listItems);
-  const [idCounter, setIdCounter] = useState(data.length);
-  const [isChecked, setIsChecked] = useState([]);
+  // props.list  => includes id, name, sortBy
+  const [value, loading, error] = useCollection(props.listCollection.orderBy(getListSort()));
+
+  const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
-  const [editingText, setEditingText] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
+  const [newestItem, setNewestItem] = useState(null);
 
-  function handleAdd(e) {
-    console.log("adding");
-    setData([...data, {
-      id: idCounter,
-      task: ""
-    }]);
-    setIsEditingId(idCounter);
-    setEditingText("");
-    setIdCounter(idCounter + 1);
+  let data = [];
+  if (value) {
+    data = value.docs.map(e => { return e.data() });
   }
 
-  function handleEditClick(e) {
-    setIsEditingId(e.target.id);
-    setEditingText(e.target.value);
+  function getListName() {
+    return props.listData.name;
   }
 
-  function handleEditChange(e) {
-    setEditingText(e.target.value);
-    let newData = data.map(item =>
-      parseInt(item.id) === parseInt(isEditingId)
-      ? { ...item, task: editingText }
-      : item);
-    setData(newData);
+  function getListSort() {
+    return props.listData.sort;
   }
 
-  function handleEditComplete(e) {
-    let newData = data.map((item) =>
-      parseInt(item.id) === parseInt(isEditingId)
-        ? { ...item, task: editingText }
-        : item
-    );
-    setData(newData);
-    setEditingText("");
+  function handleAdd() {
+    const newId = generateUniqueID();
+    const newTask = {
+      id: newId,
+      created: firebase.database.ServerValue.TIMESTAMP,
+      task: '',
+      priority: '3',
+      checked: false
+    };
+    props.listCollection.doc(newId).set(newTask);
+    setNewestItem(newId);
+  }
+
+  function handleChangeSort(v) {
+    props.listDocRef.update({'sort': v});
+    console.log(v);
+  }
+
+  function handleEditClick(id, v) {
+    setEditingText(v);
+    setIsEditingId(id);
+    setNewestItem(null);
+  }
+
+  function handleEditChange(id, v) {
+    setEditingText(v);
+  }
+
+  function handleEditComplete(id) {
+    const docRef = props.listCollection.doc(id);
+    docRef.update({ task: editingText });
     setIsEditingId(null);
   }
 
-  function handleEditEnter (e) {
-    if (e.key === "Enter") {
-      e.target.blur();
-      handleEditComplete(e);
+  function handleEditEnter(id, target, key) {
+    if (key === 'Enter') {
+      handleEditComplete(id);
+      target.blur();
     }
   }
 
-  function handleIsCheckedChange(e) {
-    let newId = parseInt(e.target.id);
-    if (isChecked.includes(newId)) {
-      setIsChecked(isChecked.filter((id) => id !== newId));
-    } else {
-      setIsChecked([...isChecked, newId]);
-    }
+  async function handleIsCheckedChange(id) {
+    const docRef = props.listCollection.doc(id);
+    const doc = await docRef.get();
+    const newCheckedState = !doc.data().checked;
+    docRef.update({ checked: newCheckedState });
   }
 
   function handleToggleAlert() {
     setShowAlert(!showAlert);
   }
 
-  function handleRemoveAllClick() {
-    setData(data.filter(e => !isChecked.includes(e.id)));
-    setIsChecked([]);
+  function handlePriorityChange(id, v) {
+    const docRef = props.listCollection.doc(id);
+    docRef.update({ priority: v });
+  }
+
+  async function handleRemoveAllClick() {
+    const snapshot = await props.listCollection.where('checked', '==', true).get();
+    const batchSize = snapshot.size;
+    if (batchSize === 0) {
+      return;
+    }
+
+    // Delete documents in a batch
+    const batch = props.db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+
+    // Recurse on the next process tick, to avoid
+    // exploding the stack.
+    process.nextTick(() => {
+      handleRemoveAllClick();
+    });
   }
 
   function handleShowAllClick() {
     setShowingAllTasks(!showingAllTasks);
   }
 
+  function numChecked() {
+    const checkedItems = data.filter((item) => item.checked);
+    return checkedItems.length;
+  }
+
   return (
-      <div className="ListItemContainer">
-        {data.map((item) => (
+    <div className={'ListItemContainer'}>
+
+      <div className={'ListHeader'}>
+        <button className={'ListHeaderBack'}
+                aria-label={'return to list menu'}
+                onClick={() => {props.onChangeDisplay('menu')}}>
+          <img className={'BackIcon'}
+               src={back}
+               alt='back arrow icon'
+               width={24}
+               height={24}/>
+        </button>
+
+        <h1 className={'ListHeaderName'}
+            aria-label={getListName()}
+            tabIndex={0}>
+          {getListName()}
+        </h1>
+      </div>
+
+      <SortSelect
+        sortBy={getListSort()}
+        onChange={e => handleChangeSort(e.target.value)}
+      />
+
+      <div className={'ListItems'} aria-label={'checklist of tasks'}>
+        {loading || data === []
+          ? <></>
+          : data.map((item) => (
           <ListItem
-            checked={isChecked.includes(item.id)}
+            checked={item.checked}
             id={item.id}
             key={item.id}
             isEditingId={isEditingId}
             editingText={editingText}
-            onCheckedChange={handleIsCheckedChange}
-            onEditBlur={handleEditComplete}
-            onEditChange={handleEditChange}
-            onEditClick={handleEditClick}
-            onEditEnter={handleEditEnter}
+            newest={newestItem}
+            onCheckedChange={e =>
+              handleIsCheckedChange(e.target.id)}
+            onEditBlur={e =>
+              handleEditComplete(e.target.id)}
+            onEditChange={e =>
+              handleEditChange(e.target.id, e.target.value)}
+            onEditClick={e =>
+              handleEditClick(e.target.id, e.target.value)}
+            onEditEnter={e =>
+              handleEditEnter(e.target.id, e.target, e.key)}
+            onPriorityChange={e =>
+              handlePriorityChange(e.target.id, e.target.value)}
+            priority={item.priority}
+            showAlert={showAlert}
             showAll={showingAllTasks}
             task={item.task}
           />
         ))}
+      </div>
 
-        <AddItem onClick={handleAdd}/>
+      <AddItem onClick={handleAdd} showAlert={showAlert} />
 
-        <CompletionButtons
-          anyCompletedTasks={isChecked.length !== 0}
-          onShowAllClick={handleShowAllClick}
-          onRemoveAllClick={handleToggleAlert}
-          showingAllTasks={showingAllTasks}
-        />
+      {<CompletionButtons
+        anyCompletedTasks={numChecked() !== 0}
+        onShowAllClick={handleShowAllClick}
+        onRemoveAllClick={handleToggleAlert}
+        showAlert={showAlert}
+        showingAllTasks={showingAllTasks}
+      />}
 
-        {showAlert && <Alert
-            onCancel={handleToggleAlert}
-            onConfirm={handleRemoveAllClick}>
-          <div className="alert-text">
-            <h3 className="alert-header">WARNING</h3>
-            Your tasks will be permanently deleted, are you sure you want to delete all completed items?
-          </div>
-        </Alert>}
+      {showAlert && <Alert
+        onCancel={handleToggleAlert}
+        onConfirm={handleRemoveAllClick}>
+        <div className='alert-text' aria-label={'task deletion alert'}>
+          <h3 className='alert-header'>WARNING</h3>
+          Your tasks will be permanently deleted,
+          are you sure you want to delete {numChecked()} of {data.length} items?
+        </div>
+      </Alert>}
 
     </div>
   );

@@ -1,11 +1,12 @@
-import plus from "./plus.png";
+import plus from './plus.png';
 
 function AddItem(props) {
-  return <div onClick={props.onClick}>
-    <button className={"AddItemButton"}>
-      <img className={"AddIcon"}
+  return <div onClick={props.onClick} aria-label={'add new item'}>
+    <button className={'AddItemButton'}
+            tabIndex={props.showAlert? -1 : 0}>
+      <img className={'AddIcon'}
         src={plus}
-        alt="a plus icon"
+        alt='add item icon'
         width={14}
         height={14}/>
       Add Item

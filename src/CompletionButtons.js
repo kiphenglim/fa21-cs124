@@ -1,23 +1,30 @@
 import Toggle from 'react-toggle';
-import "react-toggle/style.css";
+import 'react-toggle/style.css';
 
 function CompletionButtons(props) {
   return props.anyCompletedTasks ? (
-    <div className={"CompletionButtons"}>
-      <div className={"Toggle"}>
-        <label className={"ShowAllToggleLabel"}
-          htmlFor={"ShowAllToggle"}>
-            Show Uncompleted Items
+    <div className={'CompletionButtons'}>
+      <div className={'Toggle'}>
+        <label className={'ShowAllToggleLabel'}
+          htmlFor={'ShowAllToggle'}>
+            Hide Completed Tasks
         </label>
         <Toggle
-          className="ShowAllToggle"
+            aria-label={props.showingAllTasks
+            ? 'hide completed tasks'
+            : 'show all tasks'}
+          className='ShowAllToggle'
           defaultChecked={false}
           icons={false}
-          onChange={props.onShowAllClick} />
+          onChange={props.onShowAllClick}
+          tabIndex={props.showAlert? -1 : 0}/>
       </div>
       <br/>
-      <button className={"RemoveCompletedButton"} onClick={props.onRemoveAllClick}>
-        Remove All Completed Items
+      <button className={'RemoveCompletedButton'}
+              aria-label={'remove all completed tasks'}
+              onClick={props.onRemoveAllClick}
+              tabIndex={props.showAlert? -1 : 0} >
+        Remove All Completed Tasks
       </button>
     </div>
   ) : <></>;
