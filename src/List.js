@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import { generateUniqueID } from 'web-vitals/dist/modules/lib/generateUniqueID';
 
 import AddItem from './AddItem';
@@ -8,12 +9,30 @@ import CompletionButtons from './CompletionButtons';
 import ListItem from './ListItem';
 import SortSelect from './SortSelect';
 
+import back from './back.png';
+
 function List(props) {
+  // props.list  => includes id, name, sortBy
+  const [value, loading, error] = useCollection(props.listCollection.orderBy(getListSort()));
+
   const [editingText, setEditingText] = useState('');
   const [isEditingId, setIsEditingId] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showingAllTasks, setShowingAllTasks] = useState(true);
   const [newestItem, setNewestItem] = useState(null);
+
+  let data = [];
+  if (value) {
+    data = value.docs.map(e => { return e.data() });
+  }
+
+  function getListName() {
+    return props.listData.name;
+  }
+
+  function getListSort() {
+    return props.listData.sort;
+  }
 
   function handleAdd() {
     const newId = generateUniqueID();
@@ -24,26 +43,27 @@ function List(props) {
       priority: '3',
       checked: false
     };
-    props.collection.doc(newId).set(newTask);
+    props.listCollection.doc(newId).set(newTask);
     setNewestItem(newId);
   }
 
+  function handleChangeSort(v) {
+    props.listDocRef.update({'sort': v});
+    console.log(v);
+  }
+
   function handleEditClick(id, v) {
-    console.log('handleeditclick');
     setEditingText(v);
     setIsEditingId(id);
     setNewestItem(null);
   }
 
   function handleEditChange(id, v) {
-    console.log('handleeditchange');
     setEditingText(v);
-    const docRef = props.collection.doc(id);
-    docRef.update({ task: editingText });
   }
 
   function handleEditComplete(id) {
-    const docRef = props.collection.doc(id);
+    const docRef = props.listCollection.doc(id);
     docRef.update({ task: editingText });
     setIsEditingId(null);
   }
@@ -56,11 +76,7 @@ function List(props) {
   }
 
   async function handleIsCheckedChange(id) {
-    props.listItems.map(e => {
-      return e.id === id
-      ? {...e, checked: !e.checked}
-      : e});
-    const docRef = props.collection.doc(id);
+    const docRef = props.listCollection.doc(id);
     const doc = await docRef.get();
     const newCheckedState = !doc.data().checked;
     docRef.update({ checked: newCheckedState });
@@ -71,18 +87,12 @@ function List(props) {
   }
 
   function handlePriorityChange(id, v) {
-    props.listItems.map(e =>
-      {return e.id === id
-        ? { ...e, priority: v }
-        : e;
-      }
-    );
-    const docRef = props.collection.doc(id);
+    const docRef = props.listCollection.doc(id);
     docRef.update({ priority: v });
   }
 
   async function handleRemoveAllClick() {
-    const snapshot = await props.collection.where('checked', '==', true).get();
+    const snapshot = await props.listCollection.where('checked', '==', true).get();
     const batchSize = snapshot.size;
     if (batchSize === 0) {
       return;
@@ -107,19 +117,40 @@ function List(props) {
   }
 
   function numChecked() {
-    const checkedItems = props.listItems.filter((item) => item.checked);
+    const checkedItems = data.filter((item) => item.checked);
     return checkedItems.length;
   }
 
   return (
-    <div className='ListItemContainer'>
+    <div className={'ListItemContainer'}>
+
+      <div className={'ListHeader'}>
+        <button className={'ListHeaderBack'}
+                aria-label={'return to list menu'}
+                onClick={() => {props.onChangeDisplay('menu')}}>
+          <img className={'BackIcon'}
+               src={back}
+               alt='back arrow icon'
+               width={24}
+               height={24}/>
+        </button>
+
+        <h1 className={'ListHeaderName'}
+            aria-label={getListName()}
+            tabIndex={0}>
+          {getListName()}
+        </h1>
+      </div>
+
       <SortSelect
-        sortBy={props.sortBy}
-        onChange={props.onChangeSort}
+        sortBy={getListSort()}
+        onChange={e => handleChangeSort(e.target.value)}
       />
 
-      <div className={'ListItems'}>
-        {props.listItems.map((item) => (
+      <div className={'ListItems'} aria-label={'checklist of tasks'}>
+        {loading || data === []
+          ? <></>
+          : data.map((item) => (
           <ListItem
             checked={item.checked}
             id={item.id}
@@ -140,28 +171,30 @@ function List(props) {
             onPriorityChange={e =>
               handlePriorityChange(e.target.id, e.target.value)}
             priority={item.priority}
+            showAlert={showAlert}
             showAll={showingAllTasks}
             task={item.task}
           />
         ))}
       </div>
 
-      <AddItem onClick={handleAdd} />
+      <AddItem onClick={handleAdd} showAlert={showAlert} />
 
       {<CompletionButtons
-        anyCompletedTasks={numChecked !== 0}
+        anyCompletedTasks={numChecked() !== 0}
         onShowAllClick={handleShowAllClick}
         onRemoveAllClick={handleToggleAlert}
+        showAlert={showAlert}
         showingAllTasks={showingAllTasks}
       />}
 
       {showAlert && <Alert
         onCancel={handleToggleAlert}
         onConfirm={handleRemoveAllClick}>
-        <div className='alert-text'>
+        <div className='alert-text' aria-label={'task deletion alert'}>
           <h3 className='alert-header'>WARNING</h3>
           Your tasks will be permanently deleted,
-          are you sure you want to delete {numChecked()} of {props.listItems.length} items?
+          are you sure you want to delete {numChecked()} of {data.length} items?
         </div>
       </Alert>}
 
