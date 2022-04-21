@@ -51,6 +51,21 @@ similar to the design for adding tasks
 feedback
 + when alert is showing, made all other items unselectable
 
+## Authentication and Sharing Decisions
+  + the Sign In and Sign Up options are on the same page, with a Sign In
+    With Google option included
+  + list owners have read and write and delete permission on lists, shared
+    users have update only permission to the name of the list and the tasks
+    that are in it
+  + shared users are unable to change the sharing permissions of the list or
+    delete the list
+  + once a list owner shares a list with another person, the recipient does
+    not need to do anything in order for it to appear in their shared lists
+  + list owners cannot change who owns the list, nor can they remove
+    themselves from who has access to the list unless they delete the list
+  + owned lists and shared lists appear on separate tabs, and the user can
+    toggle between them as desired
+  + no lists are viewable if the user is not signed in
 
 ![Screenshot of Lab 3](lab3-basic.png)
 
@@ -84,6 +99,9 @@ iteration with Vivian Pou and Mandy Wu
 
 # Accessibility Testing
 [Keyboard and Screen Reader Demo](https://drive.google.com/file/d/1lLwrDAKPjqcnc77CesWMCUt-4OK8q5TO/view?usp=sharing)
+
+# Firestore Rules
+![firestore rules](rules.png)
 
 # Final Design
 
@@ -151,14 +169,19 @@ This change is irreversible.
 ![after](t6-end.png)
 
 
-# Changes from Lab 3 to Lab 4
-+ added a menu of lists, displaying the lists in
-rows with each row containing the list name and buttons
-for delete list and edit list
-+ the add list option adds a new list and automatically
-focuses on the list name for instant editing
+# Changes from Lab 4 to Lab 5
++ added a sign in/up page for when the user is not
+logged in
++ only allows users to access lists owned by or shared
+with them
++ added a menu of lists for list owned by the user and a
+menu for lists shared with the user
++ added tabs to separate owned lists and shared lists
++ the share function allows the shared user to view, but
+not edit, the shared list
 
-![lab 4](listmenu.png)
+![lab 5](listmenu.png)
+![sign in page](signin.png)
 
 
 # Challenges
@@ -175,6 +198,9 @@ using `useEffect` to get the desired component to
 focus on render
 + using a `useState` to change the menu or list
 displayed
++ adjusting firestore permissions to allow sharing of
+lists and access only owned or shared lists
+  + fixed this by narrowing the query on the useCollection
 
 # Design Highlights
 + editing items on task selection rather than using a button
@@ -187,3 +213,6 @@ tasks
 + used a toggle for "Hide Completed Tasks" since that made
 it clearer that it was a binary state being toggled.
 + sticky header and footer
++ separate tabs for the list menus: one for owned list and another for shared
+  lists
+
