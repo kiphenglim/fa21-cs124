@@ -103,7 +103,6 @@ iteration with Vivian Pou and Mandy Wu
 # Firestore Rules
 ![firestore rules](rules.png)
 
-
 # Final Design
 
 1. task 1: add item "Buy new John Grisham book"
